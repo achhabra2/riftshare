@@ -50,12 +50,12 @@
     <button class="button" on:click={openFile}>Open</button>
   {/if}
 {/if}
+{#if status}
+<div id="status" class="text-red-300">Status: {status}</div>
+{/if}
 {#if isReceiving}
   <label for="file">Progress:</label>
   <progress id="file" max="100" value={receivePercent}>
     {receivePercent}%
   </progress>
-{/if}
-{#if status}
-<div id="status" class="text-red-300">Status: {status}</div>
 {/if}

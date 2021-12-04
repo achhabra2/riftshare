@@ -21,7 +21,7 @@ const go = {
       },
       /**
        * OpenDirectory
-       * @returns {Promise<string>}  - Go Type: string
+       * @returns {Promise<Array<string>>}  - Go Type: []string
        */
       "OpenDirectory": () => {
         return window.go.main.App.OpenDirectory();
@@ -43,11 +43,27 @@ const go = {
         return window.go.main.App.ReceiveFile(arg1);
       },
       /**
-       * SendFile
+       * SelectedFilesSend
        * @returns {Promise<void>} 
        */
-      "SendFile": () => {
-        return window.go.main.App.SendFile();
+      "SelectedFilesSend": () => {
+        return window.go.main.App.SelectedFilesSend();
+      },
+      /**
+       * SendDirectory
+       * @param {string} arg1 - Go Type: string
+       * @returns {Promise<void>} 
+       */
+      "SendDirectory": (arg1) => {
+        return window.go.main.App.SendDirectory(arg1);
+      },
+      /**
+       * SendFile
+       * @param {string} arg1 - Go Type: string
+       * @returns {Promise<void>} 
+       */
+      "SendFile": (arg1) => {
+        return window.go.main.App.SendFile(arg1);
       },
       /**
        * UpdateSendProgress
