@@ -1,5 +1,7 @@
 <script>
+  import { slide } from "svelte/transition";
   import go from "../wailsjs/go/bindings";
+  import "./assets/loading-bar";
 
   let sendCode = "";
   let status = "waiting";
@@ -9,6 +11,7 @@
   $: selectedFileNames = selectedFiles.map((fileName) =>
     fileName.split("\\").pop().split("/").pop()
   );
+  let bar;
 
   function openDialog() {
     go.main.App.OpenDialog().then((selection) => {
@@ -44,49 +47,81 @@
 
   window.runtime.EventsOn("send:updated", function (percent) {
     sendPercent = percent;
+    bar.set(percent);
   });
 
   window.runtime.EventsOn("send:status", function (sendStatus) {
     status = sendStatus;
-    if (sendStatus == "completed") {
+    if (sendStatus == "completed" || sendStatus == "failed") {
       isSending = false;
+      sendCode = "";
     }
   });
 </script>
 
-<!-- <button class="button" on:click={openDialog}>Select File</button> -->
-<button class="rounded-lg px-4 py-2 bg-blue-500 text-blue-100 hover:bg-blue-600 duration-300" on:click={openMultiple}>Select File(s)</button>
-<button class="rounded-lg px-4 py-2 bg-blue-500 text-blue-100 hover:bg-blue-600 duration-300" on:click={sendFile}>Send</button>
-<div class="mb-6">
-  <label for="sendCode" class="text-sm font-medium text-gray-900 block mb-2"
-    >Send Code
-  </label>
-  <input
-    id="sendCode"
-    readonly
-    type="text"
-    placeholder="Send Code..."
-    bind:value={sendCode}
-    class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-  />
-</div>
-<button class="button" on:click={copyCode}>📄</button>
-{#if selectedFiles}
-  <div>
-    <p>Selected Files:</p>
-    <ul>
-      {#each selectedFileNames as fileName}
-        <li>{fileName}</li>
-      {/each}
-    </ul>
+<div class="flex flex-col justify-items-center content-center m-2">
+  {#if selectedFiles}
+    <div class="border-2 rounded-md shadow-md w-48 h-48 p-2 mx-auto">
+      <p class="text-gray-400 text-sm">Selected:</p>
+      <ul>
+        {#each selectedFileNames as fileName}
+          <li class="text-gray-300 text-xs">{fileName}</li>
+        {/each}
+      </ul>
+    </div>
+  {:else}
+    <div />
+  {/if}
+  <div class="p-2 mx-auto">
+    <!-- <button class="button" on:click={openDialog}>Select File</button> -->
+    <button class="send-button" on:click={openMultiple} disabled={isSending}
+      >Select File(s)</button
+    >
+    <button
+      class="rounded-lg px-4 py-2 bg-blue-500 text-blue-100 hover:bg-blue-600 duration-300 disabled:opacity-50"
+      on:click={sendFile}
+      disabled={isSending}>Send</button
+    >
   </div>
-{/if}
-{#if status}
-  <div id="status" class="text-red-300">Status: {status}</div>
-{/if}
-{#if sendPercent && isSending}
-  <label for="file">Progress:</label>
-  <progress id="file" max="100" value={sendPercent}>
-    {sendPercent}%
-  </progress>
-{/if}
+  {#if sendCode}
+    <div class="mx-auto p-2" transition:slide>
+      <label for="sendCode" class="send-input-label">Send Code </label>
+      <input
+        id="sendCode"
+        readonly
+        type="text"
+        placeholder="Send code will appear"
+        value={sendCode}
+        class="send-input"
+      />
+      <button class="send-button" on:click={copyCode}>📄</button>
+    </div>
+  {/if}
+  <!-- {#if status}
+    <div class="mx-auto p-2">
+      <div id="status" class="text-red-300">Status: {status}</div>
+    </div>
+  {/if} -->
+  {#if isSending}
+    <div class="mx-auto p-2 w-3/4" transition:slide>
+      <!-- <label for="file">Progress:</label>
+    <progress id="file" max="100" value={sendPercent}>
+      {sendPercent}%
+    </progress> -->
+      <div class="mb-1 flex justify-between">
+        <span class="text-base text-blue-700 font-medium dark:text-white"
+          >{status}</span
+        >
+        <span class="text-sm font-medium text-blue-700 dark:text-white"
+          >{sendPercent}%</span
+        >
+      </div>
+      <div class="w-full bg-gray-200 rounded-full h-2.5 dark:bg-gray-700">
+        <div
+          class="bg-blue-600 h-2.5 rounded-full"
+          style={"width: " + sendPercent.toString() + "%"}
+        />
+      </div>
+    </div>
+  {/if}
+</div>

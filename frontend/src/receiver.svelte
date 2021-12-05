@@ -37,25 +37,45 @@
   });
 </script>
 
-<input
-  id="receiveCode"
-  type="text"
-  placeholder="Enter Receive Code..."
-  bind:value={receiveCode}
-/>
-<button class="button" on:click={receiveFile}>Receive</button>
-{#if receivePath}
-  <div>Incoming File: {receiveFileName}</div>
-  {#if !isReceiving}
-    <button class="button" on:click={openFile}>Open</button>
+<div class="flex flex-col justify-items-center content-center m-2">
+  <div class="border-2 rounded-md shadow-md w-48 h-48 p-2 mx-auto">
+    {#if receivePath}
+      <div>Incoming File: {receiveFileName}</div>
+      {#if !isReceiving}
+        <button class="button" on:click={openFile}>Open</button>
+      {/if}
+    {/if}
+  </div>
+  <div class="p-2 mx-auto">
+    <label for="receiveCode" class="receive-input-label">Receive Code </label>
+    <input
+      id="receiveCode"
+      type="text"
+      placeholder="eg. 5-component-button"
+      bind:value={receiveCode}
+      class="receive-input"
+    />
+    <button class="receive-button" on:click={receiveFile}>Receive</button>
+  </div>
+  <!-- {#if status}
+  <div id="status" class="text-red-300">Status: {status}</div>
+{/if} -->
+  {#if isReceiving}
+    <div class="mx-auto p-2 w-3/4">
+      <div class="mb-1 flex justify-between">
+        <span class="text-base text-blue-700 font-medium dark:text-white"
+          >{status}</span
+        >
+        <span class="text-sm font-medium text-blue-700 dark:text-white"
+          >{receivePercent}%</span
+        >
+      </div>
+      <div class="w-full bg-gray-200 rounded-full h-2.5 dark:bg-gray-700">
+        <div
+          class="bg-blue-600 h-2.5 rounded-full"
+          style={"width: " + receivePercent.toString() + "%"}
+        />
+      </div>
+    </div>
   {/if}
-{/if}
-{#if status}
-<div id="status" class="text-red-300">Status: {status}</div>
-{/if}
-{#if isReceiving}
-  <label for="file">Progress:</label>
-  <progress id="file" max="100" value={receivePercent}>
-    {receivePercent}%
-  </progress>
-{/if}
+</div>

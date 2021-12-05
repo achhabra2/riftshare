@@ -2,7 +2,7 @@ import svelte from 'rollup-plugin-svelte';
 import commonjs from '@rollup/plugin-commonjs';
 import resolve from '@rollup/plugin-node-resolve';
 import livereload from 'rollup-plugin-livereload';
-import {terser} from 'rollup-plugin-terser';
+import { terser } from 'rollup-plugin-terser';
 import copy from 'rollup-plugin-copy';
 import postcss from 'rollup-plugin-postcss'
 import sveltePreprocess from "svelte-preprocess";
@@ -47,6 +47,12 @@ export default {
 		}),
 		postcss({
 			minimize: true,
+			plugins: [
+				require('postcss-import'),
+				require('tailwindcss/nesting'),
+				require("tailwindcss"),
+				require("autoprefixer"),
+			],
 		}),
 		// If you have external dependencies installed from
 		// npm, you'll most likely need these plugins. In
@@ -60,9 +66,9 @@ export default {
 		commonjs(),
 		copy({
 			targets: [
-				{src: 'src/index.html', dest: 'dist/'},
-				{src: 'src/global.css', dest: 'dist/'},
-				{src: 'src/assets', dest: 'dist/'},
+				{ src: 'src/index.html', dest: 'dist/' },
+				{ src: 'src/global.css', dest: 'dist/' },
+				{ src: 'src/assets', dest: 'dist/' },
 			]
 		}),
 
@@ -81,13 +87,15 @@ export default {
 	watch: {
 		clearScreen: false
 	},
-	preprocess: sveltePreprocess({
-		sourceMap: !production,
-		postcss: {
-		  plugins: [
-		   require("tailwindcss"), 
-		   require("autoprefixer"),
-		  ],
-		},
-	  }),
+	// preprocess: sveltePreprocess({
+	// 	sourceMap: !production,
+	// 	postcss: {
+	// 		plugins: [
+	// 			require('postcss-import'),
+	// 			require('tailwindcss/nesting'),
+	// 			require("tailwindcss"),
+	// 			require("autoprefixer"),
+	// 		],
+	// 	},
+	// }),
 };

@@ -6,11 +6,17 @@ module.exports = {
   },
   darkMode: "media",
   plugins: [
+    require('@tailwindcss/forms'),
   ],
   purge: {
     content: [
      "./src/**/*.svelte",
     ],
     enabled: production // disable purge in dev
+  },
+  variants: {
+    extend: {
+      opacity: ['disabled'],
+    }
   },
 };

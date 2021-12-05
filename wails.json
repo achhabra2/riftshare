@@ -15,7 +15,7 @@
     "name": "Aman Chhabra",
     "email": "aman.chhabra1@gmail.com"
   },
-  "debounceMS": 100,
+  "debounceMS": 1500,
   "devserverurl": "http://localhost:34115",
   "appargs": ""
 }

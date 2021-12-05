@@ -1,0 +1,41 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@import "./assets/loading-bar.css";
+@import "./test.css";
+
+main {
+  height: 100%;
+  width: 100%;
+}
+/* Input */
+/* @variants hover, focus {
+  .send-button {
+    color: yellow;
+  }
+} */
+
+/* .send-button {
+  @apply rounded-lg px-4 py-2 bg-blue-500 text-blue-100;
+} */
+
+@layer components {
+  .send-input {
+    @apply border border-transparent focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent bg-gray-700 text-gray-200 rounded-md shadow-inner shadow-md;
+  }
+  .send-input-label {
+    @apply block text-sm text-gray-300;
+  }
+  .send-button {
+    @apply rounded-lg px-4 py-2 bg-blue-500 duration-300 text-blue-100 hover:bg-blue-600 disabled:opacity-50;
+  }
+  .receive-input {
+    @apply border border-transparent focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent bg-gray-700 text-gray-200 rounded-md shadow-inner shadow-md;
+  }
+  .receive-input-label {
+    @apply block text-sm text-gray-300;
+  }
+  .receive-button {
+    @apply rounded-lg px-4 py-2 bg-blue-500 duration-300 text-blue-100 hover:bg-blue-600 disabled:opacity-50;
+  }
+}
