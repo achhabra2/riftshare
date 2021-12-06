@@ -41,7 +41,7 @@
 
 <div class="flex flex-col justify-items-center content-center m-2">
   <div
-    class="border-2 rounded-md shadow-md w-48 h-48 p-2 mx-auto receive-icon-container"
+    class="border-2 rounded-md shadow-md w-64 h-48 p-2 mx-auto receive-icon-container"
   >
     {#if receivePath}
       <div>Incoming File: {receiveFileName}</div>

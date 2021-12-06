@@ -10,7 +10,6 @@ import (
 	"github.com/wailsapp/wails/v2/pkg/logger"
 	"github.com/wailsapp/wails/v2/pkg/options"
 	"github.com/wailsapp/wails/v2/pkg/options/windows"
-
 )
 
 //go:embed frontend/dist
@@ -26,10 +25,10 @@ func main() {
 	// Create application with options
 	err := wails.Run(&options.App{
 		Title:             "v2-test",
-		Width:             720,
-		Height:            570,
-		MinWidth:          720,
-		MinHeight:         570,
+		Width:             480,
+		Height:            480,
+		MinWidth:          480,
+		MinHeight:         480,
 		MaxWidth:          1280,
 		MaxHeight:         740,
 		DisableResize:     false,
@@ -48,8 +47,8 @@ func main() {
 		},
 		// Windows platform specific options
 		Windows: &windows.Options{
-			WebviewIsTransparent: false,
-			WindowIsTranslucent:  false,
+			WebviewIsTransparent: true,
+			WindowIsTranslucent:  true,
 			DisableWindowIcon:    false,
 		},
 		Mac: &mac.Options{
@@ -58,8 +57,8 @@ func main() {
 			WebviewIsTransparent: true,
 			WindowIsTranslucent:  true,
 			About: &mac.AboutInfo{
-				Title:   "My Application",
-				Message: "© 2021 Me",
+				Title:   "Wormhole GUI",
+				Message: "© 2021 Aman Chhabra",
 				Icon:    icon,
 			},
 		},

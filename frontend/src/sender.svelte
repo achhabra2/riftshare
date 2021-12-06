@@ -63,7 +63,7 @@
 <div class="flex flex-col justify-items-center content-center m-2">
   {#if selectedFiles}
     <div
-      class="border-2 rounded-md shadow-md w-48 h-48 p-2 mx-auto send-icon-container"
+      class="border-2 rounded-md shadow-md w-64 h-48 p-2 mx-auto send-icon-container cursor-fix"
     >
       <p class="text-gray-400 text-sm">Selected:</p>
       <ul class="file-list">
@@ -80,11 +80,15 @@
     <button class="send-button" on:click={openMultiple} disabled={isSending}
       >Select File(s)</button
     >
-    <button
-      class="rounded-lg px-4 py-2 bg-blue-500 text-blue-100 hover:bg-blue-600 duration-300 disabled:opacity-50"
-      on:click={sendFile}
-      disabled={isSending}>Send</button
-    >
+    {#if selectedFiles.length > 0}
+      <button
+        class="rounded-lg px-4 py-2 bg-blue-500 text-blue-100 hover:bg-blue-600 duration-300 disabled:opacity-50"
+        on:click={sendFile}
+        disabled={isSending}
+        in:slide={{duration: 200}}
+        >Send</button
+      >
+    {/if}
   </div>
   {#if sendCode}
     <div class="mx-auto p-2" transition:slide>
@@ -127,5 +131,4 @@
       </div>
     </div>
   {/if}
-  <svg />
 </div>

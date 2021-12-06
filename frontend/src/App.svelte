@@ -1,4 +1,5 @@
 <script>
+  import { fade } from "svelte/transition";
   import Sender from "./sender.svelte";
   import Receiver from "./receiver.svelte";
 
@@ -21,7 +22,7 @@
       </li>
       <li class="">
         <button
-        class={appMode == "receive" ? "tab-item-active" : "tab-item-inactive"}
+          class={appMode == "receive" ? "tab-item-active" : "tab-item-inactive"}
           on:click={() => (appMode = "receive")}
         >
           <i class="fas fa-cog text-base mr-1" /> Receive
@@ -29,7 +30,9 @@
       </li>
       <li class="">
         <button
-          class={appMode == "settings" ? "tab-item-active" : "tab-item-inactive"}
+          class={appMode == "settings"
+            ? "tab-item-active"
+            : "tab-item-inactive"}
           on:click={() => (appMode = "settings")}
         >
           <i class="fas fa-briefcase text-base mr-1" /> Settings
@@ -62,16 +65,25 @@
       </li>
     </ul>
   </div> -->
-  <div
-    class="container mx-auto px-4 py-4 bg-indigo-800 rounded-lg shadow-lg bg-opacity-50"
-    data-wails-no-drag
-  >
-    {#if appMode == "send"}
+  {#if appMode == "send"}
+    <div
+      class="tab-container"
+      in:fade={{ duration: 100, delay: 200 }}
+      out:fade={{ duration: 100, delay: 0 }}
+      data-wails-no-drag
+    >
       <Sender />
-    {:else if appMode == "receive"}
+    </div>
+  {:else if appMode == "receive"}
+    <div
+      class="tab-container"
+      in:fade={{ duration: 100, delay: 200 }}
+      out:fade={{ duration: 100, delay: 0 }}
+      data-wails-no-drag
+    >
       <Receiver />
-    {/if}
-  </div>
+    </div>
+  {/if}
 </main>
 
 <style global lang="postcss">
