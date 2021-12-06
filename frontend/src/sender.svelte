@@ -1,7 +1,6 @@
 <script>
   import { slide } from "svelte/transition";
   import go from "../wailsjs/go/bindings";
-  import "./assets/loading-bar";
 
   let sendCode = "";
   let status = "waiting";
@@ -53,17 +52,21 @@
   window.runtime.EventsOn("send:status", function (sendStatus) {
     status = sendStatus;
     if (sendStatus == "completed" || sendStatus == "failed") {
-      isSending = false;
-      sendCode = "";
+      setTimeout(() => {
+        isSending = false;
+        sendCode = "";
+      }, 500);
     }
   });
 </script>
 
 <div class="flex flex-col justify-items-center content-center m-2">
   {#if selectedFiles}
-    <div class="border-2 rounded-md shadow-md w-48 h-48 p-2 mx-auto">
+    <div
+      class="border-2 rounded-md shadow-md w-48 h-48 p-2 mx-auto send-icon-container"
+    >
       <p class="text-gray-400 text-sm">Selected:</p>
-      <ul>
+      <ul class="file-list">
         {#each selectedFileNames as fileName}
           <li class="text-gray-300 text-xs">{fileName}</li>
         {/each}
@@ -124,4 +127,5 @@
       </div>
     </div>
   {/if}
+  <svg />
 </div>

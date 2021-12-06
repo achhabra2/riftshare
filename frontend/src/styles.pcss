@@ -1,8 +1,6 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-@import "./assets/loading-bar.css";
-@import "./test.css";
 
 main {
   height: 100%;
@@ -27,15 +25,43 @@ main {
     @apply block text-sm text-gray-300;
   }
   .send-button {
-    @apply rounded-lg px-4 py-2 bg-blue-500 duration-300 text-blue-100 hover:bg-blue-600 disabled:opacity-50;
+    @apply rounded-lg px-4 py-2 bg-blue-500 duration-150 text-blue-100 hover:bg-blue-600 disabled:opacity-50 active:bg-green-700;
   }
   .receive-input {
-    @apply border border-transparent focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent bg-gray-700 text-gray-200 rounded-md shadow-inner shadow-md;
+    @apply border border-transparent focus:outline-none focus:ring-2 focus:ring-gray-300 focus:border-transparent bg-gray-700 text-gray-200 rounded-l-md shadow-inner shadow-md;
   }
   .receive-input-label {
     @apply block text-sm text-gray-300;
   }
   .receive-button {
-    @apply rounded-lg px-4 py-2 bg-blue-500 duration-300 text-blue-100 hover:bg-blue-600 disabled:opacity-50;
+    @apply rounded-r-md px-4 py-2 bg-blue-500 duration-150 text-blue-100 hover:bg-blue-600 disabled:opacity-50 active:bg-green-700;
+  }
+  .send-icon-container {
+    background-image: url("./assets/images/send.svg");
+    background-size: 70%;
+    @apply bg-no-repeat bg-center bg-indigo-600 bg-opacity-75;
+  }
+
+  .receive-icon-container {
+    background-image: url("./assets/images/receive.svg");
+    background-size: 85%;
+    @apply bg-no-repeat bg-center bg-indigo-600 bg-opacity-75;
+  }
+  .file-list {
+    @apply list-disc list-inside;
+  }
+  div {
+    @apply select-none;
+  }
+  .cursor-fix {
+    cursor: default;
+  }
+
+  .tab-item-inactive {
+    @apply text-xs font-bold uppercase px-3 py-3 shadow-lg rounded block leading-normal text-pink-600 bg-white w-32;
+  }
+
+  .tab-item-active {
+    @apply text-xs font-bold uppercase px-3 py-3 shadow-lg rounded block leading-normal text-white bg-pink-600 w-32;
   }
 }

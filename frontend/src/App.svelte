@@ -6,7 +6,38 @@
 </script>
 
 <main>
-  <div class="container mx-auto py-8">
+  <div class="pt-2 pb-2 text-sm text-center text-gray-200 font-sans cursor-fix">
+    Wails Wormhole GUI
+  </div>
+  <div class="container mx-auto py-1">
+    <ul class="flex justify-center space-x-1 flex-row">
+      <li class="">
+        <button
+          class={appMode == "send" ? "tab-item-active" : "tab-item-inactive"}
+          on:click={() => (appMode = "send")}
+        >
+          <i class="fas fa-space-shuttle text-base mr-1" /> Send
+        </button>
+      </li>
+      <li class="">
+        <button
+        class={appMode == "receive" ? "tab-item-active" : "tab-item-inactive"}
+          on:click={() => (appMode = "receive")}
+        >
+          <i class="fas fa-cog text-base mr-1" /> Receive
+        </button>
+      </li>
+      <li class="">
+        <button
+          class={appMode == "settings" ? "tab-item-active" : "tab-item-inactive"}
+          on:click={() => (appMode = "settings")}
+        >
+          <i class="fas fa-briefcase text-base mr-1" /> Settings
+        </button>
+      </li>
+    </ul>
+  </div>
+  <!-- <div class="container mx-auto py-8">
     <ul class="flex justify-center space-x-2">
       <li>
         <button
@@ -30,7 +61,7 @@
         </button>
       </li>
     </ul>
-  </div>
+  </div> -->
   <div
     class="container mx-auto px-4 py-4 bg-indigo-800 rounded-lg shadow-lg bg-opacity-50"
     data-wails-no-drag
@@ -44,6 +75,5 @@
 </main>
 
 <style global lang="postcss">
-@import "./styles.pcss"
-
+  @import "./styles.pcss";
 </style>

@@ -10,13 +10,19 @@ module.exports = {
   ],
   purge: {
     content: [
-     "./src/**/*.svelte",
+      "./src/**/*.svelte",
     ],
     enabled: production // disable purge in dev
   },
   variants: {
     extend: {
       opacity: ['disabled'],
+      backgroundColor: ['active'],
     }
   },
+  theme: {
+    cursor: {
+      text: 'default',
+    }
+  }
 };

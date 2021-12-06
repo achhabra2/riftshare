@@ -32,13 +32,17 @@
   window.runtime.EventsOn("receive:status", function (receiveStatus) {
     status = receiveStatus;
     if (receiveStatus == "completed") {
-      isReceiving = false;
+      setTimeout(() => {
+        isReceiving = false;
+      }, 500);
     }
   });
 </script>
 
 <div class="flex flex-col justify-items-center content-center m-2">
-  <div class="border-2 rounded-md shadow-md w-48 h-48 p-2 mx-auto">
+  <div
+    class="border-2 rounded-md shadow-md w-48 h-48 p-2 mx-auto receive-icon-container"
+  >
     {#if receivePath}
       <div>Incoming File: {receiveFileName}</div>
       {#if !isReceiving}
@@ -47,15 +51,17 @@
     {/if}
   </div>
   <div class="p-2 mx-auto">
-    <label for="receiveCode" class="receive-input-label">Receive Code </label>
-    <input
-      id="receiveCode"
-      type="text"
-      placeholder="eg. 5-component-button"
-      bind:value={receiveCode}
-      class="receive-input"
-    />
-    <button class="receive-button" on:click={receiveFile}>Receive</button>
+    <form action="">
+      <label for="receiveCode" class="receive-input-label">Receive Code </label>
+      <input
+        id="receiveCode"
+        type="text"
+        placeholder="eg. 5-component-button"
+        bind:value={receiveCode}
+        class="receive-input"
+      />
+      <button class="receive-button" type="submit" on:click={receiveFile}>Receive</button>
+    </form>
   </div>
   <!-- {#if status}
   <div id="status" class="text-red-300">Status: {status}</div>
