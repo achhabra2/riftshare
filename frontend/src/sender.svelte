@@ -84,8 +84,9 @@
 
 <div class="flex flex-col justify-items-center content-center m-2">
   <div
-    class="border-2 border-green-300 rounded-md shadow-md w-64 h-40 p-2 mx-auto send-icon-container cursor-fix"
+    class="border-2 border-green-300 rounded-md shadow-md w-64 h-40 p-2 mx-auto cursor-fix receive-icon-container"
   >
+  <!-- <div class="send-icon-container w-60 h-36" /> -->
     {#if selectedFiles}
       <div class="grid grid-flow-row">
         {#each selectedFileNames as fileName}
@@ -103,7 +104,7 @@
     >
     {#if selectedFiles.length > 0}
       <button
-        class="rounded-lg px-4 py-2 bg-blue-500 text-blue-100 hover:bg-blue-600 duration-300 disabled:opacity-50"
+        class="send-button"
         on:click={sendFile}
         disabled={isSending}
         in:slide={{ duration: 200 }}>Send</button
@@ -118,7 +119,7 @@
         >
         {#if sendCode}
           <div class="mx-auto" transition:slide>
-            <label for="sendCode" class="send-input-label">Send Code </label>
+            <label for="sendCode" class="send-input-label">Send Code</label>
             <input
               id="sendCode"
               readonly

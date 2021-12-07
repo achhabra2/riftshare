@@ -6,26 +6,16 @@ main {
   height: 100%;
   width: 100%;
 }
-/* Input */
-/* @variants hover, focus {
-  .send-button {
-    color: yellow;
-  }
-} */
-
-/* .send-button {
-  @apply rounded-lg px-4 py-2 bg-blue-500 text-blue-100;
-} */
 
 @layer components {
   .open-button {
-    @apply rounded-lg p-2 bg-green-500 duration-150 text-blue-100 hover:bg-blue-600 active:bg-green-700;
+    @apply rounded-lg p-2 bg-green-500 duration-150 text-gray-200 hover:bg-green-700 active:bg-green-800;
   }
   .send-input {
     @apply border border-transparent focus:outline-none focus:ring-2 focus:ring-green-300 focus:border-transparent bg-gray-800 text-gray-200 rounded-md shadow-inner shadow-md;
   }
   .send-input-label {
-    @apply block text-sm text-gray-300;
+    @apply block text-sm text-gray-200;
   }
   .send-button {
     @apply rounded-lg px-4 py-2 bg-green-600 duration-150 text-gray-200 hover:bg-green-700 disabled:opacity-50 active:bg-green-800;
@@ -40,14 +30,16 @@ main {
     @apply rounded-r-md px-4 py-2 bg-green-600 duration-150 text-gray-200 hover:bg-green-700 disabled:opacity-50 active:bg-green-800;
   }
   .send-icon-container {
-    background-image: url("./assets/images/inbox-solid.svg");
-    background-size: 50%;
-    @apply bg-no-repeat bg-center bg-green-900 bg-opacity-75;
+    mask-image: url("./assets/images/inbox-solid.svg");
+    mask-repeat: no-repeat;
+    mask-position: center;
+    mask-size: 60%;
+    @apply bg-gray-900;
   }
 
   .receive-icon-container {
     background-image: url("./assets/images/inbox-solid.svg");
-    background-size: 50%;
+    background-size: 60%;
     @apply bg-no-repeat bg-center bg-green-900 bg-opacity-75;
   }
   

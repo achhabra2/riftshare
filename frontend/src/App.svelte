@@ -7,9 +7,9 @@
 </script>
 
 <main>
-  <div class="pt-2 pb-2 text-sm text-center text-gray-200 font-sans cursor-fix">
+  <!-- <div class="pt-2 pb-2 text-sm text-center text-gray-200 font-sans cursor-fix">
     RiftShare
-  </div>
+  </div> -->
   <div class="container mx-auto py-1">
     <ul class="flex justify-center space-x-1 flex-row">
       <li class="">
@@ -73,7 +73,6 @@
       class="tab-container"
       in:fade={{ duration: 100, delay: 200 }}
       out:fade={{ duration: 100, delay: 0 }}
-      data-wails-no-drag
     >
       <Sender />
     </div>
@@ -82,7 +81,6 @@
       class="tab-container"
       in:fade={{ duration: 100, delay: 200 }}
       out:fade={{ duration: 100, delay: 0 }}
-      data-wails-no-drag
     >
       <Receiver />
     </div>
@@ -91,7 +89,6 @@
       class="tab-container"
       in:fade={{ duration: 100, delay: 200 }}
       out:fade={{ duration: 100, delay: 0 }}
-      data-wails-no-drag
     >
       <Settings />
     </div>
