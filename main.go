@@ -2,6 +2,7 @@ package main
 
 import (
 	"embed"
+	"fmt"
 	"log"
 
 	"github.com/wailsapp/wails/v2/pkg/options/mac"
@@ -57,7 +58,7 @@ func main() {
 			WebviewIsTransparent: true,
 			WindowIsTranslucent:  true,
 			About: &mac.AboutInfo{
-				Title:   "RiftShare",
+				Title:   fmt.Sprintf("RiftShare %v", version),
 				Message: "Easy, Secure, Free file sharing",
 				Icon:    icon,
 			},
