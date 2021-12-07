@@ -1,7 +1,8 @@
 interface go {
   "main": {
     "App": {
-		Greet(arg1:string):Promise<string>
+		CancelWormholeRequest():Promise<void>
+		GetDownloadsFolder():Promise<string>
 		OpenDialog():Promise<string>
 		OpenDirectory():Promise<Array<string>>
 		OpenFile(arg1:string):Promise<void>
@@ -9,6 +10,7 @@ interface go {
 		SelectedFilesSend():Promise<void>
 		SendDirectory(arg1:string):Promise<void>
 		SendFile(arg1:string):Promise<void>
+		UpdateCheckUI():Promise<void>
 		UpdateSendProgress(arg1:number,arg2:number):Promise<void>
     },
   }

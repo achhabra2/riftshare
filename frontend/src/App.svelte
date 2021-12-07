@@ -2,13 +2,13 @@
   import { fade } from "svelte/transition";
   import Sender from "./sender.svelte";
   import Receiver from "./receiver.svelte";
-
+  import Settings from "./settings.svelte";
   let appMode = "send";
 </script>
 
 <main>
   <div class="pt-2 pb-2 text-sm text-center text-gray-200 font-sans cursor-fix">
-    Wails Wormhole GUI
+    Wormhole GUI
   </div>
   <div class="container mx-auto py-1">
     <ul class="flex justify-center space-x-1 flex-row">
@@ -82,6 +82,15 @@
       data-wails-no-drag
     >
       <Receiver />
+    </div>
+  {:else if appMode == "settings"}
+    <div
+      class="tab-container"
+      in:fade={{ duration: 100, delay: 200 }}
+      out:fade={{ duration: 100, delay: 0 }}
+      data-wails-no-drag
+    >
+      <Settings />
     </div>
   {/if}
 </main>

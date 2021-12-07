@@ -22,10 +22,12 @@ import (
 
 // App application struct
 type App struct {
-	ctx           context.Context
-	c             *transport.Client
-	selectedFile  string
-	selectedFiles []string
+	ctx            context.Context
+	c              *transport.Client
+	selectedFile   string
+	selectedFiles  []string
+	wormholeCtx    *context.Context
+	wormholeCancel *context.CancelFunc
 }
 
 // NewApp creates a new App application struct
@@ -44,16 +46,12 @@ func (b *App) startup(ctx context.Context) {
 // domReady is called after the front-end dom has been loaded
 func (b *App) domReady(ctx context.Context) {
 	// Add your action here
+	// b.UpdateCheckUI()
 }
 
 // shutdown is called at application termination
 func (b *App) shutdown(ctx context.Context) {
 	// Perform your teardown here
-}
-
-// Greet returns a greeting for the given name
-func (b *App) Greet(name string) string {
-	return fmt.Sprintf("Hello %s!", name)
 }
 
 // Greet returns a greeting for the given name
@@ -87,8 +85,9 @@ func (b *App) OpenDirectory() []string {
 func (b *App) SendFile(filePath string) {
 	runtime.LogInfo(b.ctx, "Sending File: "+filePath)
 	runtime.EventsEmit(b.ctx, "send:status", "sending")
+
 	go func() {
-		code, status, err := b.c.NewFileSend(filePath, wormhole.WithProgress(b.UpdateSendProgress))
+		code, status, err := b.c.NewFileSend(*b.wormholeCtx, filePath, wormhole.WithProgress(b.UpdateSendProgress))
 		if err != nil {
 			runtime.LogError(b.ctx, "Send Failed")
 			runtime.EventsEmit(b.ctx, "send:status", "failed")
@@ -114,8 +113,9 @@ func (b *App) SendFile(filePath string) {
 func (b *App) SendDirectory(dirPath string) {
 	runtime.LogInfo(b.ctx, "Sending Directory: "+dirPath)
 	runtime.EventsEmit(b.ctx, "send:status", "sending")
+
 	go func() {
-		code, status, err := b.c.NewDirSend(dirPath, wormhole.WithProgress(b.UpdateSendProgress))
+		code, status, err := b.c.NewDirSend(*b.wormholeCtx, dirPath, wormhole.WithProgress(b.UpdateSendProgress))
 		if err != nil {
 			runtime.LogError(b.ctx, "Send Failed")
 			runtime.EventsEmit(b.ctx, "send:status", "failed")
@@ -137,18 +137,12 @@ func (b *App) SendDirectory(dirPath string) {
 func (b *App) ReceiveFile(code string) {
 	runtime.LogInfo(b.ctx, "Receiving File...")
 	runtime.EventsEmit(b.ctx, "receive:status", "receiving")
-	// ctx := context.Background()
-	// fileInfo, err := b.c.Receive(ctx, code)
-	// if err != nil {
-	// 	log.Fatal(err)
-	// }
 
-	// log.Printf("got msg: %+v\n", fileInfo)
+	ctx := context.Background()
+	ctx, cancel := context.WithCancel(ctx)
+	b.wormholeCtx = &ctx
+	b.wormholeCancel = &cancel
 
-	// _, err = io.Copy(os.Stdout, fileInfo)
-	// if err != nil {
-	// 	log.Fatal("readfull  error", err)
-	// }
 	pathname := make(chan string, 1)
 	progress := make(chan float64)
 	runtime.EventsEmit(b.ctx, "receive:started")
@@ -168,7 +162,7 @@ func (b *App) ReceiveFile(code string) {
 	}()
 
 	go func() {
-		err := b.c.NewReceive(code, pathname, progress)
+		err := b.c.NewReceive(*b.wormholeCtx, code, pathname, progress)
 		if err != nil {
 			runtime.LogError(b.ctx, "Receive Failed")
 			runtime.EventsEmit(b.ctx, "receive:status", "failed")
@@ -203,6 +197,13 @@ func (b *App) OpenFile(path string) {
 }
 
 func (b *App) SelectedFilesSend() {
+	// Create a new context
+	ctx := context.Background()
+	// Create a new context, with its cancellation function
+	// from the original context
+	ctx, cancel := context.WithCancel(ctx)
+	b.wormholeCtx = &ctx
+	b.wormholeCancel = &cancel
 	if len(b.selectedFiles) == 1 {
 		fileInfo, err := os.Stat(b.selectedFiles[0])
 		if err != nil {
@@ -256,4 +257,41 @@ func (b *App) zipFiles(pathNames []string) string {
 	runtime.EventsEmit(b.ctx, "send:status", "zip complete")
 
 	return archivePath
+}
+
+func (b *App) CancelWormholeRequest() {
+	runtime.LogInfo(b.ctx, "Cancelled wormhole request. ")
+	cancel := *b.wormholeCancel
+	cancel()
+}
+
+func (b *App) UpdateCheckUI() {
+	updateMessage := "Test message"
+	buttons := []string{"Ok", "Cancel"}
+	dialogOpts := runtime.MessageDialogOptions{Title: "Update Available", Message: updateMessage, Type: runtime.QuestionDialog, Buttons: buttons, DefaultButton: "Ok", CancelButton: "Cancel"}
+	action, err := runtime.MessageDialog(b.ctx, dialogOpts)
+	if err != nil {
+		runtime.LogError(b.ctx, "Error in update dialog. ")
+	}
+	runtime.LogInfo(b.ctx, action)
+	// shouldUpdate, latestVersion := checkForUpdate()
+	// if shouldUpdate {
+	// 	updateMessage := fmt.Sprintf("New Version Available, would you like to update to v%s", latestVersion)
+	// Insert cut code
+	// if action {
+	// 	log.Println("Update clicked")
+	// 	updated := doSelfUpdate()
+	// 	if updated {
+	// 		updatedDialog := dialog.NewInformation("Update Status", "Update Succeeded, please restart", w)
+	// 		updatedDialog.Show()
+	// 	} else {
+	// 		updatedDialog := dialog.NewInformation("Update Status", "Update Failed", w)
+	// 		updatedDialog.Show()
+	// 	}
+	// }
+	// }
+}
+
+func (b *App) GetDownloadsFolder() string {
+	return b.c.DownloadPath
 }

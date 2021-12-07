@@ -11,18 +11,18 @@ import (
 )
 
 // NewFileSend takes the chosen file and sends it using wormhole-william.
-func (c *Client) NewFileSend(filePath string, progress wormhole.SendOption) (string, chan wormhole.SendResult, error) {
+func (c *Client) NewFileSend(ctx context.Context, filePath string, progress wormhole.SendOption) (string, chan wormhole.SendResult, error) {
 	f, err := os.Open(filePath)
 	if err != nil {
 		log.Fatal(err)
 	}
 
 	_, fileName := filepath.Split(filePath)
-	return c.SendFile(context.Background(), fileName, f, progress)
+	return c.SendFile(ctx, fileName, f, progress)
 }
 
 // NewDirSend takes a listable URI and sends it using wormhole-william.
-func (c *Client) NewDirSend(dirPath string, progress wormhole.SendOption) (string, chan wormhole.SendResult, error) {
+func (c *Client) NewDirSend(ctx context.Context, dirPath string, progress wormhole.SendOption) (string, chan wormhole.SendResult, error) {
 	prefixStr, dirName := filepath.Split(dirPath)
 	prefix := len(prefixStr) // Where the prefix ends. Doing it this way is faster and works when paths don't use same separator (\ or /).
 
@@ -48,7 +48,7 @@ func (c *Client) NewDirSend(dirPath string, progress wormhole.SendOption) (strin
 		return "", nil, err
 	}
 
-	return c.SendDirectory(context.Background(), dirName, files, progress)
+	return c.SendDirectory(ctx, dirName, files, progress)
 }
 
 // NewTextSend takes a text input and sends the text using wormhole-william.

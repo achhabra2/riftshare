@@ -2,15 +2,32 @@
 
 ## About
 
-This is a basic Svelte template, using rollup to bundle the assets into a single JS file.
-Rollup is configured to do the following:
+Wormhole GUI is an app inspired by a few amazing Github projects. 
+* [magic wormhole](https://magic-wormhole.readthedocs.io/en/latest/)
+* [wormhole-william](https://github.com/psanford/wormhole-william)
+* [wormhole-gui](https://github.com/Jacalz/wormhole-gui)
 
-- Convert imported images to base64 strings
-- Convert `url()` in `@font-face` declarations to base64 strings
-- Bundle all css into the JS bundle
-- Copy `index.html` from `frontend/src/` to `frontend/dist/`
+The goal honestly was for me to get more familiar with Wails v2 and see the art of the possible. I would love to use this project to enable my friends and family to be able to securely share files across the globe. Most will not use a CLI utility, they need something easy and beautiful to use. 
 
-Clicking the button will call the backend.
+## Features
+
+* Easy secure file sharing between computers both in the local network and through the internet
+* Supports sending files or directories through magic wormhole
+* Automatic zipping of multiple files that are selected
+* Full animations, progress bar, and cancellation support for sending and receiving
+* Native OS File Selection
+* Open files in one click once received
+
+## Attributions
+
+This project is built leveraging the following Go Modules:
+* Wails-v2
+* wormhole-william
+* compress
+
+## Using it
+
+TODO
 
 ## Live Development
 
@@ -20,3 +37,11 @@ on http://localhost:34115. Open this in your browser to connect to your applicat
 ## Building
 
 For a production build, use `wails build`.
+
+## Contributing
+
+TODO
+
+## License
+
+TODO

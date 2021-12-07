@@ -1,3 +1,5 @@
+const colors = require('tailwindcss/colors');
+
 const production = !process.env.ROLLUP_WATCH;
 module.exports = {
   future: {
@@ -23,6 +25,20 @@ module.exports = {
   theme: {
     cursor: {
       text: 'default',
+    },
+    colors: {
+      transparent: 'transparent',
+      current: 'currentColor',
+      black: colors.black,
+      white: colors.white,
+      gray: colors.blueGray,
+      green: colors.teal,
+      red: colors.red,
+      blue: colors.sky,
+      yellow: colors.amber,
+      pink: colors.rose,
+      purple: colors.violet,
+      indigo: colors.indigo,
     }
   }
 };

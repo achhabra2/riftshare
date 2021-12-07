@@ -5,12 +5,18 @@ const go = {
   "main": {
     "App": {
       /**
-       * Greet
-       * @param {string} arg1 - Go Type: string
+       * CancelWormholeRequest
+       * @returns {Promise<void>} 
+       */
+      "CancelWormholeRequest": () => {
+        return window.go.main.App.CancelWormholeRequest();
+      },
+      /**
+       * GetDownloadsFolder
        * @returns {Promise<string>}  - Go Type: string
        */
-      "Greet": (arg1) => {
-        return window.go.main.App.Greet(arg1);
+      "GetDownloadsFolder": () => {
+        return window.go.main.App.GetDownloadsFolder();
       },
       /**
        * OpenDialog
@@ -64,6 +70,13 @@ const go = {
        */
       "SendFile": (arg1) => {
         return window.go.main.App.SendFile(arg1);
+      },
+      /**
+       * UpdateCheckUI
+       * @returns {Promise<void>} 
+       */
+      "UpdateCheckUI": () => {
+        return window.go.main.App.UpdateCheckUI();
       },
       /**
        * UpdateSendProgress

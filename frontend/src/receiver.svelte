@@ -1,5 +1,6 @@
 <script>
   import go from "../wailsjs/go/bindings";
+  import Progress from "./progress.svelte";
 
   let receiveCode = "";
   let status = "waiting";
@@ -15,6 +16,15 @@
 
   function openFile() {
     go.main.App.OpenFile(receivePath);
+  }
+
+  function onCancel() {
+    go.main.App.CancelWormholeRequest().then(() => {
+      isReceiving = false;
+      receiveCode = "";
+      status = "waiting";
+      receivePercent = 0;
+    });
   }
 
   window.runtime.EventsOn("receive:updated", function (percent) {
@@ -41,17 +51,20 @@
 
 <div class="flex flex-col justify-items-center content-center m-2">
   <div
-    class="border-2 rounded-md shadow-md w-64 h-48 p-2 mx-auto receive-icon-container"
+    class="border-2 border-green-300 rounded-md shadow-md w-64 h-40 p-2 mx-auto receive-icon-container"
   >
     {#if receivePath}
-      <div>Incoming File: {receiveFileName}</div>
+      <p class="text-gray-400 text-sm">Incoming Files:</p>
+      <ul class="file-list">
+        <li class="text-gray-300 text-xs">{receiveFileName}</li>
+      </ul>
       {#if !isReceiving}
-        <button class="button" on:click={openFile}>Open</button>
+        <button class="open-button" on:click={openFile}>Open</button>
       {/if}
     {/if}
   </div>
   <div class="p-2 mx-auto">
-    <form action="">
+    <form on:submit|preventDefault={receiveFile}>
       <label for="receiveCode" class="receive-input-label">Receive Code </label>
       <input
         id="receiveCode"
@@ -60,28 +73,16 @@
         bind:value={receiveCode}
         class="receive-input"
       />
-      <button class="receive-button" type="submit" on:click={receiveFile}>Receive</button>
+      <button class="receive-button" type="submit">Receive</button>
     </form>
   </div>
-  <!-- {#if status}
-  <div id="status" class="text-red-300">Status: {status}</div>
-{/if} -->
   {#if isReceiving}
-    <div class="mx-auto p-2 w-3/4">
-      <div class="mb-1 flex justify-between">
-        <span class="text-base text-blue-700 font-medium dark:text-white"
-          >{status}</span
-        >
-        <span class="text-sm font-medium text-blue-700 dark:text-white"
-          >{receivePercent}%</span
+    <Progress percent={receivePercent} {status}>
+      <div class="container grid">
+        <button class="my-2 mx-auto send-button" on:click={onCancel}
+          >Cancel</button
         >
       </div>
-      <div class="w-full bg-gray-200 rounded-full h-2.5 dark:bg-gray-700">
-        <div
-          class="bg-blue-600 h-2.5 rounded-full"
-          style={"width: " + receivePercent.toString() + "%"}
-        />
-      </div>
-    </div>
+    </Progress>
   {/if}
 </div>
