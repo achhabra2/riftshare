@@ -57,8 +57,8 @@ func main() {
 			WebviewIsTransparent: true,
 			WindowIsTranslucent:  true,
 			About: &mac.AboutInfo{
-				Title:   "Wormhole GUI",
-				Message: "© 2021 Aman Chhabra",
+				Title:   "RiftShare",
+				Message: "Easy, Secure, Free file sharing",
 				Icon:    icon,
 			},
 		},
