@@ -2,7 +2,12 @@
   import go from "../wailsjs/go/bindings";
   import Progress from "./progress.svelte";
 
+
   let receiveCode = "";
+  const receivePattern = /\d+\-\w+\-\w+/;
+
+  $: receiveCodeValid = receivePattern.test(receiveCode);
+
   let status = "waiting";
   let receivePercent = 0;
   let isReceiving = false;
@@ -84,7 +89,7 @@
         bind:value={receiveCode}
         class="receive-input"
       />
-      <button class="receive-button" type="submit">Download</button>
+      <button class="receive-button" type="submit" disabled={!receiveCodeValid}>Download</button>
     </form>
   </div>
   {#if isReceiving}
