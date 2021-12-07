@@ -1,4 +1,4 @@
-module wormhole-wails-gui
+module riftshare
 
 go 1.17
 

@@ -11,7 +11,7 @@ const version = "0.0.1"
 
 func doSelfUpdate() bool {
 	v := semver.MustParse(version)
-	latest, err := selfupdate.UpdateSelf(v, "achhabra2/wormhole-wails-gui")
+	latest, err := selfupdate.UpdateSelf(v, "achhabra2/riftshare")
 	if err != nil {
 		log.Println("Binary update failed:", err)
 		return false
@@ -28,7 +28,7 @@ func doSelfUpdate() bool {
 }
 
 func checkForUpdate() (bool, string) {
-	latest, found, err := selfupdate.DetectLatest("achhabra2/wormhole-wails-gui")
+	latest, found, err := selfupdate.DetectLatest("achhabra2/riftshare")
 	if err != nil {
 		log.Println("Error occurred while detecting version:", err)
 		return false, ""

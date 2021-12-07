@@ -11,7 +11,7 @@ import (
 	"path/filepath"
 	"strings"
 
-	"wormhole-wails-gui/transport/zip"
+	"riftshare/transport/zip"
 
 	"github.com/psanford/wormhole-william/wormhole"
 )

@@ -12,7 +12,7 @@ import (
 	goruntime "runtime"
 	"time"
 
-	"wormhole-wails-gui/transport"
+	"riftshare/transport"
 
 	"github.com/psanford/wormhole-william/wormhole"
 	"github.com/wailsapp/wails/v2/pkg/runtime"
