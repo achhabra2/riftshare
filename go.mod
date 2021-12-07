@@ -10,7 +10,7 @@ require (
 	github.com/wailsapp/wails/v2 v2.0.0-beta.21
 )
 
-replace github.com/wailsapp/wails/v2 => /Users/aman/Documents/code/wails/v2
+replace github.com/wailsapp/wails/v2 => C:\Users\Aman\Documents\code\wails\v2
 
 require (
 	github.com/andybalholm/brotli v1.0.2 // indirect

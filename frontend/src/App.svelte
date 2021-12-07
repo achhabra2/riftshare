@@ -6,7 +6,7 @@
   let appMode = "send";
 </script>
 
-<main>
+<main data-wails-no-drag>
   <!-- <div class="pt-2 pb-2 text-sm text-center text-gray-200 font-sans cursor-fix">
     RiftShare
   </div> -->
@@ -68,31 +68,17 @@
       </li>
     </ul>
   </div> -->
+  <div
+  class="tab-container"
+>
   {#if appMode == "send"}
-    <div
-      class="tab-container"
-      in:fade={{ duration: 100, delay: 200 }}
-      out:fade={{ duration: 100, delay: 0 }}
-    >
       <Sender />
-    </div>
   {:else if appMode == "receive"}
-    <div
-      class="tab-container"
-      in:fade={{ duration: 100, delay: 200 }}
-      out:fade={{ duration: 100, delay: 0 }}
-    >
       <Receiver />
-    </div>
   {:else if appMode == "settings"}
-    <div
-      class="tab-container"
-      in:fade={{ duration: 100, delay: 200 }}
-      out:fade={{ duration: 100, delay: 0 }}
-    >
       <Settings />
-    </div>
   {/if}
+</div>
 </main>
 
 <style global lang="postcss">
