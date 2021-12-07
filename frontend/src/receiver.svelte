@@ -8,7 +8,15 @@
   let isReceiving = false;
   let receivePath = "";
 
-  $: receiveFileName = receivePath.split("\\").pop().split("/").pop();
+  String.prototype.trimEllip = function (length) {
+    return this.length > length ? this.substring(0, length) + "..." : this;
+  };
+  $: receiveFileName = receivePath
+    .split("\\")
+    .pop()
+    .split("/")
+    .pop()
+    .trimEllip(24);
 
   function receiveFile() {
     go.main.App.ReceiveFile(receiveCode);
@@ -54,13 +62,16 @@
     class="border-2 border-green-300 rounded-md shadow-md w-64 h-40 p-2 mx-auto receive-icon-container"
   >
     {#if receivePath}
-      <p class="text-gray-400 text-sm">Incoming Files:</p>
-      <ul class="file-list">
-        <li class="text-gray-300 text-xs">{receiveFileName}</li>
-      </ul>
-      {#if !isReceiving}
-        <button class="open-button" on:click={openFile}>Open</button>
-      {/if}
+      <!-- <p class="text-gray-400 text-sm">Incoming Files:</p> -->
+      <div
+        class="flex flex-col justify-center items-center space-y-2 bg-gray-800 bg-opacity-60"
+      >
+        <div class="icon-lg receive-file-icon" />
+        <span class="text-gray-200">{receiveFileName}</span>
+        {#if !isReceiving}
+          <button class="open-button text-sm" on:click={openFile}>Open</button>
+        {/if}
+      </div>
     {/if}
   </div>
   <div class="p-2 mx-auto">
@@ -73,7 +84,7 @@
         bind:value={receiveCode}
         class="receive-input"
       />
-      <button class="receive-button" type="submit">Receive</button>
+      <button class="receive-button" type="submit">Download</button>
     </form>
   </div>
   {#if isReceiving}

@@ -8,34 +8,37 @@
 
 <main>
   <div class="pt-2 pb-2 text-sm text-center text-gray-200 font-sans cursor-fix">
-    Wormhole GUI
+    RiftShare
   </div>
   <div class="container mx-auto py-1">
     <ul class="flex justify-center space-x-1 flex-row">
       <li class="">
         <button
-          class={appMode == "send" ? "tab-item-active" : "tab-item-inactive"}
+          class={appMode == "send" ? "tab-item tab-item-active" : "tab-item tab-item-inactive"}
           on:click={() => (appMode = "send")}
         >
-          <i class="fas fa-space-shuttle text-base mr-1" /> Send
+          <div class="icon send-tab-icon mr-1" /> 
+          <span>Send</span>
         </button>
       </li>
       <li class="">
         <button
-          class={appMode == "receive" ? "tab-item-active" : "tab-item-inactive"}
+          class={appMode == "receive" ? "tab-item tab-item-active" : "tab-item tab-item-inactive"}
           on:click={() => (appMode = "receive")}
         >
-          <i class="fas fa-cog text-base mr-1" /> Receive
+          <div class="icon receive-tab-icon mr-1" />
+          <span>Receive</span>
         </button>
       </li>
       <li class="">
         <button
           class={appMode == "settings"
-            ? "tab-item-active"
-            : "tab-item-inactive"}
+            ? "tab-item tab-item-active"
+            : "tab-item tab-item-inactive"}
           on:click={() => (appMode = "settings")}
         >
-          <i class="fas fa-briefcase text-base mr-1" /> Settings
+          <div class="icon settings-tab-icon mr-1" />
+          <span>Settings</span>
         </button>
       </li>
     </ul>

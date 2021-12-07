@@ -1,5 +1,5 @@
 {
-  "name": "wormhole-wails-gui",
+  "name": "RiftShare",
   "assetdir": "frontend/dist",
   "frontend:build": "npm run build",
   "frontend:install": "npm install",
@@ -8,7 +8,7 @@
   "version": "2",
   "Path": "",
   "BuildDir": "",
-  "outputfilename": "Wormhole",
+  "outputfilename": "RiftShare",
   "OutputType": "",
   "Platform": "",
   "Author": {

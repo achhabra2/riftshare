@@ -2,7 +2,7 @@
 
 ## About
 
-Wormhole GUI is an app inspired by a few amazing Github projects. 
+RiftShare is an app inspired by a few amazing Github projects. 
 * [magic wormhole](https://magic-wormhole.readthedocs.io/en/latest/)
 * [wormhole-william](https://github.com/psanford/wormhole-william)
 * [wormhole-gui](https://github.com/Jacalz/wormhole-gui)
@@ -24,6 +24,13 @@ This project is built leveraging the following Go Modules:
 * Wails-v2
 * wormhole-william
 * compress
+* semver
+* go-github-selfupdate
+
+Frontend Built Using:
+* Svelte
+* TailwindCSS
+* FontAwesome
 
 ## Using it
 
@@ -44,4 +51,4 @@ TODO
 
 ## License
 
-TODO
+GPLv3

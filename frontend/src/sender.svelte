@@ -4,13 +4,16 @@
 
   import Progress from "./progress.svelte";
 
+  String.prototype.trimEllip = function (length) {
+    return this.length > length ? this.substring(0, length) + "..." : this;
+  };
   let sendCode = "";
   let status = "waiting";
   let sendPercent = 0;
   let selectedFiles = [];
   let isSending = false;
   $: selectedFileNames = selectedFiles.map((fileName) =>
-    fileName.split("\\").pop().split("/").pop()
+    fileName.split("\\").pop().split("/").pop().trimEllip(30)
   );
   let bar;
 
@@ -80,22 +83,21 @@
 </script>
 
 <div class="flex flex-col justify-items-center content-center m-2">
-  {#if selectedFiles}
-    <div
-      class="border-2 border-green-300 rounded-md shadow-md w-64 h-40 p-2 mx-auto send-icon-container cursor-fix"
-    >
-      <p class="text-gray-400 text-sm">Selected:</p>
-      <ul class="file-list">
+  <div
+    class="border-2 border-green-300 rounded-md shadow-md w-64 h-40 p-2 mx-auto send-icon-container cursor-fix"
+  >
+    {#if selectedFiles}
+      <div class="grid grid-flow-row">
         {#each selectedFileNames as fileName}
-          <li class="text-gray-300 text-xs">{fileName}</li>
+          <div class="flex mb-1">
+            <div class="icon send-file-icon mr-1" />
+            <span class="text-gray-300 text-xs">{fileName}</span>
+          </div>
         {/each}
-      </ul>
-    </div>
-  {:else}
-    <div />
-  {/if}
+      </div>
+    {/if}
+  </div>
   <div class="p-2 mx-auto">
-    <!-- <button class="button" on:click={openDialog}>Select File</button> -->
     <button class="send-button" on:click={openMultiple} disabled={isSending}
       >Select File(s)</button
     >
