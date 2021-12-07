@@ -34,8 +34,8 @@ jobs:
           wails build -p
           echo "converting .app into a .dmg"
           npm install -g appdmg
-          appdmg dmg-spec.json optimus.dmg
-          zip optimus.zip optimus.dmg
+          appdmg dmg-spec.json riftshare.dmg
+          zip riftshare.zip riftshare.dmg
         if: matrix.os == 'macos-latest'
       - name: Build package linux
         run: |
@@ -48,11 +48,11 @@ jobs:
           export LOG_LEVEL=debug
           export GODEBUG=1
           wails build
-          tar -czvf optimus.tar.gz ./build/optimus
+          tar -czvf riftshare.tar.gz ./build/riftshare
           # wget https://github.com/linuxdeploy/linuxdeploy/releases/download/continuous/linuxdeploy-x86_64.AppImage
           # chmod +x linuxdeploy*.AppImage
           # ls ./
-          # ./linuxdeploy*.AppImage --appdir AppDir --executable ./build/optimus --desktop-file=optimus.AppImage.desktop --icon-file=appicon--512.png --output appimage
+          # ./linuxdeploy*.AppImage --appdir AppDir --executable ./build/riftshare --desktop-file=riftshare.AppImage.desktop --icon-file=appicon--512.png --output appimage
         if: matrix.os == 'ubuntu-latest'
       - name: Build package windows
         run: |
@@ -63,31 +63,31 @@ jobs:
           Copy-Item -Path "$PWD\wails.json" -Destination "$HOME\.wails\wails.json"
           choco install mingw
           wails build -p
-          Compress-Archive -Path .\build\optimus* -DestinationPath .\optimus.zip
+          Compress-Archive -Path .\build\riftshare* -DestinationPath .\riftshare.zip
         if: matrix.os == 'windows-latest'
       - name: upload artifact macOS
         uses: actions/upload-artifact@v1
         with:
-          name: optimus-macOS
-          path: optimus.zip
+          name: riftshare-macOS
+          path: riftshare.zip
         if: matrix.os == 'macos-latest'
       - name: upload artifact linux
         uses: actions/upload-artifact@v2-preview
         with:
-          name: optimus-linux
-          path: optimus.tar.gz
+          name: riftshare-linux
+          path: riftshare.tar.gz
         if: matrix.os == 'ubuntu-latest'
       #      - name: upload artifact linux appimage
       #        uses: actions/upload-artifact@v2-preview
       #        with:
-      #          name: optimus-linux-appimage
-      #          path: Optimus-${{ env.VERSION }}-x86_64.AppImage
+      #          name: riftshare-linux-appimage
+      #          path: riftshare-${{ env.VERSION }}-x86_64.AppImage
       #        if: matrix.os == 'ubuntu-latest'
       - name: upload artifact windows
         uses: actions/upload-artifact@v1
         with:
-          name: optimus-windows
-          path: optimus.zip
+          name: riftshare-windows
+          path: riftshare.zip
         if: matrix.os == 'windows-latest'
 
   release:
@@ -107,7 +107,7 @@ jobs:
       - name: Download macOS package
         uses: actions/download-artifact@v1
         with:
-          name: optimus-macOS
+          name: riftshare-macOS
       - name: Upload macOS package to release
         id: upload-macOS-release-asset
         uses: actions/upload-release-asset@v1
@@ -115,13 +115,13 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: ./optimus-macOS/optimus.zip
-          asset_name: optimus_${{ github.ref }}_macOS.zip
+          asset_path: ./riftshare-macOS/riftshare.zip
+          asset_name: riftshare_${{ github.ref }}_macOS.zip
           asset_content_type: application/octet-stream
       - name: Download linux package
         uses: actions/download-artifact@v1
         with:
-          name: optimus-linux
+          name: riftshare-linux
       - name: Upload Linux package to release
         id: upload-linux-release-asset
         uses: actions/upload-release-asset@v1
@@ -129,13 +129,13 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: ./optimus-linux/optimus.tar.gz
-          asset_name: optimus_${{ github.ref }}_linux_x86_64.tar.gz
+          asset_path: ./riftshare-linux/riftshare.tar.gz
+          asset_name: riftshare_${{ github.ref }}_linux_x86_64.tar.gz
           asset_content_type: application/octet-stream
       - name: Download windows package
         uses: actions/download-artifact@v1
         with:
-          name: optimus-windows
+          name: riftshare-windows
       - name: Upload Windows package to release
         id: upload-windows-release-asset
         uses: actions/upload-release-asset@v1
@@ -143,6 +143,6 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: ./optimus-windows/optimus.zip
-          asset_name: optimus_${{ github.ref }}_windows_x86_64.zip
+          asset_path: ./riftshare-windows/riftshare.zip
+          asset_name: riftshare_${{ github.ref }}_windows_x86_64.zip
           asset_content_type: application/octet-stream
