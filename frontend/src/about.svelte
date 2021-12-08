@@ -20,11 +20,13 @@
   });
 </script>
 
-<div class="container p4">
-  <div>Riftshare v{version}</div>
-  <a class="text-blue-400" href="https://github.com/achhabra2/riftshare"
-    >Github</a
-  >
+<div class="container p4 text-gray-200">
+  <div>
+    Riftshare v{version}
+    <a class="text-blue-600" target="_blank" href="https://github.com/achhabra2/riftshare"
+      >Github</a
+    >
+  </div>
 
   <p class="text-sm">
     The goal of this project is to enable everyone to securely share files
@@ -38,7 +40,7 @@
     </p>
     <ul class="text-xs file-list">
       {#each Object.entries(attributions) as [name, url]}
-        <li><a class="text-blue-200" target="_blank" href={url}>{name}</a></li>
+        <li><a class="text-blue-500" target="_blank" href={url}>{name}</a></li>
       {/each}
     </ul>
   </div>

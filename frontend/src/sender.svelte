@@ -139,7 +139,7 @@
   <div class="p-2 mx-auto">
     {#if selectedFiles.length > 0}
       <button
-        class="send-button"
+        class="cancel-button"
         on:click={onReset}
         disabled={isSending}
         in:slide={{ duration: 200 }}>Clear</button
@@ -155,7 +155,7 @@
   {#if isSending}
     <Progress percent={sendPercent} {status}>
       <div class="container grid">
-        <button class="my-2 mx-auto send-button" on:click={onCancel}
+        <button class="my-2 mx-auto cancel-button" on:click={onCancel}
           >Cancel</button
         >
         {#if sendCode}

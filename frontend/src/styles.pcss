@@ -17,7 +17,7 @@ div {
     @apply rounded-lg p-2 bg-green-500 duration-150 text-gray-200 hover:bg-green-700 active:bg-green-800;
   }
   .send-input {
-    @apply border border-transparent focus:outline-none focus:ring-2 focus:ring-green-300 focus:border-transparent bg-gray-800 text-gray-200 rounded-md shadow-inner shadow-md;
+    @apply border border-transparent focus:outline-none focus:ring-2 focus:ring-green-300 focus:border-transparent bg-gray-700 text-gray-200 rounded-md shadow-inner shadow-md;
   }
   .send-input-label {
     @apply block text-sm text-gray-200;
@@ -47,7 +47,7 @@ div {
     background-size: 60%;
     @apply bg-no-repeat bg-center bg-green-900 bg-opacity-75;
   }
-  
+
   .file-list {
     @apply list-disc list-inside;
   }
@@ -74,7 +74,7 @@ div {
   }
 
   .progress-outer {
-    @apply absolute inset-0 bg-opacity-80 bg-gray-700 w-full mx-auto my-auto z-0 p-4;
+    @apply absolute inset-0 bg-opacity-90 bg-gray-800 w-full mx-auto my-auto z-0 p-4;
     height: 100%;
   }
 
@@ -158,5 +158,9 @@ div {
     mask-position: center;
     mask-size: contain;
     @apply h-24 w-24 bg-gray-300 hover:bg-green-500 duration-300;
+  }
+
+  .cancel-button {
+    @apply rounded-lg px-4 py-2 bg-red-800 duration-150 text-gray-200 hover:bg-red-700 disabled:opacity-50 active:bg-red-900;
   }
 }

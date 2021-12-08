@@ -97,7 +97,7 @@
   {#if isReceiving}
     <Progress percent={receivePercent} {status}>
       <div class="container grid">
-        <button class="my-2 mx-auto send-button" on:click={onCancel}
+        <button class="my-2 mx-auto cancel-button" on:click={onCancel}
           >Cancel</button
         >
       </div>
