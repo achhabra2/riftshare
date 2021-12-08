@@ -82,7 +82,7 @@
     {/if}
   </div>
   <div class="p-2 mx-auto">
-    <form on:submit|preventDefault={receiveFile}>
+    <form on:submit|preventDefault={receiveFile} autocomplete="off">
       <label for="receiveCode" class="receive-input-label">Receive Code </label>
       <input
         id="receiveCode"
