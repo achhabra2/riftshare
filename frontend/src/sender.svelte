@@ -17,27 +17,31 @@
   );
 
   function openDirectoryDialog() {
-    go.main.App.OpenDirectoryDialog().then((selection) => {
-      if (selection != null) {
-        selectedFiles = selection;
-      } else {
-        selectedFiles = []
-      }
-    }).catch(err => {
-      console.log(err);
-    });
+    go.main.App.OpenDirectoryDialog()
+      .then((selection) => {
+        if (selection != null) {
+          selectedFiles = selection;
+        } else {
+          selectedFiles = [];
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   }
 
   function openFilesDialog() {
-    go.main.App.OpenFilesDialog().then((selection) => {
-      if (selection != null) {
-        selectedFiles = selection;
-      } else {
-        selectedFiles = []
-      }
-    }).catch(err => {
-      console.log(err);
-    });
+    go.main.App.OpenFilesDialog()
+      .then((selection) => {
+        if (selection != null) {
+          selectedFiles = selection;
+        } else {
+          selectedFiles = [];
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   }
 
   function onReset() {
@@ -49,14 +53,16 @@
   }
 
   function onCancel() {
-    go.main.App.CancelWormholeRequest().then(() => {
-      isSending = false;
-      sendCode = "";
-      status = "waiting";
-      sendPercent = 0;
-    }).catch(err => {
-      console.log(err);
-    });
+    go.main.App.CancelWormholeRequest()
+      .then(() => {
+        isSending = false;
+        sendCode = "";
+        status = "waiting";
+        sendPercent = 0;
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   }
 
   function copyCode() {
@@ -82,7 +88,7 @@
   window.runtime.EventsOn("send:updated", function (percent) {
     sendPercent = percent;
     if (status != "transferring") {
-      status = "transferring"
+      status = "transferring";
     }
   });
 
@@ -102,7 +108,7 @@
     class="border-2 border-green-300 rounded-md shadow-md w-72 h-56 p-2 mx-auto cursor-fix receive-icon-container"
   >
     <!-- <div class="send-icon-container w-60 h-36" /> -->
-    {#if selectedFiles}
+    {#if selectedFiles.length > 0}
       <div class="grid grid-flow-row">
         {#each selectedFileNames as fileName, idx}
           {#if idx < 9}
@@ -111,20 +117,33 @@
               <span class="text-gray-300 text-xs">{fileName}</span>
             </div>
           {:else if idx == 9}
-            <div class="text-xs text-gray-100">...Total Selected: {selectedFiles.length}</div>
+            <div class="text-xs text-gray-100">
+              ...Total Selected: {selectedFiles.length}
+            </div>
           {/if}
         {/each}
+      </div>
+    {:else}
+      <div class="flex flex-row items-center content-center justify-around place-items-center h-full">
+        <button
+          class="file-select-icon"
+          on:click={openFilesDialog}
+          disabled={isSending}></button>
+        <button
+          class="folder-select-icon"
+          on:click={openDirectoryDialog}
+          disabled={isSending}></button>
       </div>
     {/if}
   </div>
   <div class="p-2 mx-auto">
-    <button class="send-button" on:click={openFilesDialog} disabled={isSending}
-      >Select File(s)</button
-    >
-    <button class="send-button" on:click={openDirectoryDialog} disabled={isSending}
-    >Select Directory</button
-  >
     {#if selectedFiles.length > 0}
+      <button
+        class="send-button"
+        on:click={onReset}
+        disabled={isSending}
+        in:slide={{ duration: 200 }}>Clear</button
+      >
       <button
         class="send-button"
         on:click={sendFile}

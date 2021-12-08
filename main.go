@@ -57,8 +57,8 @@ func main() {
 		Mac: &mac.Options{
 			TitleBar:             mac.TitleBarDefault(),
 			Appearance:           mac.NSAppearanceNameDarkAqua,
-			WebviewIsTransparent: true,
-			WindowIsTranslucent:  true,
+			WebviewIsTransparent: false,
+			WindowIsTranslucent:  false,
 			About: &mac.AboutInfo{
 				Title:   fmt.Sprintf("RiftShare %v", version),
 				Message: "Easy, Secure, Free file sharing",

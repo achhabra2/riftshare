@@ -139,4 +139,24 @@ div {
     mask-position: center;
     @apply bg-gray-200;
   }
+
+  .folder-select-icon {
+    content: "";
+    display: block;
+    mask-image: url("./assets/images/folder-regular.svg");
+    mask-repeat: no-repeat;
+    mask-position: center;
+    mask-size: contain;
+    @apply h-24 w-24 bg-gray-300 hover:bg-green-500 duration-300;
+  }
+
+  .file-select-icon {
+    content: "";
+    display: block;
+    mask-image: url("./assets/images/file-regular.svg");
+    mask-repeat: no-repeat;
+    mask-position: center;
+    mask-size: contain;
+    @apply h-24 w-24 bg-gray-300 hover:bg-green-500 duration-300;
+  }
 }
