@@ -83,7 +83,7 @@ func (b *App) OpenDirectory() []string {
 
 func (b *App) SendFile(filePath string) {
 	runtime.LogInfo(b.ctx, "Sending File: "+filePath)
-	runtime.EventsEmit(b.ctx, "send:status", "sending")
+	runtime.EventsEmit(b.ctx, "send:status", "retrieving code")
 
 	go func() {
 		ctx := *b.wormholeCtx
@@ -94,6 +94,7 @@ func (b *App) SendFile(filePath string) {
 			b.ShowErrorDialog(err.Error())
 		}
 		runtime.EventsEmit(b.ctx, "send:started", code)
+		runtime.EventsEmit(b.ctx, "send:status", "waiting for receiver")
 
 		select {
 		case s := <-status:
@@ -239,7 +240,7 @@ func (b *App) zipFiles(pathNames []string) string {
 		runtime.LogError(b.ctx, "Could not find home directory")
 	}
 	runtime.LogInfo(b.ctx, "creating zip archive...")
-	runtime.EventsEmit(b.ctx, "send:status", "compressing files")
+	runtime.EventsEmit(b.ctx, "send:status", "compressing Files")
 	timeString := time.Now().Format("2006-01-02-15-04-05")
 	archiveName := fmt.Sprintf("wormhole-%s.zip", timeString)
 	archivePath := filepath.Join(homeDir, archiveName)
@@ -267,7 +268,7 @@ func (b *App) zipFiles(pathNames []string) string {
 			log.Fatal(err)
 		}
 	}
-	runtime.EventsEmit(b.ctx, "send:status", "zip complete")
+	runtime.EventsEmit(b.ctx, "send:status", "zip Complete")
 
 	return archivePath
 }

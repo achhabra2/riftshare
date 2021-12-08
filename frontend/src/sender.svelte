@@ -15,7 +15,6 @@
   $: selectedFileNames = selectedFiles.map((fileName) =>
     fileName.split("\\").pop().split("/").pop().trimEllip(30)
   );
-  let bar;
 
   function openDialog() {
     go.main.App.OpenDialog().then((selection) => {
@@ -68,15 +67,17 @@
 
   function sendFile() {
     go.main.App.SelectedFilesSend();
+    isSending = true;
   }
   window.runtime.EventsOn("send:started", function (newCode) {
     sendCode = newCode;
-    isSending = true;
   });
 
   window.runtime.EventsOn("send:updated", function (percent) {
     sendPercent = percent;
-    bar.set(percent);
+    if (status != "transferring") {
+      status = "transferring"
+    }
   });
 
   window.runtime.EventsOn("send:status", function (sendStatus) {
