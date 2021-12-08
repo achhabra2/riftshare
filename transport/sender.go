@@ -16,7 +16,7 @@ func (c *Client) NewFileSend(ctx context.Context, filePath string, progress worm
 	if err != nil {
 		log.Fatal(err)
 	}
-
+	log.Println("Context in transport", &ctx)
 	_, fileName := filepath.Split(filePath)
 	return c.SendFile(ctx, fileName, f, progress)
 }

@@ -86,14 +86,18 @@
   <div
     class="border-2 border-green-300 rounded-md shadow-md w-64 h-40 p-2 mx-auto cursor-fix receive-icon-container"
   >
-  <!-- <div class="send-icon-container w-60 h-36" /> -->
+    <!-- <div class="send-icon-container w-60 h-36" /> -->
     {#if selectedFiles}
       <div class="grid grid-flow-row">
-        {#each selectedFileNames as fileName}
-          <div class="flex mb-1">
-            <div class="icon send-file-icon mr-1" />
-            <span class="text-gray-300 text-xs">{fileName}</span>
-          </div>
+        {#each selectedFileNames as fileName, idx}
+          {#if idx < 6}
+            <div class="flex mb-1">
+              <div class="icon send-file-icon mr-1" />
+              <span class="text-gray-300 text-xs">{fileName}</span>
+            </div>
+          {:else if idx == 6}
+            <div class="text-xs text-gray-100">...Total Selected: {selectedFiles.length}</div>
+          {/if}
         {/each}
       </div>
     {/if}

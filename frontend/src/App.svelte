@@ -3,6 +3,7 @@
   import Sender from "./sender.svelte";
   import Receiver from "./receiver.svelte";
   import Settings from "./settings.svelte";
+  import About from "./about.svelte";
   let appMode = "send";
 </script>
 
@@ -14,16 +15,20 @@
     <ul class="flex justify-center space-x-1 flex-row">
       <li class="">
         <button
-          class={appMode == "send" ? "tab-item tab-item-active" : "tab-item tab-item-inactive"}
+          class={appMode == "send"
+            ? "tab-item tab-item-active"
+            : "tab-item tab-item-inactive"}
           on:click={() => (appMode = "send")}
         >
-          <div class="icon send-tab-icon mr-1" /> 
+          <div class="icon send-tab-icon mr-1" />
           <span>Send</span>
         </button>
       </li>
       <li class="">
         <button
-          class={appMode == "receive" ? "tab-item tab-item-active" : "tab-item tab-item-inactive"}
+          class={appMode == "receive"
+            ? "tab-item tab-item-active"
+            : "tab-item tab-item-inactive"}
           on:click={() => (appMode = "receive")}
         >
           <div class="icon receive-tab-icon mr-1" />
@@ -39,6 +44,17 @@
         >
           <div class="icon settings-tab-icon mr-1" />
           <span>Settings</span>
+        </button>
+      </li>
+      <li class="">
+        <button
+          class={appMode == "about"
+            ? "tab-item tab-item-active"
+            : "tab-item tab-item-inactive"}
+          on:click={() => (appMode = "about")}
+        >
+          <div class="icon about-tab-icon mr-1" />
+          <span>About</span>
         </button>
       </li>
     </ul>
@@ -68,17 +84,17 @@
       </li>
     </ul>
   </div> -->
-  <div
-  class="tab-container"
->
-  {#if appMode == "send"}
+  <div class="tab-container">
+    {#if appMode == "send"}
       <Sender />
-  {:else if appMode == "receive"}
+    {:else if appMode == "receive"}
       <Receiver />
-  {:else if appMode == "settings"}
+    {:else if appMode == "settings"}
       <Settings />
-  {/if}
-</div>
+    {:else if appMode == "about"}
+      <About />
+    {/if}
+  </div>
 </main>
 
 <style global lang="postcss">

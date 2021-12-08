@@ -54,7 +54,7 @@ main {
   }
 
   .tab-item {
-    @apply text-xs font-bold uppercase px-3 py-3 shadow-lg rounded block leading-normal w-32 flex flex-row justify-center;
+    @apply text-xs font-bold uppercase px-3 py-3 shadow-lg rounded block leading-normal w-28 flex flex-row justify-center;
   }
 
   .tab-item-inactive {
@@ -111,6 +111,13 @@ main {
 
   .settings-tab-icon {
     mask-image: url("./assets/images/cog-solid.svg");
+    mask-repeat: no-repeat;
+    mask-position: center;
+    @apply bg-gray-900;
+  }
+
+  .about-tab-icon {
+    mask-image: url("./assets/images/info-circle-solid.svg");
     mask-repeat: no-repeat;
     mask-position: center;
     @apply bg-gray-900;

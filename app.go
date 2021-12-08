@@ -38,15 +38,13 @@ func NewApp() *App {
 // startup is called at application startup
 func (b *App) startup(ctx context.Context) {
 	// Perform your setup here
-	log.Println("In startup")
-	log.Println(ctx)
 	b.ctx = ctx
 }
 
 // domReady is called after the front-end dom has been loaded
 func (b *App) domReady(ctx context.Context) {
 	// Add your action here
-	// b.UpdateCheckUI()
+	b.UpdateCheckUI()
 }
 
 // shutdown is called at application termination
@@ -202,6 +200,8 @@ func (b *App) SelectedFilesSend() {
 	// Create a new context, with its cancellation function
 	// from the original context
 	ctx, cancel := context.WithCancel(ctx)
+	log.Println("Cancel in send", &cancel)
+	log.Println("Context in send", &ctx)
 	b.wormholeCtx = &ctx
 	b.wormholeCancel = &cancel
 	if len(b.selectedFiles) == 1 {
@@ -261,35 +261,36 @@ func (b *App) zipFiles(pathNames []string) string {
 
 func (b *App) CancelWormholeRequest() {
 	runtime.LogInfo(b.ctx, "Cancelled wormhole request. ")
+	log.Println("Cancel in cancel", b.wormholeCancel)
 	cancel := *b.wormholeCancel
 	cancel()
 }
 
 func (b *App) UpdateCheckUI() {
-	updateMessage := "Test message"
-	buttons := []string{"Ok", "Cancel"}
-	dialogOpts := runtime.MessageDialogOptions{Title: "Update Available", Message: updateMessage, Type: runtime.QuestionDialog, Buttons: buttons, DefaultButton: "Ok", CancelButton: "Cancel"}
-	action, err := runtime.MessageDialog(b.ctx, dialogOpts)
-	if err != nil {
-		runtime.LogError(b.ctx, "Error in update dialog. ")
+	shouldUpdate, latestVersion := checkForUpdate()
+	if shouldUpdate {
+		updateMessage := fmt.Sprintf("New Version Available, would you like to update to v%s", latestVersion)
+		buttons := []string{"Ok", "Cancel"}
+		dialogOpts := runtime.MessageDialogOptions{Title: "Update Available", Message: updateMessage, Type: runtime.QuestionDialog, Buttons: buttons, DefaultButton: "Ok", CancelButton: "Cancel"}
+		action, err := runtime.MessageDialog(b.ctx, dialogOpts)
+		if err != nil {
+			runtime.LogError(b.ctx, "Error in update dialog. ")
+		}
+		runtime.LogInfo(b.ctx, action)
+		if action == "Ok" {
+			log.Println("Update clicked")
+			updated := doSelfUpdate()
+			if updated {
+				buttons = []string{"Ok"}
+				dialogOpts = runtime.MessageDialogOptions{Title: "Update Succeeded", Message: "Update Successfull. Please restart. ", Type: runtime.InfoDialog, Buttons: buttons, DefaultButton: "Ok"}
+				runtime.MessageDialog(b.ctx, dialogOpts)
+			} else {
+				buttons = []string{"Ok"}
+				dialogOpts = runtime.MessageDialogOptions{Title: "Update Error", Message: "Update failed, try again later. ", Type: runtime.InfoDialog, Buttons: buttons, DefaultButton: "Ok"}
+				runtime.MessageDialog(b.ctx, dialogOpts)
+			}
+		}
 	}
-	runtime.LogInfo(b.ctx, action)
-	// shouldUpdate, latestVersion := checkForUpdate()
-	// if shouldUpdate {
-	// 	updateMessage := fmt.Sprintf("New Version Available, would you like to update to v%s", latestVersion)
-	// Insert cut code
-	// if action {
-	// 	log.Println("Update clicked")
-	// 	updated := doSelfUpdate()
-	// 	if updated {
-	// 		updatedDialog := dialog.NewInformation("Update Status", "Update Succeeded, please restart", w)
-	// 		updatedDialog.Show()
-	// 	} else {
-	// 		updatedDialog := dialog.NewInformation("Update Status", "Update Failed", w)
-	// 		updatedDialog.Show()
-	// 	}
-	// }
-	// }
 }
 
 func (b *App) GetDownloadsFolder() string {
