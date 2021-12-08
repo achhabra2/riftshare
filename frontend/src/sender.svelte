@@ -25,7 +25,11 @@
 
   function openMultiple() {
     go.main.App.OpenDirectory().then((selection) => {
-      selectedFiles = selection;
+      if (selection != null) {
+        selectedFiles = selection;
+      } else {
+        selectedFiles = []
+      }
     }).catch(err => {
       console.log(err);
     });
