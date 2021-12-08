@@ -4,6 +4,7 @@ import (
 	"embed"
 	"fmt"
 	"log"
+	goruntime "runtime"
 
 	"github.com/wailsapp/wails/v2/pkg/options/mac"
 
@@ -23,11 +24,12 @@ func main() {
 	// Create an instance of the app structure
 	app := NewApp()
 
+	width, height := GetAppDefaultDimensions()
 	// Create application with options
 	err := wails.Run(&options.App{
 		Title:             "RiftShare",
-		Width:             480,
-		Height:            400,
+		Width:             width,
+		Height:            height,
 		MinWidth:          480,
 		MinHeight:         400,
 		MaxWidth:          1280,
@@ -67,5 +69,16 @@ func main() {
 
 	if err != nil {
 		log.Fatal(err)
+	}
+}
+
+func GetAppDefaultDimensions() (int, int) {
+	switch goruntime.GOOS {
+	case "windows":
+		return 600, 500
+	case "darwin":
+		return 480, 400
+	default:
+		return 480, 400
 	}
 }
