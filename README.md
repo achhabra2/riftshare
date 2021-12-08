@@ -7,7 +7,7 @@ RiftShare is an app inspired by a few amazing Github projects.
 * [wormhole-william](https://github.com/psanford/wormhole-william)
 * [wormhole-gui](https://github.com/Jacalz/wormhole-gui)
 
-The goal honestly was for me to get more familiar with Wails v2 and see the art of the possible. I would love to use this project to enable my friends and family to be able to securely share files across the globe. Most will not use a CLI utility, they need something easy and beautiful to use. 
+The goal was for me to get more familiar with Wails v2 and see the art of the possible. I would love to use this project to enable my friends and family to be able to securely share files across the globe. Most will not use a CLI utility, they need something easy and beautiful to use. 
 
 ## Features
 
@@ -34,6 +34,13 @@ Frontend Built Using:
 
 ## Using it
 
+Sending Files
+![Selecting Files](./docs/screenshots/riftshare-send-1.png)
+![Sending Files](./docs/screenshots/riftshare-send-2.png)
+
+Receiving Files
+![Receiving Files](./docs/screenshots/riftshare-receive-1.png)
+
 TODO
 
 ## Live Development
@@ -51,4 +58,4 @@ TODO
 
 ## License
 
-GPLv3
+Licensed under the GNU General Public License v3.0
