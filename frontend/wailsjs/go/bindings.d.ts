@@ -11,6 +11,7 @@ interface go {
 		SelectedFilesSend():Promise<void>
 		SendDirectory(arg1:string):Promise<void>
 		SendFile(arg1:string):Promise<void>
+		ShowErrorDialog(arg1:string):Promise<void>
 		UpdateCheckUI():Promise<void>
 		UpdateSendProgress(arg1:number,arg2:number):Promise<void>
     },

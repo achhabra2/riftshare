@@ -79,6 +79,14 @@ const go = {
         return window.go.main.App.SendFile(arg1);
       },
       /**
+       * ShowErrorDialog
+       * @param {string} arg1 - Go Type: string
+       * @returns {Promise<void>} 
+       */
+      "ShowErrorDialog": (arg1) => {
+        return window.go.main.App.ShowErrorDialog(arg1);
+      },
+      /**
        * UpdateCheckUI
        * @returns {Promise<void>} 
        */

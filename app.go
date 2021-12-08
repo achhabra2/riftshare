@@ -57,6 +57,7 @@ func (b *App) OpenDialog() string {
 	selection, err := runtime.OpenFileDialog(b.ctx, runtime.OpenDialogOptions{Title: "Select File", AllowFiles: true})
 	if err != nil {
 		runtime.LogInfo(b.ctx, "Error opening dialog")
+		b.ShowErrorDialog(err.Error())
 	}
 	runtime.LogInfo(b.ctx, "File Selected:"+selection)
 	b.selectedFile = selection
@@ -89,6 +90,7 @@ func (b *App) SendFile(filePath string) {
 		if err != nil {
 			runtime.LogError(b.ctx, "Send Failed")
 			runtime.EventsEmit(b.ctx, "send:status", "failed")
+			b.ShowErrorDialog(err.Error())
 		}
 		runtime.EventsEmit(b.ctx, "send:started", code)
 
@@ -97,6 +99,7 @@ func (b *App) SendFile(filePath string) {
 		if s.Error != nil {
 			runtime.LogError(b.ctx, "Send Failed")
 			runtime.EventsEmit(b.ctx, "send:status", "failed")
+			b.ShowErrorDialog(s.Error.Error())
 		} else if s.OK {
 			runtime.LogInfo(b.ctx, "Send Success")
 			runtime.EventsEmit(b.ctx, "send:status", "completed")
@@ -117,6 +120,7 @@ func (b *App) SendDirectory(dirPath string) {
 		if err != nil {
 			runtime.LogError(b.ctx, "Send Failed")
 			runtime.EventsEmit(b.ctx, "send:status", "failed")
+			b.ShowErrorDialog(err.Error())
 		}
 		runtime.EventsEmit(b.ctx, "send:started", code)
 
@@ -125,6 +129,7 @@ func (b *App) SendDirectory(dirPath string) {
 		if s.Error != nil {
 			runtime.LogError(b.ctx, "Send Failed")
 			runtime.EventsEmit(b.ctx, "send:status", "failed")
+			b.ShowErrorDialog(s.Error.Error())
 		} else if s.OK {
 			runtime.LogInfo(b.ctx, "Send Success")
 			runtime.EventsEmit(b.ctx, "send:status", "completed")
@@ -164,6 +169,7 @@ func (b *App) ReceiveFile(code string) {
 		if err != nil {
 			runtime.LogError(b.ctx, "Receive Failed")
 			runtime.EventsEmit(b.ctx, "receive:status", "failed")
+			b.ShowErrorDialog(err.Error())
 		}
 		runtime.EventsEmit(b.ctx, "receive:status", "completed")
 	}()
@@ -200,8 +206,6 @@ func (b *App) SelectedFilesSend() {
 	// Create a new context, with its cancellation function
 	// from the original context
 	ctx, cancel := context.WithCancel(ctx)
-	log.Println("Cancel in send", &cancel)
-	log.Println("Context in send", &ctx)
 	b.wormholeCtx = &ctx
 	b.wormholeCancel = &cancel
 	if len(b.selectedFiles) == 1 {
@@ -261,7 +265,6 @@ func (b *App) zipFiles(pathNames []string) string {
 
 func (b *App) CancelWormholeRequest() {
 	runtime.LogInfo(b.ctx, "Cancelled wormhole request. ")
-	log.Println("Cancel in cancel", b.wormholeCancel)
 	cancel := *b.wormholeCancel
 	cancel()
 }
@@ -299,4 +302,10 @@ func (b *App) GetDownloadsFolder() string {
 
 func (b *App) GetCurrentVersion() string {
 	return version
+}
+
+func (b *App) ShowErrorDialog(message string) {
+	buttons := []string{"Ok"}
+	opts := runtime.MessageDialogOptions{Title: "Error Occured", Message: message, Buttons: buttons, Type: runtime.ErrorDialog, DefaultButton: "Ok"}
+	runtime.MessageDialog(b.ctx, opts)
 }

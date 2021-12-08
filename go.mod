@@ -7,10 +7,8 @@ require (
 	github.com/klauspost/compress v1.12.2
 	github.com/psanford/wormhole-william v1.0.5
 	github.com/rhysd/go-github-selfupdate v1.2.3
-	github.com/wailsapp/wails/v2 v2.0.0-beta.21
+	github.com/wailsapp/wails/v2 v2.0.0-beta.22
 )
-
-replace github.com/wailsapp/wails/v2 => C:\Users\Aman\Documents\code\wails\v2
 
 require (
 	github.com/andybalholm/brotli v1.0.2 // indirect
