@@ -26,18 +26,11 @@ const go = {
         return window.go.main.App.GetDownloadsFolder();
       },
       /**
-       * OpenDialog
-       * @returns {Promise<string>}  - Go Type: string
-       */
-      "OpenDialog": () => {
-        return window.go.main.App.OpenDialog();
-      },
-      /**
-       * OpenDirectory
+       * OpenDirectoryDialog
        * @returns {Promise<Array<string>>}  - Go Type: []string
        */
-      "OpenDirectory": () => {
-        return window.go.main.App.OpenDirectory();
+      "OpenDirectoryDialog": () => {
+        return window.go.main.App.OpenDirectoryDialog();
       },
       /**
        * OpenFile
@@ -46,6 +39,13 @@ const go = {
        */
       "OpenFile": (arg1) => {
         return window.go.main.App.OpenFile(arg1);
+      },
+      /**
+       * OpenFilesDialog
+       * @returns {Promise<Array<string>>}  - Go Type: []string
+       */
+      "OpenFilesDialog": () => {
+        return window.go.main.App.OpenFilesDialog();
       },
       /**
        * ReceiveFile

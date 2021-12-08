@@ -66,12 +66,12 @@
 
 <div class="flex flex-col justify-items-center content-center m-2">
   <div
-    class="border-2 border-green-300 rounded-md shadow-md w-64 h-40 p-2 mx-auto receive-icon-container"
+    class="border-2 border-green-300 rounded-md shadow-md w-72 h-56 p-2 mx-auto receive-icon-container"
   >
     {#if receivePath}
       <!-- <p class="text-gray-400 text-sm">Incoming Files:</p> -->
       <div
-        class="flex flex-col justify-center items-center space-y-2 bg-gray-800 bg-opacity-60"
+        class="flex flex-col justify-center items-center space-y-2 bg-gray-800 rounded-md bg-opacity-60 h-full"
       >
         <div class="icon-lg receive-file-icon" />
         <span class="text-gray-200">{receiveFileName}</span>

@@ -4,9 +4,9 @@ interface go {
 		CancelWormholeRequest():Promise<void>
 		GetCurrentVersion():Promise<string>
 		GetDownloadsFolder():Promise<string>
-		OpenDialog():Promise<string>
-		OpenDirectory():Promise<Array<string>>
+		OpenDirectoryDialog():Promise<Array<string>>
 		OpenFile(arg1:string):Promise<void>
+		OpenFilesDialog():Promise<Array<string>>
 		ReceiveFile(arg1:string):Promise<void>
 		SelectedFilesSend():Promise<void>
 		SendDirectory(arg1:string):Promise<void>

@@ -16,14 +16,20 @@
     fileName.split("\\").pop().split("/").pop().trimEllip(30)
   );
 
-  function openDialog() {
-    go.main.App.OpenDialog().then((selection) => {
-      selectedFiles = selection;
+  function openDirectoryDialog() {
+    go.main.App.OpenDirectoryDialog().then((selection) => {
+      if (selection != null) {
+        selectedFiles = selection;
+      } else {
+        selectedFiles = []
+      }
+    }).catch(err => {
+      console.log(err);
     });
   }
 
-  function openMultiple() {
-    go.main.App.OpenDirectory().then((selection) => {
+  function openFilesDialog() {
+    go.main.App.OpenFilesDialog().then((selection) => {
       if (selection != null) {
         selectedFiles = selection;
       } else {
@@ -93,18 +99,18 @@
 
 <div class="flex flex-col justify-items-center content-center m-2">
   <div
-    class="border-2 border-green-300 rounded-md shadow-md w-64 h-40 p-2 mx-auto cursor-fix receive-icon-container"
+    class="border-2 border-green-300 rounded-md shadow-md w-72 h-56 p-2 mx-auto cursor-fix receive-icon-container"
   >
     <!-- <div class="send-icon-container w-60 h-36" /> -->
     {#if selectedFiles}
       <div class="grid grid-flow-row">
         {#each selectedFileNames as fileName, idx}
-          {#if idx < 6}
+          {#if idx < 9}
             <div class="flex mb-1">
               <div class="icon send-file-icon mr-1" />
               <span class="text-gray-300 text-xs">{fileName}</span>
             </div>
-          {:else if idx == 6}
+          {:else if idx == 9}
             <div class="text-xs text-gray-100">...Total Selected: {selectedFiles.length}</div>
           {/if}
         {/each}
@@ -112,9 +118,12 @@
     {/if}
   </div>
   <div class="p-2 mx-auto">
-    <button class="send-button" on:click={openMultiple} disabled={isSending}
+    <button class="send-button" on:click={openFilesDialog} disabled={isSending}
       >Select File(s)</button
     >
+    <button class="send-button" on:click={openDirectoryDialog} disabled={isSending}
+    >Select Directory</button
+  >
     {#if selectedFiles.length > 0}
       <button
         class="send-button"

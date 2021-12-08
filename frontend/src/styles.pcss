@@ -7,6 +7,11 @@ main {
   width: 100%;
 }
 
+div {
+  @apply select-none;
+  overscroll: none;
+}
+
 @layer components {
   .open-button {
     @apply rounded-lg p-2 bg-green-500 duration-150 text-gray-200 hover:bg-green-700 active:bg-green-800;
@@ -46,9 +51,7 @@ main {
   .file-list {
     @apply list-disc list-inside;
   }
-  div {
-    @apply select-none;
-  }
+
   .cursor-fix {
     cursor: default;
   }
@@ -67,7 +70,7 @@ main {
 
   .tab-container {
     @apply container mx-auto px-4 py-4 bg-gray-700 rounded-lg shadow-lg bg-opacity-50 w-11/12 z-10;
-    height: 80%;
+    height: 82%;
   }
 
   .progress-outer {
