@@ -1,5 +1,5 @@
 <script>
-  import { fade } from "svelte/transition";
+  // import { fade } from "svelte/transition";
   import Sender from "./sender.svelte";
   import Receiver from "./receiver.svelte";
   import Settings from "./settings.svelte";

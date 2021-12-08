@@ -105,7 +105,7 @@
 
 <div class="flex flex-col justify-items-center content-center m-2">
   <div
-    class="border-2 border-green-300 rounded-md shadow-md w-72 h-56 p-2 mx-auto cursor-fix receive-icon-container"
+    class="border-2 border-green-300 rounded-md shadow-md w-72 h-56 p-2 mx-auto cursor-fix send-icon-container"
   >
     <!-- <div class="send-icon-container w-60 h-36" /> -->
     {#if selectedFiles.length > 0}
