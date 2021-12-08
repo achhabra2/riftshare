@@ -37,6 +37,8 @@
       receiveCode = "";
       status = "waiting";
       receivePercent = 0;
+    }).catch(err => {
+      console.log(err);
     });
   }
 

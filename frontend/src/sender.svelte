@@ -26,6 +26,8 @@
   function openMultiple() {
     go.main.App.OpenDirectory().then((selection) => {
       selectedFiles = selection;
+    }).catch(err => {
+      console.log(err);
     });
   }
 
@@ -43,6 +45,8 @@
       sendCode = "";
       status = "waiting";
       sendPercent = 0;
+    }).catch(err => {
+      console.log(err);
     });
   }
 
