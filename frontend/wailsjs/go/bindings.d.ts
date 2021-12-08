@@ -2,6 +2,7 @@ interface go {
   "main": {
     "App": {
 		CancelWormholeRequest():Promise<void>
+		GetCurrentVersion():Promise<string>
 		GetDownloadsFolder():Promise<string>
 		OpenDialog():Promise<string>
 		OpenDirectory():Promise<Array<string>>

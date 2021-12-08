@@ -296,3 +296,7 @@ func (b *App) UpdateCheckUI() {
 func (b *App) GetDownloadsFolder() string {
 	return b.c.DownloadPath
 }
+
+func (b *App) GetCurrentVersion() string {
+	return version
+}

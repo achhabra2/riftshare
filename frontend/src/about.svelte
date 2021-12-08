@@ -1,14 +1,45 @@
-<div>Riftshare</div>
+<script>
+  import go from "../wailsjs/go/bindings";
+  import { onMount } from "svelte";
+  let version = "";
+  const attributions = {
+    "wailsapp/wails": "https://wails.io",
+    "Jackalz/wails-wormhole-gui": "https://github.com/Jacalz/wormhole-gui",
+    "psanford/wormhole-william": "https://github.com/psanford/wormhole-william",
+    "magic-wormhole": "https://magic-wormhole.readthedocs.io/",
+    svelte: "https://github.com/sveltejs/svelte",
+    tailwindcss: "https://github.com/tailwindlabs/tailwindcss",
+    "font awesome": "https://fontawesome.com",
+    "klauspost/compress": "https://github.com/klauspost/compress",
+    "go-github-selfupdate": "https://github.com/rhysd/go-github-selfupdate",
+  };
+  onMount(() => {
+    go.main.App.GetCurrentVersion().then((ver) => {
+      version = ver;
+    });
+  });
+</script>
 
-<p>The goal of this project is to enable everyone to securely share files freely and easily. </p>
-<p>Licensed under the GNU GPL Version 3</p>
+<div class="container p4">
+  <div>Riftshare v{version}</div>
+  <a class="text-blue-400" href="https://github.com/achhabra2/riftshare"
+    >Github</a
+  >
 
-<p>This project leverages the work of other Open Source Software</p>
-<ul class="text-xs">
-    <li>Wails</li>
-    <li>Magic Wormhole</li>
-    <li>Wormhole William</li>
-    <li>Svelte</li>
-    <li>Tailwind</li>
-    <li>Font Awesome</li>
-</ul>
+  <p class="text-sm">
+    The goal of this project is to enable everyone to securely share files
+    freely and easily.
+  </p>
+  <p class="text-sm">Licensed under the GNU GPL Version 3</p>
+
+  <div class="mx-auto">
+    <p class="text-sm">
+      This project leverages the work of other Open Source Software
+    </p>
+    <ul class="text-xs file-list">
+      {#each Object.entries(attributions) as [name, url]}
+        <li><a class="text-blue-200" target="_blank" href={url}>{name}</a></li>
+      {/each}
+    </ul>
+  </div>
+</div>

@@ -12,6 +12,13 @@ const go = {
         return window.go.main.App.CancelWormholeRequest();
       },
       /**
+       * GetCurrentVersion
+       * @returns {Promise<string>}  - Go Type: string
+       */
+      "GetCurrentVersion": () => {
+        return window.go.main.App.GetCurrentVersion();
+      },
+      /**
        * GetDownloadsFolder
        * @returns {Promise<string>}  - Go Type: string
        */
