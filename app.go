@@ -86,7 +86,8 @@ func (b *App) SendFile(filePath string) {
 	runtime.EventsEmit(b.ctx, "send:status", "sending")
 
 	go func() {
-		code, status, err := b.c.NewFileSend(*b.wormholeCtx, filePath, wormhole.WithProgress(b.UpdateSendProgress))
+		ctx := *b.wormholeCtx
+		code, status, err := b.c.NewFileSend(ctx, filePath, wormhole.WithProgress(b.UpdateSendProgress))
 		if err != nil {
 			runtime.LogError(b.ctx, "Send Failed")
 			runtime.EventsEmit(b.ctx, "send:status", "failed")
@@ -94,19 +95,27 @@ func (b *App) SendFile(filePath string) {
 		}
 		runtime.EventsEmit(b.ctx, "send:started", code)
 
-		s := <-status
+		select {
+		case s := <-status:
+			if s.Error != nil {
+				runtime.LogError(b.ctx, "Send Failed")
+				runtime.EventsEmit(b.ctx, "send:status", "failed")
+				b.ShowErrorDialog(s.Error.Error())
+			} else if s.OK {
+				runtime.LogInfo(b.ctx, "Send Success")
+				runtime.EventsEmit(b.ctx, "send:status", "completed")
+			}
 
-		if s.Error != nil {
-			runtime.LogError(b.ctx, "Send Failed")
-			runtime.EventsEmit(b.ctx, "send:status", "failed")
-			b.ShowErrorDialog(s.Error.Error())
-		} else if s.OK {
-			runtime.LogInfo(b.ctx, "Send Success")
-			runtime.EventsEmit(b.ctx, "send:status", "completed")
-		}
-
-		if filepath.Ext(filePath) == ".zip" {
-			os.Remove(filePath)
+			if filepath.Ext(filePath) == ".zip" {
+				os.Remove(filePath)
+			}
+		case <-ctx.Done():
+			// If the request gets cancelled, log it
+			// to STDERR
+			log.Println("Request cancelled, removing zip file")
+			if filepath.Ext(filePath) == ".zip" {
+				os.Remove(filePath)
+			}
 		}
 	}()
 }
