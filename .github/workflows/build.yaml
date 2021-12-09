@@ -7,7 +7,7 @@ jobs:
     strategy:
       matrix:
         go-version: [1.17]
-        os: [macos-latest, windows-latest]
+        os: [macos-11, windows-latest]
     runs-on: ${{ matrix.os }}
     steps:
       - name: Install Go
@@ -18,52 +18,46 @@ jobs:
         uses: actions/checkout@v2
       - name: Set Version
         run: echo "VERSION=$(git rev-parse --short HEAD)" >> $GITHUB_ENV
-      - name: Get Wails dependencies
-        run: sudo apt update && sudo apt install -y libgtk-3-dev libwebkit2gtk-4.0-dev
-        if: matrix.os == 'ubuntu-latest'
+      # - name: Get Wails dependencies
+      #   run: sudo apt update && sudo apt install -y libgtk-3-dev libwebkit2gtk-4.0-dev
+      #   if: matrix.os == 'ubuntu-latest'
       - name: Get Wails
-        run: go get -u github.com/wailsapp/wails/cmd/wails
+        run: go install github.com/wailsapp/wails/v2/cmd/wails@latest
       - name: Build package macOS
         run: |
           export PATH=${PATH}:`go env GOPATH`/bin
           echo "building on ${{ matrix.os }}"
-          mkdir -p ~/.wails
-          cp wails.json ~/.wails/
           export LOG_LEVEL=debug
           export GODEBUG=1
-          wails build -p
-          echo "converting .app into a .dmg"
-          npm install -g appdmg
-          appdmg dmg-spec.json riftshare.dmg
-          zip riftshare.zip riftshare.dmg
+          wails doctor
+          wails build -platform darwin/amd64 -clean
+          zip riftshare.zip ./build/bin/RiftShare.app
         if: matrix.os == 'macos-latest'
-      - name: Build package linux
-        run: |
-          export PATH=$PATH:$(go env GOPATH)/bin
-          echo "building on ${{ matrix.os }}"
-          echo ${{ env.GITHUB_REF }}
-          echo ${{ env.GITHUB_HEAD_REF }}
-          mkdir -p ~/.wails
-          cp wails.json ~/.wails/
-          export LOG_LEVEL=debug
-          export GODEBUG=1
-          wails build
-          tar -czvf riftshare.tar.gz ./build/riftshare
-          # wget https://github.com/linuxdeploy/linuxdeploy/releases/download/continuous/linuxdeploy-x86_64.AppImage
-          # chmod +x linuxdeploy*.AppImage
-          # ls ./
-          # ./linuxdeploy*.AppImage --appdir AppDir --executable ./build/riftshare --desktop-file=riftshare.AppImage.desktop --icon-file=appicon--512.png --output appimage
-        if: matrix.os == 'ubuntu-latest'
+      # - name: Build package linux
+      #   run: |
+      #     export PATH=$PATH:$(go env GOPATH)/bin
+      #     echo "building on ${{ matrix.os }}"
+      #     echo ${{ env.GITHUB_REF }}
+      #     echo ${{ env.GITHUB_HEAD_REF }}
+      #     mkdir -p ~/.wails
+      #     cp wails.json ~/.wails/
+      #     export LOG_LEVEL=debug
+      #     export GODEBUG=1
+      #     wails build
+      #     tar -czvf riftshare.tar.gz ./build/riftshare
+      #     # wget https://github.com/linuxdeploy/linuxdeploy/releases/download/continuous/linuxdeploy-x86_64.AppImage
+      #     # chmod +x linuxdeploy*.AppImage
+      #     # ls ./
+      #     # ./linuxdeploy*.AppImage --appdir AppDir --executable ./build/riftshare --desktop-file=riftshare.AppImage.desktop --icon-file=appicon--512.png --output appimage
+      #   if: matrix.os == 'ubuntu-latest'
       - name: Build package windows
         run: |
           $GP = (go env GOPATH)
           $env:path = "$env:path;$GP\bin"
           echo "building on ${{ matrix.os }}"
-          New-Item -ItemType directory -Path "$HOME\.wails" -Force
-          Copy-Item -Path "$PWD\wails.json" -Destination "$HOME\.wails\wails.json"
           choco install mingw
-          wails build -p
-          Compress-Archive -Path .\build\riftshare* -DestinationPath .\riftshare.zip
+          wails build -platform windows/amd64 -clean
+          Compress-Archive -Path .\build\bin\RiftShare.exe -DestinationPath .\riftshare.zip
         if: matrix.os == 'windows-latest'
       - name: upload artifact macOS
         uses: actions/upload-artifact@v1
@@ -71,12 +65,12 @@ jobs:
           name: riftshare-macOS
           path: riftshare.zip
         if: matrix.os == 'macos-latest'
-      - name: upload artifact linux
-        uses: actions/upload-artifact@v2-preview
-        with:
-          name: riftshare-linux
-          path: riftshare.tar.gz
-        if: matrix.os == 'ubuntu-latest'
+      # - name: upload artifact linux
+      #   uses: actions/upload-artifact@v2-preview
+      #   with:
+      #     name: riftshare-linux
+      #     path: riftshare.tar.gz
+      #   if: matrix.os == 'ubuntu-latest'
       #      - name: upload artifact linux appimage
       #        uses: actions/upload-artifact@v2-preview
       #        with:
@@ -116,22 +110,22 @@ jobs:
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
           asset_path: ./riftshare-macOS/riftshare.zip
-          asset_name: riftshare_${{ github.ref }}_macOS.zip
+          asset_name: riftshare_${{ github.ref }}_darwin_amd64.zip
           asset_content_type: application/octet-stream
-      - name: Download linux package
-        uses: actions/download-artifact@v1
-        with:
-          name: riftshare-linux
-      - name: Upload Linux package to release
-        id: upload-linux-release-asset
-        uses: actions/upload-release-asset@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: ./riftshare-linux/riftshare.tar.gz
-          asset_name: riftshare_${{ github.ref }}_linux_x86_64.tar.gz
-          asset_content_type: application/octet-stream
+      # - name: Download linux package
+      #   uses: actions/download-artifact@v1
+      #   with:
+      #     name: riftshare-linux
+      # - name: Upload Linux package to release
+      #   id: upload-linux-release-asset
+      #   uses: actions/upload-release-asset@v1
+      #   env:
+      #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      #   with:
+      #     upload_url: ${{ steps.create_release.outputs.upload_url }}
+      #     asset_path: ./riftshare-linux/riftshare.tar.gz
+      #     asset_name: riftshare_${{ github.ref }}_linux_x86_64.tar.gz
+      #     asset_content_type: application/octet-stream
       - name: Download windows package
         uses: actions/download-artifact@v1
         with:
@@ -144,5 +138,5 @@ jobs:
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
           asset_path: ./riftshare-windows/riftshare.zip
-          asset_name: riftshare_${{ github.ref }}_windows_x86_64.zip
+          asset_name: riftshare_${{ github.ref }}_windows_amd64.zip
           asset_content_type: application/octet-stream
