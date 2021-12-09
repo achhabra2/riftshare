@@ -31,7 +31,15 @@ jobs:
           export GODEBUG=1
           wails doctor
           wails build -platform darwin/amd64 -clean
-          zip riftshare.zip ./build/bin/RiftShare.app
+          cd ./build/bin/
+          zip riftshare-amd64.zip -r RiftShare.app
+          rm -rf RiftShare.app
+          mv riftshare-amd64.zip ../../
+          wails build -platform darwin/arm64 -clean
+          cd ./build/bin/
+          zip riftshare-arm64.zip -r RiftShare.app
+          rm -rf RiftShare.app
+          mv riftshare-arm64.zip ../../
         if: matrix.os == 'macos-11'
       # - name: Build package linux
       #   run: |
@@ -59,11 +67,17 @@ jobs:
           wails build -platform windows/amd64 -clean
           Compress-Archive -Path .\build\bin\RiftShare.exe -DestinationPath .\riftshare.zip
         if: matrix.os == 'windows-latest'
-      - name: upload artifact macOS
+      - name: upload artifact macOS-AMD64
         uses: actions/upload-artifact@v1
         with:
           name: riftshare-macOS
-          path: riftshare.zip
+          path: riftshare-amd64.zip
+        if: matrix.os == 'macos-11'
+      - name: upload artifact macOS-ARM64
+        uses: actions/upload-artifact@v1
+        with:
+          name: riftshare-macOS
+          path: riftshare-arm64.zip
         if: matrix.os == 'macos-11'
       # - name: upload artifact linux
       #   uses: actions/upload-artifact@v2-preview
@@ -98,7 +112,7 @@ jobs:
           release_name: ${{ github.ref }}
           draft: true
           prerelease: true
-      - name: Download macOS package
+      - name: Download macOS-AMD package
         uses: actions/download-artifact@v1
         with:
           name: riftshare-macOS
@@ -109,8 +123,18 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: ./riftshare-macOS/riftshare.zip
+          asset_path: ./riftshare-macOS/riftshare-amd64.zip
           asset_name: riftshare_${{ github.ref }}_darwin_amd64.zip
+          asset_content_type: application/octet-stream
+      - name: Upload macOS-ARM package to release
+        id: upload-macOS-release-asset
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: ./riftshare-macOS/riftshare-arm64.zip
+          asset_name: riftshare_${{ github.ref }}_darwin_arm64.zip
           asset_content_type: application/octet-stream
       # - name: Download linux package
       #   uses: actions/download-artifact@v1
