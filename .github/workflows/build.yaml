@@ -35,11 +35,13 @@ jobs:
           zip riftshare-amd64.zip -r RiftShare.app
           rm -rf RiftShare.app
           mv riftshare-amd64.zip ../../
+          cd ../../
           wails build -platform darwin/arm64 -clean
           cd ./build/bin/
           zip riftshare-arm64.zip -r RiftShare.app
           rm -rf RiftShare.app
           mv riftshare-arm64.zip ../../
+          cd ../../
         if: matrix.os == 'macos-11'
       # - name: Build package linux
       #   run: |
