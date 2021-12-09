@@ -45,6 +45,12 @@ func (b *App) startup(ctx context.Context) {
 func (b *App) domReady(ctx context.Context) {
 	// Add your action here
 	b.UpdateCheckUI()
+	// buttons := []string{"Yes", "No"}
+	// dialogOpts := runtime.MessageDialogOptions{Title: "Update Available", Message: "Test", Type: runtime.QuestionDialog, Buttons: buttons, DefaultButton: "Yes", CancelButton: "No"}
+	// _, err := runtime.MessageDialog(b.ctx, dialogOpts)
+	// if err != nil {
+	// 	runtime.LogError(b.ctx, "Error in update dialog. ")
+	// }
 }
 
 // shutdown is called at application termination
@@ -279,14 +285,14 @@ func (b *App) UpdateCheckUI() {
 	shouldUpdate, latestVersion := checkForUpdate()
 	if shouldUpdate {
 		updateMessage := fmt.Sprintf("New Version Available, would you like to update to v%s", latestVersion)
-		buttons := []string{"Ok", "Cancel"}
-		dialogOpts := runtime.MessageDialogOptions{Title: "Update Available", Message: updateMessage, Type: runtime.QuestionDialog, Buttons: buttons, DefaultButton: "Ok", CancelButton: "Cancel"}
+		buttons := []string{"Yes", "No"}
+		dialogOpts := runtime.MessageDialogOptions{Title: "Update Available", Message: updateMessage, Type: runtime.QuestionDialog, Buttons: buttons, DefaultButton: "Yes", CancelButton: "No"}
 		action, err := runtime.MessageDialog(b.ctx, dialogOpts)
 		if err != nil {
 			runtime.LogError(b.ctx, "Error in update dialog. ")
 		}
 		runtime.LogInfo(b.ctx, action)
-		if action == "Ok" {
+		if action == "Yes" {
 			log.Println("Update clicked")
 			updated := doSelfUpdate()
 			if updated {
