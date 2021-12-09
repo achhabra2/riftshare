@@ -32,7 +32,7 @@ jobs:
           wails doctor
           wails build -platform darwin/amd64 -clean
           zip riftshare.zip ./build/bin/RiftShare.app
-        if: matrix.os == 'macos-latest'
+        if: matrix.os == 'macos-11'
       # - name: Build package linux
       #   run: |
       #     export PATH=$PATH:$(go env GOPATH)/bin
@@ -64,7 +64,7 @@ jobs:
         with:
           name: riftshare-macOS
           path: riftshare.zip
-        if: matrix.os == 'macos-latest'
+        if: matrix.os == 'macos-11'
       # - name: upload artifact linux
       #   uses: actions/upload-artifact@v2-preview
       #   with:
