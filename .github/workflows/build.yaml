@@ -117,7 +117,7 @@ jobs:
         with:
           name: riftshare-macOS
       - name: Upload macOS package to release
-        id: upload-macOS-release-asset
+        id: upload-macOS-amd64-release-asset
         uses: actions/upload-release-asset@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -127,7 +127,7 @@ jobs:
           asset_name: riftshare_${{ github.ref }}_darwin_amd64.zip
           asset_content_type: application/octet-stream
       - name: Upload macOS-ARM package to release
-        id: upload-macOS-release-asset
+        id: upload-macOS-arm64-release-asset
         uses: actions/upload-release-asset@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
