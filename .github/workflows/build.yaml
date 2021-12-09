@@ -69,18 +69,18 @@ jobs:
           wails build -platform windows/amd64 -clean
           Compress-Archive -Path .\build\bin\RiftShare.exe -DestinationPath .\riftshare.zip
         if: matrix.os == 'windows-latest'
-      - name: upload artifact macOS-AMD64
-        uses: actions/upload-artifact@v1
+      - name: upload artifacts macOS-AMD64
+        uses: actions/upload-artifact@v2
         with:
           name: riftshare-macOS
-          path: riftshare-amd64.zip
+          path: riftshare-*.zip
         if: matrix.os == 'macos-11'
-      - name: upload artifact macOS-ARM64
-        uses: actions/upload-artifact@v1
-        with:
-          name: riftshare-macOS
-          path: riftshare-arm64.zip
-        if: matrix.os == 'macos-11'
+      # - name: upload artifact macOS-ARM64
+      #   uses: actions/upload-artifact@v2
+      #   with:
+      #     name: riftshare-macOS
+      #     path: riftshare-arm64.zip
+      #   if: matrix.os == 'macos-11'
       # - name: upload artifact linux
       #   uses: actions/upload-artifact@v2-preview
       #   with:
@@ -94,7 +94,7 @@ jobs:
       #          path: riftshare-${{ env.VERSION }}-x86_64.AppImage
       #        if: matrix.os == 'ubuntu-latest'
       - name: upload artifact windows
-        uses: actions/upload-artifact@v1
+        uses: actions/upload-artifact@v2
         with:
           name: riftshare-windows
           path: riftshare.zip
@@ -112,8 +112,8 @@ jobs:
         with:
           tag_name: ${{ github.ref }}
           release_name: ${{ github.ref }}
-          draft: true
-          prerelease: true
+          # draft: true
+          # prerelease: true
       - name: Download macOS-AMD package
         uses: actions/download-artifact@v1
         with:
