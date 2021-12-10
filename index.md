@@ -1,37 +1,51 @@
-## Welcome to GitHub Pages
+## RiftShare.app
 
-You can use the [editor on GitHub](https://github.com/achhabra2/riftshare/edit/gh-pages/index.md) to maintain and preview the content for your website in Markdown files.
+Easy, Secure, and Free file sharing for everyone. 
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+### Compatibility
 
-### Markdown
+* Windows (x64)
+* MacOS (x64)
+* MacOS (M1 / ARM)
+* Linux (Coming Soon)
 
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
+### Features
 
-```markdown
-Syntax highlighted code block
+* Easy secure file sharing between computers both in the local network and through the internet
+* Supports sending files or directories through magic wormhole protocol
+* Automatic zipping of multiple files that are selected
+* Full animations, progress bar, and cancellation support for sending and receiving
+* Native OS File Selection
+* Open files in one click once received
+* Self updating binary - don't worry about having the latest release!
 
-# Header 1
-## Header 2
-### Header 3
+### How to Use
 
-- Bulleted
-- List
+TODO
 
-1. Numbered
-2. List
+### Attributions
 
-**Bold** and _Italic_ and `Code` text
+This project is built leveraging the following Go Modules:
+* Wails-v2
+* wormhole-william
+* compress
+* go-github-selfupdate
 
-[Link](url) and ![Image](src)
-```
+Frontend Built Using:
+* Svelte
+* TailwindCSS
+* FontAwesome
 
-For more details see [Basic writing and formatting syntax](https://docs.github.com/en/github/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax).
+### Roadmap
 
-### Jekyll Themes
+* Desktop Notifications
+* Configurable Settings
+* Tooltips / User Help
 
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/achhabra2/riftshare/settings/pages). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
+### License
 
-### Support or Contact
+RiftShare is Licensed under the GNU General Public License v3.0
 
-Having trouble with Pages? Check out our [documentation](https://docs.github.com/categories/github-pages-basics/) or [contact support](https://support.github.com/contact) and we’ll help you sort it out.
+### Privacy Policy
+
+RiftShare does not collect, store, or persist any user data. 
