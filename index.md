@@ -1,8 +1,16 @@
-## RiftShare.app
+## RiftShare
 
 Easy, Secure, and Free file sharing for everyone. 
 
-### Compatibility
+<a href="https://github.com/achhabra2/riftshare/releases/latest" target="_blank">
+<img src="https://github.com/achhabra2/riftshare/blob/main/appicon.png?raw=true" alt="icon" width="128"/>
+</a>
+
+### Installation & Compatibility
+
+Download the [latest release](https://github.com/achhabra2/riftshare/releases/latest) for your operating system. 
+
+Riftshare is compatible with the following operating systems:
 
 * Windows (x64)
 * MacOS (x64)
