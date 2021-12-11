@@ -124,15 +124,26 @@
         {/each}
       </div>
     {:else}
-      <div class="flex flex-row items-center content-center justify-around place-items-center h-full">
-        <button
-          class="file-select-icon"
-          on:click={openFilesDialog}
-          disabled={isSending}></button>
+      <div
+        class="flex flex-row items-center content-center justify-around place-items-center h-full"
+      >
+        <div class="has-tooltip">
+          <span class="tooltip">Send Files</span>
+          <button
+            class="file-select-icon"
+            on:click={openFilesDialog}
+            disabled={isSending}
+          >
+          </button>
+        </div>
+        <div class="has-tooltip">
+        <span class="tooltip">Send Directory</span>
         <button
           class="folder-select-icon"
           on:click={openDirectoryDialog}
-          disabled={isSending}></button>
+          disabled={isSending}
+        />
+      </div>
       </div>
     {/if}
   </div>

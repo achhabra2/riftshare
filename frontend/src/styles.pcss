@@ -161,4 +161,13 @@ div {
   .cancel-button {
     @apply rounded-lg px-4 py-2 bg-red-800 duration-150 text-gray-200 hover:bg-red-700 disabled:opacity-50 active:bg-red-900;
   }
+
+  .tooltip {
+    @apply invisible absolute p-1 rounded border border-green-700 bg-gray-200 text-gray-800 shadow-lg -mt-8 text-sm;
+  }
+  
+  .has-tooltip:hover .tooltip {
+    @apply visible z-50
+  }
 }
+

@@ -5,7 +5,6 @@ import livereload from 'rollup-plugin-livereload';
 import { terser } from 'rollup-plugin-terser';
 import copy from 'rollup-plugin-copy';
 import postcss from 'rollup-plugin-postcss'
-import sveltePreprocess from "svelte-preprocess";
 
 const production = !process.env.ROLLUP_WATCH;
 
@@ -87,15 +86,4 @@ export default {
 	watch: {
 		clearScreen: false
 	},
-	// preprocess: sveltePreprocess({
-	// 	sourceMap: !production,
-	// 	postcss: {
-	// 		plugins: [
-	// 			require('postcss-import'),
-	// 			require('tailwindcss/nesting'),
-	// 			require("tailwindcss"),
-	// 			require("autoprefixer"),
-	// 		],
-	// 	},
-	// }),
 };
