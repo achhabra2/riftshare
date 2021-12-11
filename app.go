@@ -24,7 +24,6 @@ import (
 type App struct {
 	ctx            context.Context
 	c              *transport.Client
-	selectedFile   string
 	selectedFiles  []string
 	wormholeCtx    *context.Context
 	wormholeCancel *context.CancelFunc
