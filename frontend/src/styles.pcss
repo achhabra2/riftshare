@@ -167,7 +167,15 @@ div {
   }
   
   .has-tooltip:hover .tooltip {
-    @apply visible z-50
+    @apply visible z-50;
+  }
+
+  .checkbox {
+    @apply bg-green-700 border border-gray-300 focus:ring-2 focus:ring-green-300 h-4 w-4 rounded;
+  }
+
+  .settings-button {
+    @apply rounded-lg px-1 py-1 bg-green-600 duration-150 text-gray-200 hover:bg-green-700 disabled:opacity-50 active:bg-green-800 text-sm;
   }
 }
 

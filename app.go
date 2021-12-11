@@ -51,6 +51,11 @@ func (b *App) domReady(ctx context.Context) {
 	// if err != nil {
 	// 	runtime.LogError(b.ctx, "Error in update dialog. ")
 	// }
+
+	// err := beeep.Notify("RiftShare", "Send Complete", "./appicon.png")
+	// if err != nil {
+	// 	panic(err)
+	// }
 }
 
 // shutdown is called at application termination
@@ -314,6 +319,26 @@ func (b *App) GetDownloadsFolder() string {
 
 func (b *App) GetCurrentVersion() string {
 	return version
+}
+
+func (b *App) SetDownloadsFolder() string {
+	opts := runtime.OpenDialogOptions{Title: "Select Directory", DefaultDirectory: b.GetDownloadsFolder(), AllowDirectories: true}
+	selection, err := runtime.OpenDirectoryDialog(b.ctx, opts)
+	if err != nil {
+		runtime.LogInfo(b.ctx, "Error opening dialog")
+		b.ShowErrorDialog(err.Error())
+	}
+	b.c.DownloadPath = selection
+	return b.c.DownloadPath
+}
+
+func (b *App) SetOverwriteParam(val bool) bool {
+	b.c.OverwriteExisting = val
+	return b.c.OverwriteExisting
+}
+
+func (b *App) GetOverwriteParam() bool {
+	return b.c.OverwriteExisting
 }
 
 func (b *App) ShowErrorDialog(message string) {

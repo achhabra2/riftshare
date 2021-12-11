@@ -26,6 +26,13 @@ const go = {
         return window.go.main.App.GetDownloadsFolder();
       },
       /**
+       * GetOverwriteParam
+       * @returns {Promise<boolean>}  - Go Type: bool
+       */
+      "GetOverwriteParam": () => {
+        return window.go.main.App.GetOverwriteParam();
+      },
+      /**
        * OpenDirectoryDialog
        * @returns {Promise<Array<string>>}  - Go Type: []string
        */
@@ -77,6 +84,21 @@ const go = {
        */
       "SendFile": (arg1) => {
         return window.go.main.App.SendFile(arg1);
+      },
+      /**
+       * SetDownloadsFolder
+       * @returns {Promise<string>}  - Go Type: string
+       */
+      "SetDownloadsFolder": () => {
+        return window.go.main.App.SetDownloadsFolder();
+      },
+      /**
+       * SetOverwriteParam
+       * @param {boolean} arg1 - Go Type: bool
+       * @returns {Promise<boolean>}  - Go Type: bool
+       */
+      "SetOverwriteParam": (arg1) => {
+        return window.go.main.App.SetOverwriteParam(arg1);
       },
       /**
        * ShowErrorDialog
