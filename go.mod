@@ -4,6 +4,7 @@ go 1.17
 
 require (
 	github.com/blang/semver v3.5.1+incompatible
+	github.com/gen2brain/beeep v0.0.0-20210529141713-5586760f0cc1
 	github.com/klauspost/compress v1.12.2
 	github.com/psanford/wormhole-william v1.0.5
 	github.com/rhysd/go-github-selfupdate v1.2.3
@@ -16,12 +17,16 @@ require (
 	github.com/fasthttp/websocket v0.0.0-20200320073529-1554a54587ab // indirect
 	github.com/gabriel-vasile/mimetype v1.3.1 // indirect
 	github.com/go-ole/go-ole v1.2.6 // indirect
+	github.com/go-toast/toast v0.0.0-20190211030409-01e6764cf0a4 // indirect
+	github.com/godbus/dbus/v5 v5.0.3 // indirect
 	github.com/gofiber/fiber/v2 v2.17.0 // indirect
 	github.com/gofiber/websocket/v2 v2.0.8 // indirect
 	github.com/golang/protobuf v1.5.2 // indirect
 	github.com/google/go-github/v30 v30.1.0 // indirect
 	github.com/google/go-querystring v1.0.0 // indirect
 	github.com/google/uuid v1.1.2 // indirect
+	github.com/gopherjs/gopherjs v0.0.0-20181017120253-0766667cb4d1 // indirect
+	github.com/gopherjs/gopherwasm v1.1.0 // indirect
 	github.com/gorilla/websocket v1.4.2 // indirect
 	github.com/imdario/mergo v0.3.12 // indirect
 	github.com/inconshreveable/go-update v0.0.0-20160112193335-8152e7eb6ccf // indirect
@@ -35,10 +40,12 @@ require (
 	github.com/leaanthony/typescriptify-golang-structs v0.1.7 // indirect
 	github.com/leaanthony/webview2runtime v1.1.0 // indirect
 	github.com/leaanthony/winc v0.0.0-20211202091710-9931d43181ff // indirect
+	github.com/nu7hatch/gouuid v0.0.0-20131221200532-179d4d0c4d8d // indirect
 	github.com/pkg/browser v0.0.0-20210706143420-7d21f8c997e2 // indirect
 	github.com/pkg/errors v0.9.1 // indirect
 	github.com/rogpeppe/go-internal v1.8.0 // indirect
 	github.com/savsgio/gotils v0.0.0-20200117113501-90175b0fbe3f // indirect
+	github.com/tadvi/systray v0.0.0-20190226123456-11a2b8fa57af // indirect
 	github.com/tcnksm/go-gitconfig v0.1.2 // indirect
 	github.com/tkrajina/go-reflector v0.5.5 // indirect
 	github.com/ulikunitz/xz v0.5.9 // indirect

@@ -14,6 +14,7 @@ import (
 
 	"riftshare/transport"
 
+	"github.com/gen2brain/beeep"
 	"github.com/psanford/wormhole-william/wormhole"
 	"github.com/wailsapp/wails/v2/pkg/runtime"
 
@@ -127,6 +128,9 @@ func (b *App) SendFile(filePath string) {
 			} else if s.OK {
 				runtime.LogInfo(b.ctx, "Send Success")
 				runtime.EventsEmit(b.ctx, "send:status", "completed")
+				if b.c.Notifications {
+					beeep.Notify("RiftShare", "Send Complete", "appicon.png")
+				}
 			}
 
 			if filepath.Ext(filePath) == ".zip" {
@@ -204,6 +208,9 @@ func (b *App) ReceiveFile(code string) {
 			b.ShowErrorDialog(err.Error())
 		}
 		runtime.EventsEmit(b.ctx, "receive:status", "completed")
+		if b.c.Notifications {
+			beeep.Notify("RiftShare", "Receive Complete", "appicon.png")
+		}
 	}()
 }
 
