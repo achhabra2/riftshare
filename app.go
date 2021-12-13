@@ -38,6 +38,13 @@ func NewApp() *App {
 func (b *App) startup(ctx context.Context) {
 	// Perform your setup here
 	b.ctx = ctx
+	settings, err := GetUserSettings()
+	if err != nil {
+		log.Println(err)
+	}
+	b.c.Notifications = settings.Notifications
+	b.c.OverwriteExisting = settings.Overwrite
+	b.c.DownloadPath = settings.DownloadsDirectory
 }
 
 // domReady is called after the front-end dom has been loaded
@@ -60,6 +67,15 @@ func (b *App) domReady(ctx context.Context) {
 // shutdown is called at application termination
 func (b *App) shutdown(ctx context.Context) {
 	// Perform your teardown here
+	settings := UserSettings{
+		Notifications:      b.c.Notifications,
+		Overwrite:          b.c.OverwriteExisting,
+		DownloadsDirectory: b.c.DownloadPath,
+	}
+	err := SaveUserSettings(settings)
+	if err != nil {
+		log.Println("Could not persist user settings")
+	}
 }
 
 // Greet returns a greeting for the given name
@@ -338,6 +354,15 @@ func (b *App) SetOverwriteParam(val bool) bool {
 
 func (b *App) GetOverwriteParam() bool {
 	return b.c.OverwriteExisting
+}
+
+func (b *App) SetNotificationsParam(val bool) bool {
+	b.c.Notifications = val
+	return b.c.Notifications
+}
+
+func (b *App) GetNotificationsParam() bool {
+	return b.c.Notifications
 }
 
 func (b *App) ShowErrorDialog(message string) {

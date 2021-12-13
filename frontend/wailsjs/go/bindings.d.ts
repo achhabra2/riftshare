@@ -4,6 +4,7 @@ interface go {
 		CancelWormholeRequest():Promise<void>
 		GetCurrentVersion():Promise<string>
 		GetDownloadsFolder():Promise<string>
+		GetNotificationsParam():Promise<boolean>
 		GetOverwriteParam():Promise<boolean>
 		OpenDirectoryDialog():Promise<Array<string>>
 		OpenFile(arg1:string):Promise<void>
@@ -13,6 +14,7 @@ interface go {
 		SendDirectory(arg1:string):Promise<void>
 		SendFile(arg1:string):Promise<void>
 		SetDownloadsFolder():Promise<string>
+		SetNotificationsParam(arg1:boolean):Promise<boolean>
 		SetOverwriteParam(arg1:boolean):Promise<boolean>
 		ShowErrorDialog(arg1:string):Promise<void>
 		UpdateCheckUI():Promise<void>

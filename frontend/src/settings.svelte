@@ -13,6 +13,9 @@
     go.main.App.GetOverwriteParam().then((pref) => {
       overwrite = pref;
     });
+    go.main.App.GetNotificationsParam().then((pref) => {
+      notifications = pref;
+    });
   });
 
   function setDownloadsFolder() {
@@ -26,8 +29,14 @@
   }
 
   function toggleOverwrite() {
-    go.main.App.SetOverwriteParam(!checked).then(newValue => {
-      checked = newValue;
+    go.main.App.SetOverwriteParam(!overwrite).then(newValue => {
+      overwrite = newValue;
+    });
+  }
+
+  function toggleNotifications() {
+    go.main.App.SetNotificationsParam(!notifications).then(newValue => {
+      notifications = newValue;
     });
   }
 </script>
@@ -56,7 +65,8 @@
       type="checkbox"
       id="notifications"
       name="notifications"
-      bind:checked={notifications}
+      checked={notifications}
+      on:input={toggleNotifications}
     />
   </div>
   <div class="text-gray-300">Overwrite</div>
@@ -68,7 +78,7 @@
       id="overwrite"
       name="overwrite"
       checked={overwrite}
-      on:click={toggleOverwrite}
+      on:input={toggleOverwrite}
     />
   </div>
 </div>

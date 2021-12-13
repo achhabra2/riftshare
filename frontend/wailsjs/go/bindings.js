@@ -26,6 +26,13 @@ const go = {
         return window.go.main.App.GetDownloadsFolder();
       },
       /**
+       * GetNotificationsParam
+       * @returns {Promise<boolean>}  - Go Type: bool
+       */
+      "GetNotificationsParam": () => {
+        return window.go.main.App.GetNotificationsParam();
+      },
+      /**
        * GetOverwriteParam
        * @returns {Promise<boolean>}  - Go Type: bool
        */
@@ -91,6 +98,14 @@ const go = {
        */
       "SetDownloadsFolder": () => {
         return window.go.main.App.SetDownloadsFolder();
+      },
+      /**
+       * SetNotificationsParam
+       * @param {boolean} arg1 - Go Type: bool
+       * @returns {Promise<boolean>}  - Go Type: bool
+       */
+      "SetNotificationsParam": (arg1) => {
+        return window.go.main.App.SetNotificationsParam(arg1);
       },
       /**
        * SetOverwriteParam
