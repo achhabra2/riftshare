@@ -30,10 +30,10 @@ Riftshare is compatible with the following operating systems:
 ### How to Use
 
 #### Sending Files
-![Send](https://raw.githubusercontent.com/achhabra2/riftshare/gh-pages/send.gif)
+<img src="https://raw.githubusercontent.com/achhabra2/riftshare/gh-pages/send.gif" alt="send" width="600"/>
 
 #### Receiving Files
-![Receive](https://raw.githubusercontent.com/achhabra2/riftshare/gh-pages/receive.gif)
+<img src="https://raw.githubusercontent.com/achhabra2/riftshare/gh-pages/receive.gif" alt="send" width="600"/>
 
 ### Attributions
 
