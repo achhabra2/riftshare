@@ -29,7 +29,11 @@ Riftshare is compatible with the following operating systems:
 
 ### How to Use
 
-TODO
+#### Sending Files
+![Send](https://raw.githubusercontent.com/achhabra2/riftshare/gh-pages/send.webp)
+
+#### Receiving Files
+![Receive](https://raw.githubusercontent.com/achhabra2/riftshare/gh-pages/receive.webp)
 
 ### Attributions
 
