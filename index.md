@@ -25,7 +25,7 @@ Riftshare is compatible with the following operating systems:
 * Full animations, progress bar, and cancellation support for sending and receiving
 * Native OS File Selection
 * Open files in one click once received
-* Self updating binary - don't worry about having the latest release!
+* Auto Update - don't worry about having the latest release!
 
 ### How to Use
 
@@ -43,12 +43,6 @@ Frontend Built Using:
 * Svelte
 * TailwindCSS
 * FontAwesome
-
-### Roadmap
-
-* Desktop Notifications
-* Configurable Settings
-* Tooltips / User Help
 
 ### License
 
