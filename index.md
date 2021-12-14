@@ -38,14 +38,16 @@ Riftshare is compatible with the following operating systems:
 
 ### Attributions
 
-This project is built leveraging the following Go Modules:
+This project was inspired by [wormhole-gui](https://github.com/Jacalz/wormhole-gui). 
+
+Built leveraging the following Go Modules:
 * [Wails-v2](https://wails.io)
 * [wormhole-william](https://github.com/psanford/wormhole-william)
 * [compress](https://github.com/klauspost/compress)
 * [go-github-selfupdate](https://github.com/rhysd/go-github-selfupdate)
 * [beeep](https://github.com/gen2brain/beeep)
 
-Frontend Built Using:
+Frontend UI Built Using:
 * [Svelte](https://svelte.dev)
 * [TailwindCSS](https://tailwindcss.com)
 * [FontAwesome](https://fontawesome.com)
