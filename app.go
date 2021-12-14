@@ -52,11 +52,6 @@ func (b *App) startup(ctx context.Context) {
 func (b *App) domReady(ctx context.Context) {
 	// Add your action here
 	b.UpdateCheckUI()
-
-	// err := beeep.Notify("RiftShare", "Send Complete", "/Users/aman/Documents/code/v2-test/appicon.png")
-	// if err != nil {
-	// 	panic(err)
-	// }
 }
 
 // shutdown is called at application termination

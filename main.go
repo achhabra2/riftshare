@@ -85,7 +85,7 @@ func GetAppDefaultDimensions() (int, int) {
 }
 
 func setupLogs() {
-	f, err := os.OpenFile("./kqb-json-viewer-output.log", os.O_APPEND|os.O_CREATE|os.O_RDWR, 0666)
+	f, err := os.OpenFile("./riftshare-output.log", os.O_APPEND|os.O_CREATE|os.O_RDWR, 0666)
 	if err != nil {
 		fmt.Printf("error opening file: %v", err)
 	}
