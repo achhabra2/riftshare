@@ -26,6 +26,7 @@
         }
       })
       .catch((err) => {
+        // No directory selected
         console.log(err);
       });
   }
@@ -40,6 +41,7 @@
         }
       })
       .catch((err) => {
+        // No files selected
         console.log(err);
       });
   }

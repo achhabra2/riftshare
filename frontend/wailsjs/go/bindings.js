@@ -41,7 +41,7 @@ const go = {
       },
       /**
        * OpenDirectoryDialog
-       * @returns {Promise<Array<string>>}  - Go Type: []string
+       * @returns {Promise<Array<string>|Error>}  - Go Type: []string
        */
       "OpenDirectoryDialog": () => {
         return window.go.main.App.OpenDirectoryDialog();
@@ -56,7 +56,7 @@ const go = {
       },
       /**
        * OpenFilesDialog
-       * @returns {Promise<Array<string>>}  - Go Type: []string
+       * @returns {Promise<Array<string>|Error>}  - Go Type: []string
        */
       "OpenFilesDialog": () => {
         return window.go.main.App.OpenFilesDialog();

@@ -6,9 +6,9 @@ interface go {
 		GetDownloadsFolder():Promise<string>
 		GetNotificationsParam():Promise<boolean>
 		GetOverwriteParam():Promise<boolean>
-		OpenDirectoryDialog():Promise<Array<string>>
+		OpenDirectoryDialog():Promise<Array<string>|Error>
 		OpenFile(arg1:string):Promise<void>
-		OpenFilesDialog():Promise<Array<string>>
+		OpenFilesDialog():Promise<Array<string>|Error>
 		ReceiveFile(arg1:string):Promise<void>
 		SelectedFilesSend():Promise<void>
 		SendDirectory(arg1:string):Promise<void>

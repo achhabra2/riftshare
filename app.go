@@ -2,6 +2,7 @@ package main
 
 import (
 	"context"
+	"errors"
 	"fmt"
 	"io"
 	"log"
@@ -69,7 +70,7 @@ func (b *App) shutdown(ctx context.Context) {
 }
 
 // Greet returns a greeting for the given name
-func (b *App) OpenDirectoryDialog() []string {
+func (b *App) OpenDirectoryDialog() ([]string, error) {
 	opts := runtime.OpenDialogOptions{Title: "Select Directory", DefaultDirectory: b.GetDownloadsFolder(), AllowDirectories: true}
 	selection, err := runtime.OpenDirectoryDialog(b.ctx, opts)
 	if err != nil {
@@ -77,20 +78,29 @@ func (b *App) OpenDirectoryDialog() []string {
 		b.ShowErrorDialog(err.Error())
 	}
 	runtime.LogInfo(b.ctx, "File Selected:"+selection)
+	if selection == "" {
+		runtime.LogError(b.ctx, "No files selected")
+		return b.selectedFiles, errors.New("invalid selection")
+	}
 	b.selectedFiles = []string{selection}
-	return b.selectedFiles
+	return b.selectedFiles, nil
 }
 
-func (b *App) OpenFilesDialog() []string {
+func (b *App) OpenFilesDialog() ([]string, error) {
 	opts := runtime.OpenDialogOptions{Title: "Select File", AllowFiles: true, DefaultDirectory: b.GetDownloadsFolder()}
 	selection, err := runtime.OpenMultipleFilesDialog(b.ctx, opts)
 	if err != nil {
 		runtime.LogInfo(b.ctx, "Error opening dialog")
+		b.ShowErrorDialog(err.Error())
 	}
 	runtime.LogInfo(b.ctx, "File Selected:")
 	log.Println(selection)
+	if len(selection) == 0 {
+		runtime.LogError(b.ctx, "No files selected")
+		return b.selectedFiles, errors.New("invalid selection")
+	}
 	b.selectedFiles = selection
-	return b.selectedFiles
+	return b.selectedFiles, nil
 }
 
 func (b *App) SendFile(filePath string) {
