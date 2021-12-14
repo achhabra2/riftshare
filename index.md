@@ -20,8 +20,9 @@ Riftshare is compatible with the following operating systems:
 ### Features
 
 * Easy secure file sharing between computers both in the local network and through the internet
-* Supports sending files or directories through magic wormhole protocol
-* Automatic zipping of multiple files that are selected
+* Supports sending files or directories securely through the [magic wormhole protocol](https://magic-wormhole.readthedocs.io/en/latest/)
+* Compatible with all other apps using magic wormhole (magic-wormhole or wormhole-william CLI, wormhole-gui, etc.)
+* Automatic zipping of multiple selected files to send at once
 * Full animations, progress bar, and cancellation support for sending and receiving
 * Native OS File Selection
 * Open files in one click once received
@@ -38,15 +39,16 @@ Riftshare is compatible with the following operating systems:
 ### Attributions
 
 This project is built leveraging the following Go Modules:
-* Wails-v2
-* wormhole-william
-* compress
-* go-github-selfupdate
+* [Wails-v2](https://wails.io)
+* [wormhole-william](https://github.com/psanford/wormhole-william)
+* [compress](https://github.com/klauspost/compress)
+* [go-github-selfupdate](https://github.com/rhysd/go-github-selfupdate)
+* [beeep](https://github.com/gen2brain/beeep)
 
 Frontend Built Using:
-* Svelte
-* TailwindCSS
-* FontAwesome
+* [Svelte](https://svelte.dev)
+* [TailwindCSS](https://tailwindcss.com)
+* [FontAwesome](https://fontawesome.com)
 
 ### License
 
