@@ -4,6 +4,7 @@ import (
 	"embed"
 	"fmt"
 	"log"
+	"os"
 	goruntime "runtime"
 
 	"github.com/wailsapp/wails/v2/pkg/options/mac"
@@ -81,4 +82,13 @@ func GetAppDefaultDimensions() (int, int) {
 	default:
 		return 480, 400
 	}
+}
+
+func setupLogs() {
+	f, err := os.OpenFile("./kqb-json-viewer-output.log", os.O_APPEND|os.O_CREATE|os.O_RDWR, 0666)
+	if err != nil {
+		fmt.Printf("error opening file: %v", err)
+	}
+
+	log.SetOutput(f)
 }

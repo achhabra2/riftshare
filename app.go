@@ -52,14 +52,8 @@ func (b *App) startup(ctx context.Context) {
 func (b *App) domReady(ctx context.Context) {
 	// Add your action here
 	b.UpdateCheckUI()
-	// buttons := []string{"Yes", "No"}
-	// dialogOpts := runtime.MessageDialogOptions{Title: "Update Available", Message: "Test", Type: runtime.QuestionDialog, Buttons: buttons, DefaultButton: "Yes", CancelButton: "No"}
-	// _, err := runtime.MessageDialog(b.ctx, dialogOpts)
-	// if err != nil {
-	// 	runtime.LogError(b.ctx, "Error in update dialog. ")
-	// }
 
-	// err := beeep.Notify("RiftShare", "Send Complete", "./appicon.png")
+	// err := beeep.Notify("RiftShare", "Send Complete", "/Users/aman/Documents/code/v2-test/appicon.png")
 	// if err != nil {
 	// 	panic(err)
 	// }
