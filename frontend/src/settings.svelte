@@ -3,6 +3,7 @@
   import { onMount } from "svelte";
 
   let downloadsFolder = "";
+  let logPath = "";
   let notifications = false;
   let overwrite = false;
 
@@ -15,6 +16,9 @@
     });
     go.main.App.GetNotificationsParam().then((pref) => {
       notifications = pref;
+    });
+    go.main.App.GetLogPath().then((path) => {
+      logPath = path;
     });
   });
 
@@ -80,5 +84,16 @@
       checked={overwrite}
       on:input={toggleOverwrite}
     />
+  </div>
+  <div class="mb-1">
+    <div class="text-gray-300">Logs</div>
+    <div class="flex flex-row items-center justify-between">
+      <div class="text-gray-200 text-sm">{logPath}</div>
+      <div>
+        <button class="settings-button" on:click={(event) => window.runtime.BrowserOpenURL(logPath)}
+          >Open</button
+        >
+      </div>
+    </div>
   </div>
 </div>

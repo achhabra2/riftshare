@@ -4,6 +4,7 @@ interface go {
 		CancelWormholeRequest():Promise<void>
 		GetCurrentVersion():Promise<string>
 		GetDownloadsFolder():Promise<string>
+		GetLogPath():Promise<string>
 		GetNotificationsParam():Promise<boolean>
 		GetOverwriteParam():Promise<boolean>
 		OpenDirectoryDialog():Promise<Array<string>|Error>

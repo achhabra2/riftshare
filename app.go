@@ -30,11 +30,12 @@ type App struct {
 	selectedFiles  []string
 	wormholeCtx    *context.Context
 	wormholeCancel *context.CancelFunc
+	LogPath        string
 }
 
 // NewApp creates a new App application struct
-func NewApp() *App {
-	return &App{c: transport.NewClient()}
+func NewApp(logPath string) *App {
+	return &App{c: transport.NewClient(), LogPath: logPath}
 }
 
 // startup is called at application startup
@@ -342,6 +343,10 @@ func (b *App) GetDownloadsFolder() string {
 
 func (b *App) GetCurrentVersion() string {
 	return update.Version
+}
+
+func (b *App) GetLogPath() string {
+	return b.LogPath
 }
 
 func (b *App) SetDownloadsFolder() string {

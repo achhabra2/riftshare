@@ -26,8 +26,6 @@ var assets embed.FS
 var icon []byte
 
 func main() {
-	// Create an instance of the app structure
-	app := NewApp()
 
 	settingsDir, ferr := settings.GetSettingsDirectory()
 	if ferr != nil {
@@ -37,6 +35,9 @@ func main() {
 	loggerPath := filepath.Join(settingsDir, "riftshare-output.log")
 	fileLogger := logger.NewFileLogger(loggerPath)
 	defer os.Remove(loggerPath)
+
+	// Create an instance of the app structure
+	app := NewApp(loggerPath)
 
 	width, height := GetAppDefaultDimensions()
 	// Create application with options

@@ -26,6 +26,13 @@ const go = {
         return window.go.main.App.GetDownloadsFolder();
       },
       /**
+       * GetLogPath
+       * @returns {Promise<string>}  - Go Type: string
+       */
+      "GetLogPath": () => {
+        return window.go.main.App.GetLogPath();
+      },
+      /**
        * GetNotificationsParam
        * @returns {Promise<boolean>}  - Go Type: bool
        */
