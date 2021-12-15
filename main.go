@@ -55,7 +55,7 @@ func main() {
 		HideWindowOnClose: false,
 		RGBA:              &options.RGBA{R: 33, G: 37, B: 43, A: 255},
 		Assets:            assets,
-		LogLevel:          logger.DEBUG,
+		LogLevel:          logger.INFO,
 		Logger:            fileLogger,
 		OnStartup:         app.startup,
 		OnDomReady:        app.domReady,

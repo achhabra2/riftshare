@@ -5,7 +5,6 @@ import (
 	"errors"
 	"fmt"
 	"io"
-	"log"
 	"math"
 	"os"
 	"os/exec"
@@ -44,7 +43,7 @@ func (b *App) startup(ctx context.Context) {
 	b.ctx = ctx
 	setting, err := settings.GetUserSettings()
 	if err != nil {
-		log.Println(err)
+		runtime.LogError(b.ctx, err.Error())
 	}
 	b.c.Notifications = setting.Notifications
 	b.c.OverwriteExisting = setting.Overwrite
@@ -67,7 +66,7 @@ func (b *App) shutdown(ctx context.Context) {
 	}
 	err := settings.SaveUserSettings(setting)
 	if err != nil {
-		log.Println("Could not persist user settings")
+		runtime.LogError(b.ctx, err.Error())
 	}
 }
 
@@ -97,8 +96,7 @@ func (b *App) OpenFilesDialog() ([]string, error) {
 		b.ShowErrorDialog(err.Error())
 		return b.selectedFiles, errors.New("system error opening dialog")
 	}
-	runtime.LogInfo(b.ctx, "File Selected:")
-	log.Println(selection)
+	runtime.LogInfo(b.ctx, "File Selected:"+fmt.Sprint(selection))
 	if len(selection) == 0 {
 		runtime.LogError(b.ctx, "No files selected")
 		return b.selectedFiles, errors.New("invalid selection")
@@ -141,8 +139,7 @@ func (b *App) SendFile(filePath string) {
 			}
 		case <-ctx.Done():
 			// If the request gets cancelled, log it
-			// to STDERR
-			log.Println("Request cancelled, removing zip file")
+			runtime.LogInfo(b.ctx, "Request cancelled, removing zip file")
 			if filepath.Ext(filePath) == ".zip" {
 				os.Remove(filePath)
 			}
@@ -198,7 +195,6 @@ func (b *App) ReceiveFile(code string) {
 
 	go func() {
 		for percent := range progress {
-			// log.Println(percent)
 			runtime.EventsEmit(b.ctx, "receive:updated", percent)
 		}
 	}()
@@ -237,9 +233,8 @@ func (b *App) OpenFile(path string) {
 		err = fmt.Errorf("unsupported platform")
 	}
 	if err != nil {
-		log.Println(err)
+		runtime.LogError(b.ctx, err.Error())
 	}
-
 }
 
 func (b *App) SelectedFilesSend() {
@@ -288,16 +283,19 @@ func (b *App) zipFiles(pathNames []string) string {
 	for _, filePath := range pathNames {
 		file, err := os.Open(filePath)
 		if err != nil {
-			log.Fatal(err)
+			runtime.LogError(b.ctx, err.Error())
+			b.ShowErrorDialog(err.Error())
 		}
 		defer file.Close()
 		f, err := w.Create(filepath.Base(file.Name()))
 		if err != nil {
-			log.Fatal(err)
+			runtime.LogError(b.ctx, err.Error())
+			b.ShowErrorDialog(err.Error())
 		}
 		_, err = io.Copy(f, file)
 		if err != nil {
-			log.Fatal(err)
+			runtime.LogError(b.ctx, err.Error())
+			b.ShowErrorDialog(err.Error())
 		}
 	}
 	runtime.EventsEmit(b.ctx, "send:status", "zip Complete")
@@ -323,7 +321,7 @@ func (b *App) UpdateCheckUI() {
 		}
 		runtime.LogInfo(b.ctx, action)
 		if action == "Yes" {
-			log.Println("Update clicked")
+			runtime.LogInfo(b.ctx, "Update clicked")
 			updated := update.DoSelfUpdate()
 			if updated {
 				buttons = []string{"Ok"}
