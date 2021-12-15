@@ -72,7 +72,7 @@ func (b *App) shutdown(ctx context.Context) {
 
 // Greet returns a greeting for the given name
 func (b *App) OpenDirectoryDialog() ([]string, error) {
-	opts := runtime.OpenDialogOptions{Title: "Select Directory", DefaultDirectory: b.GetDownloadsFolder(), AllowDirectories: true}
+	opts := runtime.OpenDialogOptions{Title: "Select Directory", DefaultDirectory: b.GetDownloadsFolder()}
 	selection, err := runtime.OpenDirectoryDialog(b.ctx, opts)
 	if err != nil {
 		runtime.LogError(b.ctx, "Error opening dialog")
@@ -89,7 +89,7 @@ func (b *App) OpenDirectoryDialog() ([]string, error) {
 }
 
 func (b *App) OpenFilesDialog() ([]string, error) {
-	opts := runtime.OpenDialogOptions{Title: "Select File", AllowFiles: true, DefaultDirectory: b.GetDownloadsFolder()}
+	opts := runtime.OpenDialogOptions{Title: "Select File", DefaultDirectory: b.GetDownloadsFolder()}
 	selection, err := runtime.OpenMultipleFilesDialog(b.ctx, opts)
 	if err != nil {
 		runtime.LogError(b.ctx, "Error opening dialog")
@@ -345,7 +345,7 @@ func (b *App) GetCurrentVersion() string {
 }
 
 func (b *App) SetDownloadsFolder() string {
-	opts := runtime.OpenDialogOptions{Title: "Select Directory", DefaultDirectory: b.GetDownloadsFolder(), AllowDirectories: true}
+	opts := runtime.OpenDialogOptions{Title: "Select Directory", DefaultDirectory: b.GetDownloadsFolder()}
 	selection, err := runtime.OpenDirectoryDialog(b.ctx, opts)
 	if err != nil {
 		runtime.LogInfo(b.ctx, "Error opening dialog")

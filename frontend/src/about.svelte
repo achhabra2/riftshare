@@ -1,5 +1,7 @@
 <script>
   import go from "../wailsjs/go/bindings";
+  // import runtime from "../wailsjs/runtime";
+
   import { onMount } from "svelte";
   let version = "";
   const attributions = {
@@ -23,8 +25,8 @@
 <div class="container p4 text-gray-200">
   <div>
     Riftshare v{version}
-    <a class="text-blue-600" target="_blank" href="https://github.com/achhabra2/riftshare"
-      >Github</a
+    <button class="text-blue-600" on:click={(event) => window.runtime.BrowserOpenURL("https://github.com/achhabra2/riftshare")}
+      >Github</button
     >
   </div>
 
@@ -40,7 +42,7 @@
     </p>
     <ul class="text-xs file-list">
       {#each Object.entries(attributions) as [name, url]}
-        <li><a class="text-blue-500" target="_blank" href={url}>{name}</a></li>
+        <li><button class="text-blue-500" on:click={(event) => window.runtime.BrowserOpenURL(url)}>{name}</button></li>
       {/each}
     </ul>
   </div>

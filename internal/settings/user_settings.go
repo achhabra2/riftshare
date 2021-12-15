@@ -37,6 +37,7 @@ func GetUserSettings() (UserSettings, error) {
 	prefs, err := openPrefFile()
 	if err != nil {
 		log.Println(err)
+		return UserSettings{}, err
 	}
 	defer prefs.Close()
 
@@ -45,6 +46,7 @@ func GetUserSettings() (UserSettings, error) {
 	err = decoder.Decode(&settings)
 	if err != nil {
 		log.Println(err)
+		return UserSettings{}, err
 	}
 
 	// Check if file is empty
@@ -74,18 +76,21 @@ func openPrefFile() (*os.File, error) {
 	dir, err := GetSettingsDirectory()
 	if err != nil {
 		log.Println(err)
+		return &os.File{}, err
 	}
 	if _, err := os.Stat(dir); os.IsNotExist(err) {
 		log.Println("No Pref Directory Found, creating..")
 		err = os.Mkdir(dir, 0777)
 		if err != nil {
-			log.Println(err)
+			// log.Println(err)
+			return &os.File{}, err
 		}
 	}
 	settingsPath := filepath.Join(dir, "riftshare_config.yaml")
 	prefs, err := os.OpenFile(settingsPath, os.O_RDWR|os.O_CREATE, 0666)
 	if err != nil {
 		log.Println(err)
+		return &os.File{}, err
 	}
 	return prefs, nil
 }
