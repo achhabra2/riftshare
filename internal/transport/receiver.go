@@ -11,7 +11,7 @@ import (
 	"path/filepath"
 	"strings"
 
-	"riftshare/transport/zip"
+	"riftshare/internal/transport/zip"
 
 	"github.com/psanford/wormhole-william/wormhole"
 )

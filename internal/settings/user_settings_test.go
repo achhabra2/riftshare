@@ -1,11 +1,11 @@
-package main
+package settings
 
 import "testing"
 
 var settings UserSettings = UserSettings{Notifications: true, Overwrite: true, DownloadsDirectory: "test"}
 
 func TestGetSettingsDirectory(t *testing.T) {
-	dir, err := getSettingsDirectory()
+	dir, err := GetSettingsDirectory()
 	if err != nil {
 		t.Error(err)
 		t.Fail()

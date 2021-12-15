@@ -1,11 +1,11 @@
-package main
+package settings
 
 import (
 	"errors"
 	"log"
 	"os"
 	"path/filepath"
-	"riftshare/transport"
+	"riftshare/internal/transport"
 	"runtime"
 
 	"gopkg.in/yaml.v2"
@@ -55,7 +55,7 @@ func GetUserSettings() (UserSettings, error) {
 	return settings, nil
 }
 
-func getSettingsDirectory() (string, error) {
+func GetSettingsDirectory() (string, error) {
 	var err error
 	homeDir, err := os.UserHomeDir()
 	prefDir := ""
@@ -71,7 +71,7 @@ func getSettingsDirectory() (string, error) {
 }
 
 func openPrefFile() (*os.File, error) {
-	dir, err := getSettingsDirectory()
+	dir, err := GetSettingsDirectory()
 	if err != nil {
 		log.Println(err)
 	}

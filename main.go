@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"log"
 	"os"
+	"path/filepath"
 	goruntime "runtime"
 
 	"github.com/wailsapp/wails/v2/pkg/options/mac"
@@ -13,6 +14,9 @@ import (
 	"github.com/wailsapp/wails/v2/pkg/logger"
 	"github.com/wailsapp/wails/v2/pkg/options"
 	"github.com/wailsapp/wails/v2/pkg/options/windows"
+
+	"riftshare/internal/settings"
+	"riftshare/internal/update"
 )
 
 //go:embed frontend/dist
@@ -24,6 +28,15 @@ var icon []byte
 func main() {
 	// Create an instance of the app structure
 	app := NewApp()
+
+	settingsDir, ferr := settings.GetSettingsDirectory()
+	if ferr != nil {
+		log.Fatal("Could not open settings directory")
+	}
+
+	loggerPath := filepath.Join(settingsDir, "riftshare-output.log")
+	fileLogger := logger.NewFileLogger(loggerPath)
+	defer os.Remove(loggerPath)
 
 	width, height := GetAppDefaultDimensions()
 	// Create application with options
@@ -43,6 +56,7 @@ func main() {
 		RGBA:              &options.RGBA{R: 33, G: 37, B: 43, A: 255},
 		Assets:            assets,
 		LogLevel:          logger.DEBUG,
+		Logger:            fileLogger,
 		OnStartup:         app.startup,
 		OnDomReady:        app.domReady,
 		OnShutdown:        app.shutdown,
@@ -61,7 +75,7 @@ func main() {
 			WebviewIsTransparent: false,
 			WindowIsTranslucent:  false,
 			About: &mac.AboutInfo{
-				Title:   fmt.Sprintf("RiftShare %v", version),
+				Title:   fmt.Sprintf("RiftShare %v", update.Version),
 				Message: "Easy, Secure, Free file sharing",
 				Icon:    icon,
 			},
@@ -82,13 +96,4 @@ func GetAppDefaultDimensions() (int, int) {
 	default:
 		return 480, 400
 	}
-}
-
-func setupLogs() {
-	f, err := os.OpenFile("./riftshare-output.log", os.O_APPEND|os.O_CREATE|os.O_RDWR, 0666)
-	if err != nil {
-		fmt.Printf("error opening file: %v", err)
-	}
-
-	log.SetOutput(f)
 }

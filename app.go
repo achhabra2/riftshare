@@ -13,7 +13,9 @@ import (
 	goruntime "runtime"
 	"time"
 
-	"riftshare/transport"
+	"riftshare/internal/settings"
+	"riftshare/internal/transport"
+	"riftshare/internal/update"
 
 	"github.com/gen2brain/beeep"
 	"github.com/psanford/wormhole-william/wormhole"
@@ -40,13 +42,13 @@ func NewApp() *App {
 func (b *App) startup(ctx context.Context) {
 	// Perform your setup here
 	b.ctx = ctx
-	settings, err := GetUserSettings()
+	setting, err := settings.GetUserSettings()
 	if err != nil {
 		log.Println(err)
 	}
-	b.c.Notifications = settings.Notifications
-	b.c.OverwriteExisting = settings.Overwrite
-	b.c.DownloadPath = settings.DownloadsDirectory
+	b.c.Notifications = setting.Notifications
+	b.c.OverwriteExisting = setting.Overwrite
+	b.c.DownloadPath = setting.DownloadsDirectory
 }
 
 // domReady is called after the front-end dom has been loaded
@@ -58,12 +60,12 @@ func (b *App) domReady(ctx context.Context) {
 // shutdown is called at application termination
 func (b *App) shutdown(ctx context.Context) {
 	// Perform your teardown here
-	settings := UserSettings{
+	setting := settings.UserSettings{
 		Notifications:      b.c.Notifications,
 		Overwrite:          b.c.OverwriteExisting,
 		DownloadsDirectory: b.c.DownloadPath,
 	}
-	err := SaveUserSettings(settings)
+	err := settings.SaveUserSettings(setting)
 	if err != nil {
 		log.Println("Could not persist user settings")
 	}
@@ -74,8 +76,9 @@ func (b *App) OpenDirectoryDialog() ([]string, error) {
 	opts := runtime.OpenDialogOptions{Title: "Select Directory", DefaultDirectory: b.GetDownloadsFolder(), AllowDirectories: true}
 	selection, err := runtime.OpenDirectoryDialog(b.ctx, opts)
 	if err != nil {
-		runtime.LogInfo(b.ctx, "Error opening dialog")
+		runtime.LogError(b.ctx, "Error opening dialog")
 		b.ShowErrorDialog(err.Error())
+		return b.selectedFiles, errors.New("system error opening dialog")
 	}
 	runtime.LogInfo(b.ctx, "File Selected:"+selection)
 	if selection == "" {
@@ -90,8 +93,9 @@ func (b *App) OpenFilesDialog() ([]string, error) {
 	opts := runtime.OpenDialogOptions{Title: "Select File", AllowFiles: true, DefaultDirectory: b.GetDownloadsFolder()}
 	selection, err := runtime.OpenMultipleFilesDialog(b.ctx, opts)
 	if err != nil {
-		runtime.LogInfo(b.ctx, "Error opening dialog")
+		runtime.LogError(b.ctx, "Error opening dialog")
 		b.ShowErrorDialog(err.Error())
+		return b.selectedFiles, errors.New("system error opening dialog")
 	}
 	runtime.LogInfo(b.ctx, "File Selected:")
 	log.Println(selection)
@@ -308,7 +312,7 @@ func (b *App) CancelWormholeRequest() {
 }
 
 func (b *App) UpdateCheckUI() {
-	shouldUpdate, latestVersion := checkForUpdate()
+	shouldUpdate, latestVersion := update.CheckForUpdate()
 	if shouldUpdate {
 		updateMessage := fmt.Sprintf("New Version Available, would you like to update to v%s", latestVersion)
 		buttons := []string{"Yes", "No"}
@@ -320,7 +324,7 @@ func (b *App) UpdateCheckUI() {
 		runtime.LogInfo(b.ctx, action)
 		if action == "Yes" {
 			log.Println("Update clicked")
-			updated := doSelfUpdate()
+			updated := update.DoSelfUpdate()
 			if updated {
 				buttons = []string{"Ok"}
 				dialogOpts = runtime.MessageDialogOptions{Title: "Update Succeeded", Message: "Update Successfull. Please restart. ", Type: runtime.InfoDialog, Buttons: buttons, DefaultButton: "Ok"}
@@ -339,7 +343,7 @@ func (b *App) GetDownloadsFolder() string {
 }
 
 func (b *App) GetCurrentVersion() string {
-	return version
+	return update.Version
 }
 
 func (b *App) SetDownloadsFolder() string {

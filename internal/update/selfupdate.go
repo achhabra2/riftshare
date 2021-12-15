@@ -1,4 +1,4 @@
-package main
+package update
 
 import (
 	"log"
@@ -7,10 +7,10 @@ import (
 	"github.com/rhysd/go-github-selfupdate/selfupdate"
 )
 
-const version = "0.0.6"
+const Version = "0.0.6"
 
-func doSelfUpdate() bool {
-	v := semver.MustParse(version)
+func DoSelfUpdate() bool {
+	v := semver.MustParse(Version)
 	latest, err := selfupdate.UpdateSelf(v, "achhabra2/riftshare")
 	if err != nil {
 		log.Println("Binary update failed:", err)
@@ -18,7 +18,7 @@ func doSelfUpdate() bool {
 	}
 	if latest.Version.Equals(v) {
 		// latest version is the same as current version. It means current binary is up to date.
-		log.Println("Current binary is the latest version", version)
+		log.Println("Current binary is the latest version", Version)
 		return true
 	} else {
 		log.Println("Successfully updated to version", latest.Version)
@@ -27,14 +27,14 @@ func doSelfUpdate() bool {
 	}
 }
 
-func checkForUpdate() (bool, string) {
+func CheckForUpdate() (bool, string) {
 	latest, found, err := selfupdate.DetectLatest("achhabra2/riftshare")
 	if err != nil {
 		log.Println("Error occurred while detecting version:", err)
 		return false, ""
 	}
 
-	v := semver.MustParse(version)
+	v := semver.MustParse(Version)
 	if !found || latest.Version.LTE(v) {
 		log.Println("Current version is the latest")
 		return false, ""
