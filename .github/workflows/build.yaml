@@ -102,11 +102,11 @@ jobs:
     needs: package
     steps:
       - name: Download Windows Package
-        uses: actions/download-artifact@v1
+        uses: actions/download-artifact@v2
         with:
           name: riftshare-windows
       - name: Download macOS packages
-        uses: actions/download-artifact@v1
+        uses: actions/download-artifact@v2
         with:
           name: riftshare-macOS
       - name: Create Release
