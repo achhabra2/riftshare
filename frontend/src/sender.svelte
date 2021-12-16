@@ -1,4 +1,5 @@
 <script>
+  import {onMount} from "svelte";
   import { slide } from "svelte/transition";
   import go from "../wailsjs/go/bindings";
 
@@ -52,6 +53,7 @@
     sendPercent = 0;
     selectedFiles = [];
     isSending = false;
+    go.main.App.ClearSelectedFiles()
   }
 
   function onCancel() {
@@ -102,6 +104,14 @@
         sendCode = "";
       }, 500);
     }
+  });
+
+  onMount(() => {
+    go.main.App.GetSelectedFiles().then(filePaths => {
+      if (filePaths.length > 0) {
+        selectedFiles = filePaths;
+      }
+    });
   });
 </script>
 

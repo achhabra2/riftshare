@@ -91,7 +91,7 @@ func main() {
 func GetAppDefaultDimensions() (int, int) {
 	switch goruntime.GOOS {
 	case "windows":
-		return 650, 580
+		return 660, 550
 	case "darwin":
 		return 480, 400
 	default:

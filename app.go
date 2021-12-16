@@ -28,6 +28,7 @@ type App struct {
 	ctx            context.Context
 	c              *transport.Client
 	selectedFiles  []string
+	receivedFile   string
 	wormholeCtx    *context.Context
 	wormholeCancel *context.CancelFunc
 	LogPath        string
@@ -192,6 +193,7 @@ func (b *App) ReceiveFile(code string) {
 		runtime.LogInfo(b.ctx, path)
 		runtime.EventsEmit(b.ctx, "receive:path", path)
 		runtime.EventsEmit(b.ctx, "receive:status", "receiving")
+		b.receivedFile = path
 	}()
 
 	go func() {
@@ -376,6 +378,18 @@ func (b *App) SetNotificationsParam(val bool) bool {
 
 func (b *App) GetNotificationsParam() bool {
 	return b.c.Notifications
+}
+
+func (b *App) GetSelectedFiles() []string {
+	return b.selectedFiles
+}
+
+func (b *App) ClearSelectedFiles() {
+	b.selectedFiles = []string{}
+}
+
+func (b *App) GetReceivedFile() string {
+	return b.receivedFile
 }
 
 func (b *App) ShowErrorDialog(message string) {

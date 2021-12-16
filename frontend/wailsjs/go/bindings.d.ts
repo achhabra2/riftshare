@@ -2,11 +2,14 @@ interface go {
   "main": {
     "App": {
 		CancelWormholeRequest():Promise<void>
+		ClearSelectedFiles():Promise<void>
 		GetCurrentVersion():Promise<string>
 		GetDownloadsFolder():Promise<string>
 		GetLogPath():Promise<string>
 		GetNotificationsParam():Promise<boolean>
 		GetOverwriteParam():Promise<boolean>
+		GetReceivedFile():Promise<string>
+		GetSelectedFiles():Promise<Array<string>>
 		OpenDirectoryDialog():Promise<Array<string>|Error>
 		OpenFile(arg1:string):Promise<void>
 		OpenFilesDialog():Promise<Array<string>|Error>

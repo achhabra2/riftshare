@@ -1,6 +1,7 @@
 <script>
   import go from "../wailsjs/go/bindings";
   import Progress from "./progress.svelte";
+  import {onMount} from "svelte";
 
 
   let receiveCode = "";
@@ -61,6 +62,14 @@
         isReceiving = false;
       }, 500);
     }
+  });
+
+  onMount(() => {
+    go.main.App.GetReceivedFile().then(path => {
+      if (path) {
+        receivePath = path;
+      }
+    });
   });
 </script>
 

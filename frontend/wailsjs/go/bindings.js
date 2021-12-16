@@ -12,6 +12,13 @@ const go = {
         return window.go.main.App.CancelWormholeRequest();
       },
       /**
+       * ClearSelectedFiles
+       * @returns {Promise<void>} 
+       */
+      "ClearSelectedFiles": () => {
+        return window.go.main.App.ClearSelectedFiles();
+      },
+      /**
        * GetCurrentVersion
        * @returns {Promise<string>}  - Go Type: string
        */
@@ -45,6 +52,20 @@ const go = {
        */
       "GetOverwriteParam": () => {
         return window.go.main.App.GetOverwriteParam();
+      },
+      /**
+       * GetReceivedFile
+       * @returns {Promise<string>}  - Go Type: string
+       */
+      "GetReceivedFile": () => {
+        return window.go.main.App.GetReceivedFile();
+      },
+      /**
+       * GetSelectedFiles
+       * @returns {Promise<Array<string>>}  - Go Type: []string
+       */
+      "GetSelectedFiles": () => {
+        return window.go.main.App.GetSelectedFiles();
       },
       /**
        * OpenDirectoryDialog
