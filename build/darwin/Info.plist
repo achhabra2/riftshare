@@ -6,12 +6,12 @@
 	<key>CFBundleName</key><string>RiftShare</string>
 	<key>CFBundleExecutable</key><string>RiftShare</string>
 	<key>CFBundleIdentifier</key><string>app.riftshare</string>
-	<key>CFBundleVersion</key><string>0.0.7</string>
+	<key>CFBundleVersion</key><string>0.0.8</string>
 	<key>CFBundleGetInfoString</key><string>Riftshare - Easy, Secure, Free file sharing</string>
-	<key>CFBundleShortVersionString</key><string>0.0.7</string>
+	<key>CFBundleShortVersionString</key><string>0.0.8</string>
 	<key>CFBundleIconFile</key><string>iconfile.icns</string>
 	<key>LSMinimumSystemVersion</key><string>10.13.0</string>
 	<key>NSHighResolutionCapable</key><string>true</string>
-	<key>NSHumanReadableCopyright</key><string>Copyright.........</string>
+	<key>NSHumanReadableCopyright</key><string>Licensed Under the GPLv3</string>
 </dict>
 </plist>
