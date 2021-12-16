@@ -227,16 +227,19 @@ func (b *App) OpenFile(path string) {
 	var err error
 	switch goruntime.GOOS {
 	case "linux":
-		err = exec.Command("xdg-open", path).Start()
+		err = exec.Command("xdg-open", path).Run()
 	case "windows":
-		err = exec.Command("rundll32", "url.dll,FileProtocolHandler", path).Start()
+		err = exec.Command("rundll32", "url.dll,FileProtocolHandler", path).Run()
 	case "darwin":
-		err = exec.Command("open", path).Start()
+		err = exec.Command("open", path).Run()
 	default:
 		err = fmt.Errorf("unsupported platform")
 	}
 	if err != nil {
 		runtime.LogError(b.ctx, err.Error())
+		// If filehandler isn't found retry with directory
+		dir, _ := filepath.Split(path)
+		b.OpenFile(dir)
 	}
 }
 

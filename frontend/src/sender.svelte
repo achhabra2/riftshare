@@ -108,7 +108,7 @@
 
   onMount(() => {
     go.main.App.GetSelectedFiles().then(filePaths => {
-      if (filePaths.length > 0) {
+      if (filePaths && filePaths.length > 0) {
         selectedFiles = filePaths;
       }
     });
