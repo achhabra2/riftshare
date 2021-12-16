@@ -2,6 +2,9 @@ package update
 
 import (
 	"log"
+	"os"
+	"os/exec"
+	"path/filepath"
 
 	"github.com/blang/semver"
 	"github.com/rhysd/go-github-selfupdate/selfupdate"
@@ -24,6 +27,32 @@ func DoSelfUpdate() bool {
 		log.Println("Successfully updated to version", latest.Version)
 		log.Println("Release note:\n", latest.ReleaseNotes)
 		return true
+	}
+}
+
+func DoSelfUpdateMac() bool {
+	latest, found, _ := selfupdate.DetectLatest("achhabra2/riftshare")
+	if found {
+		homeDir, _ := os.UserHomeDir()
+		downloadPath := filepath.Join(homeDir, "Downloads", "RiftShare.zip")
+		err := exec.Command("curl", "-L", latest.AssetURL, "-o", downloadPath).Run()
+		if err != nil {
+			log.Println("curl error:", err)
+			return false
+		}
+		err = exec.Command("ditto", "-xk", downloadPath, "/Applications/").Run()
+		if err != nil {
+			log.Println("ditto error:", err)
+			return false
+		}
+		err = exec.Command("rm", downloadPath).Run()
+		if err != nil {
+			log.Println("removing error:", err)
+			return false
+		}
+		return true
+	} else {
+		return false
 	}
 }
 

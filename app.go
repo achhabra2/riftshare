@@ -328,14 +328,19 @@ func (b *App) UpdateCheckUI() {
 		runtime.LogInfo(b.ctx, action)
 		if action == "Yes" {
 			runtime.LogInfo(b.ctx, "Update clicked")
-			updated := update.DoSelfUpdate()
+			var updated bool
+			if goruntime.GOOS == "darwin" {
+				updated = update.DoSelfUpdateMac()
+			} else {
+				updated = update.DoSelfUpdate()
+			}
 			if updated {
 				buttons = []string{"Ok"}
-				dialogOpts = runtime.MessageDialogOptions{Title: "Update Succeeded", Message: "Update Successfull. Please restart. ", Type: runtime.InfoDialog, Buttons: buttons, DefaultButton: "Ok"}
+				dialogOpts = runtime.MessageDialogOptions{Title: "Update Succeeded", Message: "Update Successfull. Please restart this app to take effect. ", Type: runtime.InfoDialog, Buttons: buttons, DefaultButton: "Ok"}
 				runtime.MessageDialog(b.ctx, dialogOpts)
 			} else {
 				buttons = []string{"Ok"}
-				dialogOpts = runtime.MessageDialogOptions{Title: "Update Error", Message: "Update failed, try again later. ", Type: runtime.InfoDialog, Buttons: buttons, DefaultButton: "Ok"}
+				dialogOpts = runtime.MessageDialogOptions{Title: "Update Error", Message: "Update failed, please manually update from GitHub Releases. ", Type: runtime.InfoDialog, Buttons: buttons, DefaultButton: "Ok"}
 				runtime.MessageDialog(b.ctx, dialogOpts)
 			}
 		}
