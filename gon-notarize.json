@@ -1,0 +1,16 @@
+{
+  "notarize": [
+    {
+      "path": "./RiftShare-darwin-amd64.zip",
+      "bundle_id": "app.riftshare"
+    },
+    {
+      "path": "./RiftShare-darwin-arm64.zip",
+      "bundle_id": "app.riftshare"
+    }
+  ],
+
+  "apple_id": {
+    "password": "@env:AC_PASSWORD"
+  }
+}

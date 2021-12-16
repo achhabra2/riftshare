@@ -1,0 +1,10 @@
+{
+    "source" : ["./build/bin/RiftShare.app"],
+    "bundle_id" : "app.riftshare",
+    "apple_id": {
+        "password": "@env:AC_PASSWORD"
+    },
+    "sign" :{
+        "application_identity" : "30588DD9A658935A51A8C18274749062296CB77B"
+    }
+}

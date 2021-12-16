@@ -1,14 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
-<plist version="1.0"><dict>
+<plist version="1.0">
+<dict>
 	<key>CFBundlePackageType</key><string>APPL</string>
 	<key>CFBundleName</key><string>RiftShare</string>
 	<key>CFBundleExecutable</key><string>RiftShare</string>
-	<key>CFBundleIdentifier</key><string>com.achhabra2.riftshare</string>
+	<key>CFBundleIdentifier</key><string>app.riftshare</string>
 	<key>CFBundleVersion</key><string>0.0.7</string>
 	<key>CFBundleGetInfoString</key><string>Riftshare - Easy, Secure, Free file sharing</string>
 	<key>CFBundleShortVersionString</key><string>0.0.7</string>
-	<key>CFBundleIconFile</key><string>iconfile</string>
+	<key>CFBundleIconFile</key><string>iconfile.icns</string>
 	<key>LSMinimumSystemVersion</key><string>10.13.0</string>
 	<key>NSHighResolutionCapable</key><string>true</string>
 	<key>NSHumanReadableCopyright</key><string>Copyright.........</string>
-</dict></plist>
+</dict>
+</plist>
