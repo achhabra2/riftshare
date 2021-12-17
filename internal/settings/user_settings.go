@@ -12,9 +12,10 @@ import (
 )
 
 type UserSettings struct {
-	Notifications      bool   `yaml:"notifications"`
-	Overwrite          bool   `yaml:"overwrite"`
-	DownloadsDirectory string `yaml:"downloads_directory"`
+	Notifications      bool   `yaml:"notifications" json:"notifications"`
+	Overwrite          bool   `yaml:"overwrite" json:"overwrite"`
+	DownloadsDirectory string `yaml:"downloads_directory" json:"downloadsDirectory"`
+	SelfUpdate         bool   `yaml:"self_update" json:"selfUpdate"`
 }
 
 func SaveUserSettings(settings UserSettings) error {
@@ -52,7 +53,7 @@ func GetUserSettings() (UserSettings, error) {
 	// Check if file is empty
 	if settings == (UserSettings{}) {
 		// Initialize empty settings file
-		settings = UserSettings{Notifications: false, Overwrite: true, DownloadsDirectory: transport.UserDownloadsFolder()}
+		settings = UserSettings{Notifications: false, Overwrite: true, DownloadsDirectory: transport.UserDownloadsFolder(), SelfUpdate: true}
 	}
 	return settings, nil
 }

@@ -6,16 +6,14 @@
   let logPath = "";
   let notifications = false;
   let overwrite = false;
+  let selfUpdate = false; 
 
   onMount(() => {
-    go.main.App.GetDownloadsFolder().then(
-      (folder) => (downloadsFolder = folder)
-    );
-    go.main.App.GetOverwriteParam().then((pref) => {
-      overwrite = pref;
-    });
-    go.main.App.GetNotificationsParam().then((pref) => {
-      notifications = pref;
+    go.main.App.GetUserPrefs().then(prefs => {
+      downloadsFolder = prefs.downloadsDirectory;
+      notifications = prefs.notifications;
+      overwrite = prefs.overwrite;
+      selfUpdate = prefs.selfUpdate;
     });
     go.main.App.GetLogPath().then((path) => {
       logPath = path;
@@ -41,6 +39,12 @@
   function toggleNotifications() {
     go.main.App.SetNotificationsParam(!notifications).then(newValue => {
       notifications = newValue;
+    });
+  }
+
+  function toggleSelfUpdate() {
+    go.main.App.SetSelfUpdateParam(!selfUpdate).then(newValue => {
+      selfUpdate = newValue;
     });
   }
 </script>
@@ -83,6 +87,18 @@
       name="overwrite"
       checked={overwrite}
       on:input={toggleOverwrite}
+    />
+  </div>
+  <div class="text-gray-300">Auto Update</div>
+  <div class="flex flex-row items-center justify-between mb-1">
+    <label class="text-sm" for="selfUpdate">Auto Update Enabled</label>
+    <input
+      class="checkbox"
+      type="checkbox"
+      id="selfUpdate"
+      name="selfUpdate"
+      checked={selfUpdate}
+      on:input={toggleSelfUpdate}
     />
   </div>
   <div class="mb-1">

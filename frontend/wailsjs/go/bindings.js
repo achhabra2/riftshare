@@ -68,6 +68,13 @@ const go = {
         return window.go.main.App.GetSelectedFiles();
       },
       /**
+       * GetUserPrefs
+       * @returns {Promise<UserSettings>}  - Go Type: settings.UserSettings
+       */
+      "GetUserPrefs": () => {
+        return window.go.main.App.GetUserPrefs();
+      },
+      /**
        * OpenDirectoryDialog
        * @returns {Promise<Array<string>|Error>}  - Go Type: []string
        */
@@ -142,6 +149,14 @@ const go = {
        */
       "SetOverwriteParam": (arg1) => {
         return window.go.main.App.SetOverwriteParam(arg1);
+      },
+      /**
+       * SetSelfUpdateParam
+       * @param {boolean} arg1 - Go Type: bool
+       * @returns {Promise<boolean>}  - Go Type: bool
+       */
+      "SetSelfUpdateParam": (arg1) => {
+        return window.go.main.App.SetSelfUpdateParam(arg1);
       },
       /**
        * ShowErrorDialog

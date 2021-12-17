@@ -2,14 +2,12 @@ package transport
 
 import (
 	"context"
-	"fmt"
 	"io"
 	"io/ioutil"
 	"log"
 	"math"
 	"os"
 	"path/filepath"
-	"strings"
 
 	"riftshare/internal/transport/zip"
 
@@ -144,13 +142,8 @@ func (wc *WriteCounter) Write(p []byte) (int, error) {
 }
 
 func (wc WriteCounter) PrintProgress() {
-	// Clear the line by using a character return to go back to the start and remove
-	// the remaining characters by filling it with spaces
-	fmt.Printf("\r%s", strings.Repeat(" ", 35))
-
 	// Return again and print current status of download
 	// We use the humanize package to print the bytes in a meaningful way (e.g. 10 MB)
 	percent := math.Round((float64(wc.Current/1024) / float64(wc.Total/1024)) * 100)
-	fmt.Printf("\rDownloading... %v complete", percent)
 	wc.Progress <- percent
 }

@@ -10,6 +10,7 @@ interface go {
 		GetOverwriteParam():Promise<boolean>
 		GetReceivedFile():Promise<string>
 		GetSelectedFiles():Promise<Array<string>>
+		GetUserPrefs():Promise<UserSettings>
 		OpenDirectoryDialog():Promise<Array<string>|Error>
 		OpenFile(arg1:string):Promise<void>
 		OpenFilesDialog():Promise<Array<string>|Error>
@@ -20,6 +21,7 @@ interface go {
 		SetDownloadsFolder():Promise<string>
 		SetNotificationsParam(arg1:boolean):Promise<boolean>
 		SetOverwriteParam(arg1:boolean):Promise<boolean>
+		SetSelfUpdateParam(arg1:boolean):Promise<boolean>
 		ShowErrorDialog(arg1:string):Promise<void>
 		UpdateCheckUI():Promise<void>
 		UpdateSendProgress(arg1:number,arg2:number):Promise<void>

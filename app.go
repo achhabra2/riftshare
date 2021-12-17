@@ -32,6 +32,7 @@ type App struct {
 	wormholeCtx    *context.Context
 	wormholeCancel *context.CancelFunc
 	LogPath        string
+	UserPrefs      settings.UserSettings
 }
 
 // NewApp creates a new App application struct
@@ -47,6 +48,7 @@ func (b *App) startup(ctx context.Context) {
 	if err != nil {
 		runtime.LogError(b.ctx, err.Error())
 	}
+	b.UserPrefs = setting
 	b.c.Notifications = setting.Notifications
 	b.c.OverwriteExisting = setting.Overwrite
 	b.c.DownloadPath = setting.DownloadsDirectory
@@ -55,18 +57,15 @@ func (b *App) startup(ctx context.Context) {
 // domReady is called after the front-end dom has been loaded
 func (b *App) domReady(ctx context.Context) {
 	// Add your action here
-	b.UpdateCheckUI()
+	if b.UserPrefs.SelfUpdate {
+		b.UpdateCheckUI()
+	}
 }
 
 // shutdown is called at application termination
 func (b *App) shutdown(ctx context.Context) {
 	// Perform your teardown here
-	setting := settings.UserSettings{
-		Notifications:      b.c.Notifications,
-		Overwrite:          b.c.OverwriteExisting,
-		DownloadsDirectory: b.c.DownloadPath,
-	}
-	err := settings.SaveUserSettings(setting)
+	err := settings.SaveUserSettings(b.UserPrefs)
 	if err != nil {
 		runtime.LogError(b.ctx, err.Error())
 	}
@@ -151,7 +150,7 @@ func (b *App) SendFile(filePath string) {
 
 func (b *App) SendDirectory(dirPath string) {
 	runtime.LogInfo(b.ctx, "Sending Directory: "+dirPath)
-	runtime.EventsEmit(b.ctx, "send:status", "sending")
+	runtime.EventsEmit(b.ctx, "send:status", "retrieving code")
 
 	go func() {
 		code, status, err := b.c.NewDirSend(*b.wormholeCtx, dirPath, wormhole.WithProgress(b.UpdateSendProgress))
@@ -161,7 +160,8 @@ func (b *App) SendDirectory(dirPath string) {
 			b.ShowErrorDialog(err.Error())
 		}
 		runtime.EventsEmit(b.ctx, "send:started", code)
-
+		runtime.EventsEmit(b.ctx, "send:status", "waiting for receiver")
+		
 		s := <-status
 
 		if s.Error != nil {
@@ -372,6 +372,7 @@ func (b *App) SetDownloadsFolder() string {
 
 func (b *App) SetOverwriteParam(val bool) bool {
 	b.c.OverwriteExisting = val
+	b.UserPrefs.Overwrite = val
 	return b.c.OverwriteExisting
 }
 
@@ -381,6 +382,7 @@ func (b *App) GetOverwriteParam() bool {
 
 func (b *App) SetNotificationsParam(val bool) bool {
 	b.c.Notifications = val
+	b.UserPrefs.Notifications = val
 	return b.c.Notifications
 }
 
@@ -398,6 +400,15 @@ func (b *App) ClearSelectedFiles() {
 
 func (b *App) GetReceivedFile() string {
 	return b.receivedFile
+}
+
+func (b *App) GetUserPrefs() settings.UserSettings {
+	return b.UserPrefs
+}
+
+func (b *App) SetSelfUpdateParam(val bool) bool {
+	b.UserPrefs.SelfUpdate = val
+	return b.UserPrefs.SelfUpdate
 }
 
 func (b *App) ShowErrorDialog(message string) {
