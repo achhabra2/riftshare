@@ -69,3 +69,7 @@ RiftShare is Licensed under the GNU General Public License v3.0
 ### Privacy Policy
 
 RiftShare does not collect, store, or persist any user data. 
+
+### FAQ
+
+Please view the <a href="/faq.html">FAQ Page</a>. 
