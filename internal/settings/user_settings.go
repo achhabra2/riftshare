@@ -6,6 +6,7 @@ import (
 	"os"
 	"path/filepath"
 	"riftshare/internal/transport"
+	"riftshare/internal/update"
 	"runtime"
 
 	"gopkg.in/yaml.v2"
@@ -16,6 +17,13 @@ type UserSettings struct {
 	Overwrite          bool   `yaml:"overwrite" json:"overwrite"`
 	DownloadsDirectory string `yaml:"downloads_directory" json:"downloadsDirectory"`
 	SelfUpdate         bool   `yaml:"self_update" json:"selfUpdate"`
+	Version            string `yaml:"version" json:"version"`
+}
+
+func getDefaultSettings() UserSettings {
+	ver := "v" + update.Version
+	settings := UserSettings{Notifications: false, Overwrite: true, DownloadsDirectory: transport.UserDownloadsFolder(), SelfUpdate: true, Version: ver}
+	return settings
 }
 
 func SaveUserSettings(settings UserSettings) error {
@@ -38,7 +46,7 @@ func GetUserSettings() (UserSettings, error) {
 	prefs, err := openPrefFile()
 	if err != nil {
 		log.Println(err)
-		return UserSettings{}, err
+		return getDefaultSettings(), err
 	}
 	defer prefs.Close()
 
@@ -47,13 +55,16 @@ func GetUserSettings() (UserSettings, error) {
 	err = decoder.Decode(&settings)
 	if err != nil {
 		log.Println(err)
-		return UserSettings{}, err
+		return getDefaultSettings(), err
 	}
 
+	if settings.Version == "" {
+		settings.SelfUpdate = true
+	}
 	// Check if file is empty
 	if settings == (UserSettings{}) {
 		// Initialize empty settings file
-		settings = UserSettings{Notifications: false, Overwrite: true, DownloadsDirectory: transport.UserDownloadsFolder(), SelfUpdate: true}
+		settings = getDefaultSettings()
 	}
 	return settings, nil
 }

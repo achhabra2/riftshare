@@ -177,11 +177,11 @@
   {#if isSending}
     <Progress percent={sendPercent} {status}>
       <div class="container grid">
-        <button class="my-2 mx-auto cancel-button" on:click={onCancel}
+        <!-- <button class="my-2 mx-auto cancel-button" on:click={onCancel}
           >Cancel</button
-        >
+        > -->
         {#if sendCode}
-          <div class="mx-auto" transition:slide>
+          <div class="mx-auto mt-2" transition:slide>
             <label for="sendCode" class="send-input-label">Send Code</label>
             <input
               id="sendCode"
@@ -189,7 +189,7 @@
               type="text"
               placeholder="Send code will appear"
               value={sendCode}
-              class="send-input"
+              class="send-input mt-1"
             />
             <button class="send-button" on:click={copyCode}>📄</button>
           </div>

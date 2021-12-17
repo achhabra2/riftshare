@@ -33,6 +33,7 @@ type App struct {
 	wormholeCancel *context.CancelFunc
 	LogPath        string
 	UserPrefs      settings.UserSettings
+	IsTransferring bool
 }
 
 // NewApp creates a new App application struct
@@ -49,6 +50,7 @@ func (b *App) startup(ctx context.Context) {
 		runtime.LogError(b.ctx, err.Error())
 	}
 	b.UserPrefs = setting
+	b.UserPrefs.Version = "v" + b.GetCurrentVersion()
 	b.c.Notifications = setting.Notifications
 	b.c.OverwriteExisting = setting.Overwrite
 	b.c.DownloadPath = setting.DownloadsDirectory
@@ -144,6 +146,7 @@ func (b *App) SendFile(filePath string) {
 			if filepath.Ext(filePath) == ".zip" {
 				os.Remove(filePath)
 			}
+			return
 		}
 	}()
 }
@@ -161,7 +164,7 @@ func (b *App) SendDirectory(dirPath string) {
 		}
 		runtime.EventsEmit(b.ctx, "send:started", code)
 		runtime.EventsEmit(b.ctx, "send:status", "waiting for receiver")
-		
+
 		s := <-status
 
 		if s.Error != nil {
@@ -348,7 +351,7 @@ func (b *App) UpdateCheckUI() {
 }
 
 func (b *App) GetDownloadsFolder() string {
-	return b.c.DownloadPath
+	return b.UserPrefs.DownloadsDirectory
 }
 
 func (b *App) GetCurrentVersion() string {
@@ -367,7 +370,8 @@ func (b *App) SetDownloadsFolder() string {
 		b.ShowErrorDialog(err.Error())
 	}
 	b.c.DownloadPath = selection
-	return b.c.DownloadPath
+	b.UserPrefs.DownloadsDirectory = selection
+	return b.UserPrefs.DownloadsDirectory
 }
 
 func (b *App) SetOverwriteParam(val bool) bool {

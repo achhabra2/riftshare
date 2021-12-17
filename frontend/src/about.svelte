@@ -25,8 +25,12 @@
 <div class="container p4 text-gray-200">
   <div>
     Riftshare v{version}
-    <button class="text-blue-600" on:click={(event) => window.runtime.BrowserOpenURL("https://github.com/achhabra2/riftshare")}
-      >Github</button
+    <button class="text-blue-600" on:click={(event) => window.runtime.BrowserOpenURL("https://riftshare.app")}
+      >Website</button
+    >
+    <span> | </span>
+    <button class="text-blue-600" on:click={(event) => window.runtime.BrowserOpenURL("https://riftshare.app/faq.html")}
+      >FAQ</button
     >
   </div>
 

@@ -23,13 +23,6 @@ type Client struct {
 	DownloadPath string
 }
 
-// ShowNotification sends a notification if c.Notifications is true.
-func (c *Client) ShowNotification(title, content string) {
-	if c.Notifications {
-		// TODO: Send Notification
-	}
-}
-
 // NewClient returns a new client for sending and receiving using wormhole-william
 func NewClient() *Client {
 	return &Client{Notifications: false, OverwriteExisting: true, DownloadPath: UserDownloadsFolder()}
