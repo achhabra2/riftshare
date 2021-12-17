@@ -6,6 +6,12 @@ Easy, Secure, and Free file sharing for everyone.
 <img src="https://github.com/achhabra2/riftshare/blob/main/appicon.png?raw=true" alt="icon" width="128" />
 </a>
 
+![GitHub all releases](https://img.shields.io/github/downloads/achhabra2/riftshare/total)
+![GitHub](https://img.shields.io/github/license/achhabra2/riftshare)
+![GitHub Release Date](https://img.shields.io/github/release-date/achhabra2/riftshare)
+![GitHub release (latest by date)](https://img.shields.io/github/v/release/achhabra2/riftshare)
+![GitHub Repo stars](https://img.shields.io/github/stars/achhabra2/riftshare?style=social)
+
 The purpose of this project is to enable everyone to be able to share files privately and without the use of the major tech companies and cloud providers. Use RiftShare to send files to your friends and family, or even between computers at your house. It is shocking how over the years, sharing files is still more complicated than it needs to be. Look no further. 
 
 ### Installation & Compatibility
@@ -27,7 +33,7 @@ Riftshare is compatible with the following operating systems:
 * Supports sending files or directories securely through the [magic wormhole protocol](https://magic-wormhole.readthedocs.io/en/latest/)
 * Compatible with all other apps using magic wormhole (magic-wormhole or wormhole-william CLI, wormhole-gui, etc.)
 * Automatic zipping of multiple selected files to send at once
-* Full animations, progress bar, and cancellation support for sending and receiving
+* Full animations and progress bar for sending and receiving
 * Native OS File Selection
 * Open files in one click once received
 * Auto Update - don't worry about having the latest release!
