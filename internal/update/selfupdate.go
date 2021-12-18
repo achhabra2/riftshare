@@ -5,6 +5,7 @@ import (
 	"os"
 	"os/exec"
 	"path/filepath"
+	"strings"
 
 	"github.com/blang/semver"
 	"github.com/rhysd/go-github-selfupdate/selfupdate"
@@ -40,7 +41,9 @@ func DoSelfUpdateMac() bool {
 			log.Println("curl error:", err)
 			return false
 		}
-		err = exec.Command("ditto", "-xk", downloadPath, "/Applications/").Run()
+		cmdPath, _ := os.Executable()
+		appPath := strings.TrimSuffix(cmdPath, "RiftShare.app/Contents/MacOS/RiftShare")
+		err = exec.Command("ditto", "-xk", downloadPath, appPath).Run()
 		if err != nil {
 			log.Println("ditto error:", err)
 			return false
