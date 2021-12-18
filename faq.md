@@ -1,3 +1,7 @@
+---
+title: FAQ
+description: Commonly Asked Questions
+---
 ## Updating
 
 Q: I'm having trouble with the Auto Update function
