@@ -41,8 +41,12 @@ func DoSelfUpdateMac() bool {
 			log.Println("curl error:", err)
 			return false
 		}
-		cmdPath, _ := os.Executable()
-		appPath := strings.TrimSuffix(cmdPath, "RiftShare.app/Contents/MacOS/RiftShare")
+		var appPath string
+		cmdPath, err := os.Executable()
+		appPath = strings.TrimSuffix(cmdPath, "RiftShare.app/Contents/MacOS/RiftShare")
+		if err != nil {
+			appPath = "/Applications/"
+		}
 		err = exec.Command("ditto", "-xk", downloadPath, appPath).Run()
 		if err != nil {
 			log.Println("ditto error:", err)
