@@ -2,7 +2,6 @@
 title: RiftShare
 description: Easy, Secure, and Free file sharing for everyone. 
 ---
-## RiftShare
 <p align="center" style="text-align: center">
   <a href="https://github.com/achhabra2/riftshare/releases/latest" target="_blank" align="center">
     <img src="https://github.com/achhabra2/riftshare/blob/main/appicon.png?raw=true" alt="icon" width="128" />
@@ -17,11 +16,11 @@ description: Easy, Secure, and Free file sharing for everyone.
 <a class="github-button" href="https://github.com/achhabra2/riftshare" data-icon="octicon-star" aria-label="Star achhabra2/riftshare on GitHub">Star</a>
 </p>
 
-The purpose of this project is to enable everyone to be able to share files privately and without the use of the major tech companies and cloud providers. Use RiftShare to send files to your friends and family, or even between computers at your house. It is shocking how over the years, sharing files is still more complicated than it needs to be. Look no further. 
+The purpose of this project is to enable everyone to be able to share files privately in real time, without the use of the major tech companies and cloud providers. Use RiftShare to send files to your friends and family, or even between computers at your house. It is shocking how over the years, sharing files is still more complicated than it needs to be. Look no further. No accounts, sign-ups, or tracking, just a simple human-readable passphrase. 
 
 ### Installation & Compatibility
 
-UPDATE: RiftShare now provides signed and notarized MacOS releases, if there is enough demand I can look into signing the windows release as well. 
+UPDATE: RiftShare now provides code signed and notarized MacOS releases, if there is enough demand I will code sign the Windows release as well to get through the security warning. 
 
 Download the [latest release](https://github.com/achhabra2/riftshare/releases/latest) for your operating system. 
 
@@ -46,10 +45,14 @@ Riftshare is compatible with the following operating systems:
 ### How to Use
 
 #### Sending Files
-<img src="https://raw.githubusercontent.com/achhabra2/riftshare/gh-pages/send.gif" alt="send" width="600" align="center"/>
+<p align="center" style="text-align: center">
+<img src="https://raw.githubusercontent.com/achhabra2/riftshare/gh-pages/send.gif" alt="send" width="480" align="center"/>
+</p>
 
 #### Receiving Files
-<img src="https://raw.githubusercontent.com/achhabra2/riftshare/gh-pages/receive.gif" alt="send" width="600" align="center"/>
+<p align="center" style="text-align: center">
+<img src="https://raw.githubusercontent.com/achhabra2/riftshare/gh-pages/receive.gif" alt="send" width="480" align="center"/>
+</p>
 
 ### Attributions
 
