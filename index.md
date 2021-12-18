@@ -1,16 +1,21 @@
+---
+title: RiftShare
+description: Easy, Secure, and Free file sharing for everyone. 
+---
 ## RiftShare
-
-Easy, Secure, and Free file sharing for everyone. 
-
-<a href="https://github.com/achhabra2/riftshare/releases/latest" target="_blank" align="center">
-<img src="https://github.com/achhabra2/riftshare/blob/main/appicon.png?raw=true" alt="icon" width="128" />
-</a>
-
-![GitHub all releases](https://img.shields.io/github/downloads/achhabra2/riftshare/total)
-![GitHub](https://img.shields.io/github/license/achhabra2/riftshare)
-![GitHub Release Date](https://img.shields.io/github/release-date/achhabra2/riftshare)
-![GitHub release (latest by date)](https://img.shields.io/github/v/release/achhabra2/riftshare)
-![GitHub Repo stars](https://img.shields.io/github/stars/achhabra2/riftshare?style=social)
+<p align="center" style="text-align: center">
+  <a href="https://github.com/achhabra2/riftshare/releases/latest" target="_blank" align="center">
+    <img src="https://github.com/achhabra2/riftshare/blob/main/appicon.png?raw=true" alt="icon" width="128" />
+  </a>
+</p>
+<p align="center">
+<a href="https://github.com/achhabra2/riftshare/blob/main/LICENSE"><img alt="GitHub license" src="https://img.shields.io/github/license/achhabra2/riftshare"></a>
+<img alt="GitHub Release Date" src="https://img.shields.io/github/release-date/achhabra2/riftshare">
+<img alt="GitHub release (latest SemVer)" src="https://img.shields.io/github/v/release/achhabra2/riftshare">
+<img alt="GitHub all releases" src="https://img.shields.io/github/downloads/achhabra2/riftshare/total">
+<!-- Place this tag where you want the button to render. -->
+<a class="github-button" href="https://github.com/achhabra2/riftshare" data-icon="octicon-star" aria-label="Star achhabra2/riftshare on GitHub">Star</a>
+</p>
 
 The purpose of this project is to enable everyone to be able to share files privately and without the use of the major tech companies and cloud providers. Use RiftShare to send files to your friends and family, or even between computers at your house. It is shocking how over the years, sharing files is still more complicated than it needs to be. Look no further. 
 
