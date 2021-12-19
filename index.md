@@ -4,7 +4,7 @@ description: Easy, Secure, and Free file sharing for everyone.
 ---
 <p align="center" style="text-align: center">
   <a href="https://github.com/achhabra2/riftshare/releases/latest" target="_blank" align="center">
-    <img src="https://github.com/achhabra2/riftshare/blob/main/appicon.png?raw=true" alt="icon" width="128" />
+    <img src="/assets/riftshare_small.png" alt="icon" width="128" />
   </a>
 </p>
 <p align="center">
