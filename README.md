@@ -1,10 +1,18 @@
 # RiftShare
 
+<p align="center" style="text-align: center">
+  <a href="https://github.com/achhabra2/riftshare/releases/latest" target="_blank" align="center">
+    <img src="https://github.com/achhabra2/riftshare/blob/gh-pages/assets/riftshare_small.png?raw=true" alt="icon" width="128" />
+  </a>
+</p>
+
 ![GitHub all releases](https://img.shields.io/github/downloads/achhabra2/riftshare/total)
 ![GitHub](https://img.shields.io/github/license/achhabra2/riftshare)
 ![GitHub Release Date](https://img.shields.io/github/release-date/achhabra2/riftshare)
 ![GitHub release (latest by date)](https://img.shields.io/github/v/release/achhabra2/riftshare)
 ![GitHub Repo stars](https://img.shields.io/github/stars/achhabra2/riftshare?style=social)
+
+NOTE - Please see the gh-pages site at [riftshare.app](https://riftshare.app) for the up to date Readme and FAQ. 
 
 ## About
 
@@ -40,12 +48,13 @@ Frontend Built Using:
 
 ## Using it
 
-Sending Files
-![Selecting Files](./docs/screenshots/riftshare-send-1.png)
-![Sending Files](./docs/screenshots/riftshare-send-2.png)
+### Sending Files
+<img alt="Selecting Files" src="./docs/screenshots/riftshare-send-1.png" width="400"/>
+<img alt="Sending Files" src="./docs/screenshots/riftshare-send-2.png" width="400"/>
 
-Receiving Files
-![Receiving Files](./docs/screenshots/riftshare-receive-1.png)
+
+### Receiving Files
+<img alt="Receiving Files" src="./docs/screenshots/riftshare-receive-1.png" width="400"/>
 
 TODO
 
