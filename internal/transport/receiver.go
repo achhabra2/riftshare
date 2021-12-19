@@ -72,10 +72,18 @@ func (c *Client) NewReceive(ctx context.Context, code string, pathname chan stri
 			return bail(msg, err)
 		}
 
+		var canceled bool
+
 		defer func() {
 			if cerr := file.Close(); cerr != nil {
 				log.Println("Error on closing file", err)
 				err = cerr
+			}
+			if canceled {
+				rerr := os.Remove(path)
+				if rerr != nil {
+					log.Println("Error on removing canceled file", rerr)
+				}
 			}
 		}()
 
@@ -84,6 +92,10 @@ func (c *Client) NewReceive(ctx context.Context, code string, pathname chan stri
 		_, err = io.Copy(file, io.TeeReader(msg, counter))
 		close(progress)
 		if err != nil {
+			if err.Error() == "context canceled" {
+				canceled = true
+				return nil
+			}
 			log.Println("Error on copying contents to file", err)
 			return err
 		}
@@ -113,6 +125,9 @@ func (c *Client) NewReceive(ctx context.Context, code string, pathname chan stri
 	n, err := io.Copy(tmp, io.TeeReader(msg, counter))
 	close(progress)
 	if err != nil {
+		if err.Error() == "context canceled" {
+			return nil
+		}
 		log.Println("Error on copying contents to file", err)
 		return err
 	}

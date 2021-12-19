@@ -177,9 +177,9 @@
   {#if isSending}
     <Progress percent={sendPercent} {status}>
       <div class="container grid">
-        <!-- <button class="my-2 mx-auto cancel-button" on:click={onCancel}
+        <button class="my-2 mx-auto cancel-button" on:click={onCancel}
           >Cancel</button
-        > -->
+        >
         {#if sendCode}
           <div class="mx-auto mt-2" transition:slide>
             <label for="sendCode" class="send-input-label">Send Code</label>

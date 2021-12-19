@@ -38,6 +38,7 @@
       receiveCode = "";
       status = "waiting";
       receivePercent = 0;
+      receivePath = "";
     }).catch(err => {
       console.log(err);
     });
@@ -106,9 +107,9 @@
   {#if isReceiving}
     <Progress percent={receivePercent} {status}>
       <div class="container grid">
-        <!-- <button class="my-2 mx-auto cancel-button" on:click={onCancel}
+        <button class="my-2 mx-auto cancel-button" on:click={onCancel}
           >Cancel</button
-        > -->
+        >
       </div>
     </Progress>
   {/if}
