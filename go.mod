@@ -5,7 +5,7 @@ go 1.17
 require (
 	github.com/blang/semver v3.5.1+incompatible
 	github.com/gen2brain/beeep v0.0.0-20210529141713-5586760f0cc1
-	github.com/klauspost/compress v1.12.2
+	github.com/klauspost/compress v1.13.6
 	github.com/psanford/wormhole-william v1.0.6
 	github.com/rhysd/go-github-selfupdate v1.2.3
 	github.com/wailsapp/wails/v2 v2.0.0-beta.23
@@ -16,6 +16,7 @@ require (
 	github.com/andybalholm/brotli v1.0.2 // indirect
 	github.com/fasthttp/websocket v0.0.0-20200320073529-1554a54587ab // indirect
 	github.com/gabriel-vasile/mimetype v1.3.1 // indirect
+	github.com/gin-gonic/gin v1.7.0 // indirect
 	github.com/go-ole/go-ole v1.2.6 // indirect
 	github.com/go-toast/toast v0.0.0-20190211030409-01e6764cf0a4 // indirect
 	github.com/godbus/dbus/v5 v5.0.3 // indirect
