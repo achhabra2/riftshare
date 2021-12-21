@@ -11,7 +11,6 @@ description: Easy, Secure, and Free file sharing for everyone.
 <a href="https://github.com/achhabra2/riftshare/blob/main/LICENSE"><img alt="GitHub license" src="https://img.shields.io/github/license/achhabra2/riftshare"></a>
 <img alt="GitHub Release Date" src="https://img.shields.io/github/release-date/achhabra2/riftshare">
 <img alt="GitHub release (latest SemVer)" src="https://img.shields.io/github/v/release/achhabra2/riftshare">
-<img alt="GitHub all releases" src="https://img.shields.io/github/downloads/achhabra2/riftshare/total">
 <!-- Place this tag where you want the button to render. -->
 <a class="github-button" href="https://github.com/achhabra2/riftshare" data-icon="octicon-star" aria-label="Star achhabra2/riftshare on GitHub">Star</a>
 </p>
