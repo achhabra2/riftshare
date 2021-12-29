@@ -8,7 +8,7 @@ require (
 	github.com/klauspost/compress v1.13.6
 	github.com/psanford/wormhole-william v1.0.6
 	github.com/rhysd/go-github-selfupdate v1.2.3
-	github.com/wailsapp/wails/v2 v2.0.0-beta.23
+	github.com/wailsapp/wails/v2 v2.0.0-beta.27
 	gopkg.in/yaml.v2 v2.4.0
 )
 
@@ -34,11 +34,10 @@ require (
 	github.com/kr/text v0.2.0 // indirect
 	github.com/leaanthony/go-ansi-parser v1.0.1 // indirect
 	github.com/leaanthony/go-common-file-dialog v1.0.3 // indirect
-	github.com/leaanthony/go-webview2 v0.0.0-20211202091502-64deee9a37e3 // indirect
+	github.com/leaanthony/go-webview2 v1.0.2 // indirect
 	github.com/leaanthony/gosod v1.0.3 // indirect
 	github.com/leaanthony/slicer v1.5.0 // indirect
 	github.com/leaanthony/typescriptify-golang-structs v0.1.7 // indirect
-	github.com/leaanthony/webview2runtime v1.1.0 // indirect
 	github.com/leaanthony/winc v0.0.0-20211202091710-9931d43181ff // indirect
 	github.com/nu7hatch/gouuid v0.0.0-20131221200532-179d4d0c4d8d // indirect
 	github.com/pkg/browser v0.0.0-20210706143420-7d21f8c997e2 // indirect
@@ -55,7 +54,7 @@ require (
 	golang.org/x/crypto v0.0.0-20210513164829-c07d793c2f9a // indirect
 	golang.org/x/net v0.0.0-20210510120150-4163338589ed // indirect
 	golang.org/x/oauth2 v0.0.0-20190604053449-0f29369cfe45 // indirect
-	golang.org/x/sys v0.0.0-20211020174200-9d6173849985 // indirect
+	golang.org/x/sys v0.0.0-20211216021012-1d35b9e2eb4e // indirect
 	google.golang.org/appengine v1.6.1 // indirect
 	google.golang.org/protobuf v1.26.0 // indirect
 	gopkg.in/check.v1 v1.0.0-20201130134442-10cb98267c6c // indirect

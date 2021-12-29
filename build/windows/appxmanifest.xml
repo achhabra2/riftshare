@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Package
+	xmlns="http://schemas.microsoft.com/appx/manifest/foundation/windows10"
+  xmlns:uap="http://schemas.microsoft.com/appx/manifest/uap/windows10"
+  xmlns:rescap="http://schemas.microsoft.com/appx/manifest/foundation/windows10/restrictedcapabilities">
+  <Identity Name="app.riftshare" Version="0.1.3.0" Publisher="CN=RiftShare, O=App, L=Dublin, S=California, C=USA" ProcessorArchitecture="x64" />
+    <Properties>
+       <DisplayName>RiftShare</DisplayName>
+       <PublisherDisplayName>Aman Chhabra</PublisherDisplayName>
+			 <Description>Easy, Secure, Free file sharing</Description>
+       <Logo>appicon.png</Logo>
+    </Properties>
+    <Resources>
+      <Resource Language="en-US" />
+      <Resource uap:Scale="100"/>
+    </Resources>
+	  <Dependencies>
+      <TargetDeviceFamily Name="Windows.Desktop" MinVersion="10.0.22000.0" MaxVersionTested="10.0.22000.0" />
+	  </Dependencies>
+	  <Capabilities>
+	    <rescap:Capability Name="runFullTrust"/>
+      <rescap:Capability Name="internetClientServer"/>
+      <rescap:Capability Name="privateNetworkClientServer"/>
+	  </Capabilities>
+    <Applications>
+      <Application Id="app.riftshare" Executable="RiftShare.exe" EntryPoint="Windows.FullTrustApplication">
+        <uap:VisualElements DisplayName="RiftShare" Description="Easy, Secure, Free file sharing"	Square150x150Logo="icons\icon_150.png"
+				   Square44x44Logo="icons\icon_44.png"	BackgroundColor="transparent" />
+      </Application>
+     </Applications>
+  </Package>
