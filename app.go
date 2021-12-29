@@ -75,7 +75,7 @@ func (b *App) shutdown(ctx context.Context) {
 
 // Greet returns a greeting for the given name
 func (b *App) OpenDirectoryDialog() ([]string, error) {
-	opts := runtime.OpenDialogOptions{Title: "Select Directory", DefaultDirectory: b.GetDownloadsFolder()}
+	opts := runtime.OpenDialogOptions{Title: "Select Directory", DefaultDirectory: b.UserPrefs.DownloadsDirectory}
 	selection, err := runtime.OpenDirectoryDialog(b.ctx, opts)
 	if err != nil {
 		runtime.LogError(b.ctx, "Error opening dialog")
@@ -92,7 +92,7 @@ func (b *App) OpenDirectoryDialog() ([]string, error) {
 }
 
 func (b *App) OpenFilesDialog() ([]string, error) {
-	opts := runtime.OpenDialogOptions{Title: "Select File", DefaultDirectory: b.GetDownloadsFolder()}
+	opts := runtime.OpenDialogOptions{Title: "Select File", DefaultDirectory: b.UserPrefs.DownloadsDirectory}
 	selection, err := runtime.OpenMultipleFilesDialog(b.ctx, opts)
 	if err != nil {
 		runtime.LogError(b.ctx, "Error opening dialog")
@@ -350,10 +350,6 @@ func (b *App) UpdateCheckUI() {
 	}
 }
 
-func (b *App) GetDownloadsFolder() string {
-	return b.UserPrefs.DownloadsDirectory
-}
-
 func (b *App) GetCurrentVersion() string {
 	return update.Version
 }
@@ -363,7 +359,7 @@ func (b *App) GetLogPath() string {
 }
 
 func (b *App) SetDownloadsFolder() string {
-	opts := runtime.OpenDialogOptions{Title: "Select Directory", DefaultDirectory: b.GetDownloadsFolder()}
+	opts := runtime.OpenDialogOptions{Title: "Select Directory", DefaultDirectory: b.UserPrefs.DownloadsDirectory}
 	selection, err := runtime.OpenDirectoryDialog(b.ctx, opts)
 	if err != nil {
 		runtime.LogInfo(b.ctx, "Error opening dialog")
@@ -380,17 +376,9 @@ func (b *App) SetOverwriteParam(val bool) bool {
 	return b.c.OverwriteExisting
 }
 
-func (b *App) GetOverwriteParam() bool {
-	return b.c.OverwriteExisting
-}
-
 func (b *App) SetNotificationsParam(val bool) bool {
 	b.c.Notifications = val
 	b.UserPrefs.Notifications = val
-	return b.c.Notifications
-}
-
-func (b *App) GetNotificationsParam() bool {
 	return b.c.Notifications
 }
 
