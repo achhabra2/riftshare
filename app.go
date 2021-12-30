@@ -10,6 +10,7 @@ import (
 	"os/exec"
 	"path/filepath"
 	goruntime "runtime"
+	"strings"
 	"time"
 
 	"riftshare/internal/settings"
@@ -59,9 +60,9 @@ func (b *App) startup(ctx context.Context) {
 // domReady is called after the front-end dom has been loaded
 func (b *App) domReady(ctx context.Context) {
 	// Add your action here
-	if b.UserPrefs.SelfUpdate {
+	if b.UserPrefs.SelfUpdate && !b.AppInstalledFromPackageManager() {
 		b.UpdateCheckUI()
-	}
+	} 
 }
 
 // shutdown is called at application termination
@@ -407,4 +408,14 @@ func (b *App) ShowErrorDialog(message string) {
 	buttons := []string{"Ok"}
 	opts := runtime.MessageDialogOptions{Title: "Error Occured", Message: message, Buttons: buttons, Type: runtime.ErrorDialog, DefaultButton: "Ok"}
 	runtime.MessageDialog(b.ctx, opts)
+}
+
+func (b *App) AppInstalledFromPackageManager() bool {
+	switch goruntime.GOOS {
+	case "windows":
+		cmdPath, _ := os.Executable()
+		return strings.Contains(cmdPath, "WindowsApps")
+	default:
+		return false
+	}
 }

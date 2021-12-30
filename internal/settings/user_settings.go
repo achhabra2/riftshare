@@ -1,6 +1,7 @@
 package settings
 
 import (
+	"encoding/json"
 	"errors"
 	"log"
 	"os"
@@ -8,8 +9,6 @@ import (
 	"riftshare/internal/transport"
 	"riftshare/internal/update"
 	"runtime"
-
-	"gopkg.in/yaml.v2"
 )
 
 type UserSettings struct {
@@ -33,7 +32,7 @@ func SaveUserSettings(settings UserSettings) error {
 		return errors.New("error opening settings file")
 	}
 	defer prefs.Close()
-	encoder := yaml.NewEncoder(prefs)
+	encoder := json.NewEncoder(prefs)
 	err = encoder.Encode(settings)
 	if err != nil {
 		log.Println(err)
@@ -51,7 +50,7 @@ func GetUserSettings() (UserSettings, error) {
 	defer prefs.Close()
 
 	var settings UserSettings
-	decoder := yaml.NewDecoder(prefs)
+	decoder := json.NewDecoder(prefs)
 	err = decoder.Decode(&settings)
 	if err != nil {
 		log.Println(err)
@@ -98,7 +97,7 @@ func openPrefFile() (*os.File, error) {
 			return &os.File{}, err
 		}
 	}
-	settingsPath := filepath.Join(dir, "riftshare_config.yaml")
+	settingsPath := filepath.Join(dir, "riftshare_config.json")
 	prefs, err := os.OpenFile(settingsPath, os.O_RDWR|os.O_CREATE, 0666)
 	if err != nil {
 		log.Println(err)

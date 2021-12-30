@@ -1,13 +1,11 @@
 interface go {
   "main": {
     "App": {
+		AppInstalledFromPackageManager():Promise<boolean>
 		CancelWormholeRequest():Promise<void>
 		ClearSelectedFiles():Promise<void>
 		GetCurrentVersion():Promise<string>
-		GetDownloadsFolder():Promise<string>
 		GetLogPath():Promise<string>
-		GetNotificationsParam():Promise<boolean>
-		GetOverwriteParam():Promise<boolean>
 		GetReceivedFile():Promise<string>
 		GetSelectedFiles():Promise<Array<string>>
 		GetUserPrefs():Promise<UserSettings>

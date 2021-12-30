@@ -18,4 +18,4 @@ node_modules
 gon-config.json
 
 microsoft.system.package.metadata
-RiftShare.msix
+*.msix

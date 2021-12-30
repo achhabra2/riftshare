@@ -5,6 +5,13 @@ const go = {
   "main": {
     "App": {
       /**
+       * AppInstalledFromPackageManager
+       * @returns {Promise<boolean>}  - Go Type: bool
+       */
+      "AppInstalledFromPackageManager": () => {
+        return window.go.main.App.AppInstalledFromPackageManager();
+      },
+      /**
        * CancelWormholeRequest
        * @returns {Promise<void>} 
        */
@@ -26,32 +33,11 @@ const go = {
         return window.go.main.App.GetCurrentVersion();
       },
       /**
-       * GetDownloadsFolder
-       * @returns {Promise<string>}  - Go Type: string
-       */
-      "GetDownloadsFolder": () => {
-        return window.go.main.App.GetDownloadsFolder();
-      },
-      /**
        * GetLogPath
        * @returns {Promise<string>}  - Go Type: string
        */
       "GetLogPath": () => {
         return window.go.main.App.GetLogPath();
-      },
-      /**
-       * GetNotificationsParam
-       * @returns {Promise<boolean>}  - Go Type: bool
-       */
-      "GetNotificationsParam": () => {
-        return window.go.main.App.GetNotificationsParam();
-      },
-      /**
-       * GetOverwriteParam
-       * @returns {Promise<boolean>}  - Go Type: bool
-       */
-      "GetOverwriteParam": () => {
-        return window.go.main.App.GetOverwriteParam();
       },
       /**
        * GetReceivedFile

@@ -7,6 +7,7 @@
   let notifications = false;
   let overwrite = false;
   let selfUpdate = false; 
+  let packageManaged = false;
 
   onMount(() => {
     go.main.App.GetUserPrefs().then(prefs => {
@@ -17,6 +18,10 @@
     });
     go.main.App.GetLogPath().then((path) => {
       logPath = path;
+    });
+
+    go.main.App.AppInstalledFromPackageManager().then(managed => {
+      packageManaged = managed;
     });
   });
 
@@ -91,6 +96,9 @@
   </div>
   <div class="text-gray-300">Auto Update</div>
   <div class="flex flex-row items-center justify-between mb-1">
+    {#if packageManaged}
+    <span class="text-sm">Update from Package Manager</span>
+    {:else}
     <label class="text-sm" for="selfUpdate">Auto Update Enabled</label>
     <input
       class="checkbox"
@@ -100,6 +108,7 @@
       checked={selfUpdate}
       on:input={toggleSelfUpdate}
     />
+    {/if}
   </div>
   <div class="mb-1">
     <div class="text-gray-300">Logs</div>
