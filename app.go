@@ -62,16 +62,12 @@ func (b *App) domReady(ctx context.Context) {
 	// Add your action here
 	if b.UserPrefs.SelfUpdate && !b.AppInstalledFromPackageManager() {
 		b.UpdateCheckUI()
-	} 
+	}
 }
 
 // shutdown is called at application termination
 func (b *App) shutdown(ctx context.Context) {
 	// Perform your teardown here
-	err := settings.SaveUserSettings(b.UserPrefs)
-	if err != nil {
-		runtime.LogError(b.ctx, err.Error())
-	}
 }
 
 // Greet returns a greeting for the given name
@@ -368,18 +364,21 @@ func (b *App) SetDownloadsFolder() string {
 	}
 	b.c.DownloadPath = selection
 	b.UserPrefs.DownloadsDirectory = selection
+	b.PersistUserSettings()
 	return b.UserPrefs.DownloadsDirectory
 }
 
 func (b *App) SetOverwriteParam(val bool) bool {
 	b.c.OverwriteExisting = val
 	b.UserPrefs.Overwrite = val
+	b.PersistUserSettings()
 	return b.c.OverwriteExisting
 }
 
 func (b *App) SetNotificationsParam(val bool) bool {
 	b.c.Notifications = val
 	b.UserPrefs.Notifications = val
+	b.PersistUserSettings()
 	return b.c.Notifications
 }
 
@@ -401,7 +400,15 @@ func (b *App) GetUserPrefs() settings.UserSettings {
 
 func (b *App) SetSelfUpdateParam(val bool) bool {
 	b.UserPrefs.SelfUpdate = val
+	b.PersistUserSettings()
 	return b.UserPrefs.SelfUpdate
+}
+
+func (b *App) PersistUserSettings() {
+	err := settings.SaveUserSettings(b.UserPrefs)
+	if err != nil {
+		runtime.LogError(b.ctx, err.Error())
+	}
 }
 
 func (b *App) ShowErrorDialog(message string) {

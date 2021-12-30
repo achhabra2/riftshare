@@ -83,6 +83,13 @@ const go = {
         return window.go.main.App.OpenFilesDialog();
       },
       /**
+       * PersistUserSettings
+       * @returns {Promise<void>} 
+       */
+      "PersistUserSettings": () => {
+        return window.go.main.App.PersistUserSettings();
+      },
+      /**
        * ReceiveFile
        * @param {string} arg1 - Go Type: string
        * @returns {Promise<void>} 

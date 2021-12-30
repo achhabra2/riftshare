@@ -9,6 +9,7 @@ require (
 	github.com/psanford/wormhole-william v1.0.6
 	github.com/rhysd/go-github-selfupdate v1.2.3
 	github.com/wailsapp/wails/v2 v2.0.0-beta.27
+	gopkg.in/yaml.v2 v2.4.0
 )
 
 require (
@@ -30,6 +31,7 @@ require (
 	github.com/imdario/mergo v0.3.12 // indirect
 	github.com/inconshreveable/go-update v0.0.0-20160112193335-8152e7eb6ccf // indirect
 	github.com/jchv/go-winloader v0.0.0-20210711035445-715c2860da7e // indirect
+	github.com/kr/text v0.2.0 // indirect
 	github.com/leaanthony/go-ansi-parser v1.0.1 // indirect
 	github.com/leaanthony/go-common-file-dialog v1.0.3 // indirect
 	github.com/leaanthony/go-webview2 v1.0.2 // indirect
@@ -40,6 +42,7 @@ require (
 	github.com/nu7hatch/gouuid v0.0.0-20131221200532-179d4d0c4d8d // indirect
 	github.com/pkg/browser v0.0.0-20210706143420-7d21f8c997e2 // indirect
 	github.com/pkg/errors v0.9.1 // indirect
+	github.com/rogpeppe/go-internal v1.8.1 // indirect
 	github.com/savsgio/gotils v0.0.0-20200117113501-90175b0fbe3f // indirect
 	github.com/tadvi/systray v0.0.0-20190226123456-11a2b8fa57af // indirect
 	github.com/tcnksm/go-gitconfig v0.1.2 // indirect
@@ -54,8 +57,7 @@ require (
 	golang.org/x/sys v0.0.0-20211216021012-1d35b9e2eb4e // indirect
 	google.golang.org/appengine v1.6.1 // indirect
 	google.golang.org/protobuf v1.26.0 // indirect
+	gopkg.in/check.v1 v1.0.0-20201130134442-10cb98267c6c // indirect
 	nhooyr.io/websocket v1.8.6 // indirect
 	salsa.debian.org/vasudev/gospake2 v0.0.0-20180813171123-adcc69dd31d5 // indirect
 )
-
-// replace github.com/wailsapp/wails/v2 v2.0.0-beta.21 => /Users/aman/go/pkg/mod/github.com/wailsapp/wails/v2@v2.0.0-beta.21

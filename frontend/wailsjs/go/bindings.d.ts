@@ -12,6 +12,7 @@ interface go {
 		OpenDirectoryDialog():Promise<Array<string>|Error>
 		OpenFile(arg1:string):Promise<void>
 		OpenFilesDialog():Promise<Array<string>|Error>
+		PersistUserSettings():Promise<void>
 		ReceiveFile(arg1:string):Promise<void>
 		SelectedFilesSend():Promise<void>
 		SendDirectory(arg1:string):Promise<void>
