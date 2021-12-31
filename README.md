@@ -6,7 +6,6 @@
   </a>
 </p>
 
-![GitHub all releases](https://img.shields.io/github/downloads/achhabra2/riftshare/total)
 ![GitHub](https://img.shields.io/github/license/achhabra2/riftshare)
 ![GitHub Release Date](https://img.shields.io/github/release-date/achhabra2/riftshare)
 ![GitHub release (latest by date)](https://img.shields.io/github/v/release/achhabra2/riftshare)
