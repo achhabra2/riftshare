@@ -46,6 +46,7 @@ func NewApp(logPath string) *App {
 func (b *App) startup(ctx context.Context) {
 	// Perform your setup here
 	b.ctx = ctx
+	runtime.LogInfo(b.ctx, "Fetching User Preferences")
 	setting, err := settings.GetUserSettings()
 	if err != nil {
 		runtime.LogError(b.ctx, err.Error())
@@ -61,7 +62,10 @@ func (b *App) startup(ctx context.Context) {
 func (b *App) domReady(ctx context.Context) {
 	// Add your action here
 	if b.UserPrefs.SelfUpdate && !b.AppInstalledFromPackageManager() {
+		runtime.LogInfo(b.ctx, "Checking For Updates")
 		b.UpdateCheckUI()
+	} else {
+		runtime.LogInfo(b.ctx, "Skipping Update Check")
 	}
 }
 

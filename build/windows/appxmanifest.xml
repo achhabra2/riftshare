@@ -3,7 +3,7 @@
 	xmlns="http://schemas.microsoft.com/appx/manifest/foundation/windows10"
   xmlns:uap="http://schemas.microsoft.com/appx/manifest/uap/windows10"
   xmlns:rescap="http://schemas.microsoft.com/appx/manifest/foundation/windows10/restrictedcapabilities">
-  <Identity Name="app.riftshare" Version="0.1.4.0" Publisher="CN=RiftShare, O=App, L=Dublin, S=California, C=USA" ProcessorArchitecture="x64" />
+  <Identity Name="" Version="0.1.4.0" Publisher="" ProcessorArchitecture="x64" />
     <Properties>
        <DisplayName>RiftShare</DisplayName>
        <PublisherDisplayName>Aman Chhabra</PublisherDisplayName>
@@ -15,7 +15,7 @@
       <Resource uap:Scale="100"/>
     </Resources>
 	  <Dependencies>
-      <TargetDeviceFamily Name="Windows.Desktop" MinVersion="10.0.17134.0" MaxVersionTested="10.0.22000.0" />
+      <TargetDeviceFamily Name="Windows.Desktop" MinVersion="10.0.18363.0" MaxVersionTested="10.0.22000.0" />
 	  </Dependencies>
 	  <Capabilities>
 	    <rescap:Capability Name="runFullTrust"/>
