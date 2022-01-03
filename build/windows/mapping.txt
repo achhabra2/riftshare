@@ -4,8 +4,8 @@
 
 [Files]
 "..\bin\RiftShare.exe" "RiftShare.exe"
-"..\appicon.png" "appicon.png"
 "icons\icon_44.png" "icons\icon_44.png"
+"icons\icon_50.png" "icons\icon_50.png"
 "icons\icon_150.png" "icons\icon_150.png"
 "icons\icon_150.targetsize-150_altform-unplated.png" "icons\icon_150.targetsize-150_altform-unplated.png"
 "icons\icon_44.targetsize-44_altform-unplated.png" "icons\icon_44.targetsize-44_altform-unplated.png"

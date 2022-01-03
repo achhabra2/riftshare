@@ -50,6 +50,7 @@ func (b *App) startup(ctx context.Context) {
 	setting, err := settings.GetUserSettings()
 	if err != nil {
 		runtime.LogError(b.ctx, err.Error())
+		settings.SaveUserSettings(setting)
 	}
 	b.UserPrefs = setting
 	b.UserPrefs.Version = "v" + b.GetCurrentVersion()
@@ -279,7 +280,7 @@ func (b *App) zipFiles(pathNames []string) string {
 	runtime.LogInfo(b.ctx, "creating zip archive...")
 	runtime.EventsEmit(b.ctx, "send:status", "compressing Files")
 	timeString := time.Now().Format("2006-01-02-15-04-05")
-	archiveName := fmt.Sprintf("wormhole-%s.zip", timeString)
+	archiveName := fmt.Sprintf("riftshare-%s.zip", timeString)
 	archivePath := filepath.Join(homeDir, archiveName)
 	archive, err := os.Create(archivePath)
 	if err != nil {

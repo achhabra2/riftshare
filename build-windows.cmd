@@ -1,6 +1,6 @@
 @echo off
 echo "Building for Windows"
-wails build -platform windows/amd64 -clean
+wails build -platform windows/amd64 -clean -webview2 embed
 echo "Creating MSIX Package"
 cd build\windows
 MakeAppx pack /m appxmanifest.xml /f mapping.txt /p RiftShare.msix

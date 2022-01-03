@@ -32,6 +32,14 @@ func main() {
 		log.Fatal("Could not open settings directory")
 	}
 
+	if _, err := os.Stat(settingsDir); os.IsNotExist(err) {
+		log.Println("No Pref Directory Found, creating..")
+		err = os.Mkdir(settingsDir, 0777)
+		if err != nil {
+			log.Fatal("Could not create settings directory")
+		}
+	}
+
 	loggerPath := filepath.Join(settingsDir, "riftshare-output.log")
 	fileLogger := logger.NewFileLogger(loggerPath)
 	defer os.Remove(loggerPath)

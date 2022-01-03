@@ -8,7 +8,7 @@
        <DisplayName>RiftShare</DisplayName>
        <PublisherDisplayName>Aman Chhabra</PublisherDisplayName>
 			 <Description>Easy, Secure, Free file sharing</Description>
-       <Logo>appicon.png</Logo>
+       <Logo>icons\icon_50.png</Logo>
     </Properties>
     <Resources>
       <Resource Language="en-US" />
