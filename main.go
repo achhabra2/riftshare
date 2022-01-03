@@ -6,7 +6,6 @@ import (
 	"log"
 	"os"
 	"path/filepath"
-	goruntime "runtime"
 
 	"github.com/wailsapp/wails/v2/pkg/options/mac"
 
@@ -47,7 +46,7 @@ func main() {
 	// Create an instance of the app structure
 	app := NewApp(loggerPath)
 
-	width, height := GetAppDefaultDimensions()
+	width, height := settings.GetAppDefaultDimensions()
 	// Create application with options
 	err := wails.Run(&options.App{
 		Title:             "RiftShare",
@@ -96,13 +95,3 @@ func main() {
 	}
 }
 
-func GetAppDefaultDimensions() (int, int) {
-	switch goruntime.GOOS {
-	case "windows":
-		return 660, 550
-	case "darwin":
-		return 480, 400
-	default:
-		return 480, 400
-	}
-}
