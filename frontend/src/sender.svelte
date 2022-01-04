@@ -183,6 +183,7 @@
         {#if sendCode}
           <div class="mx-auto mt-2" transition:slide>
             <label for="sendCode" class="send-input-label">Send Code</label>
+            <div class="flex flex-row">
             <input
               id="sendCode"
               readonly
@@ -191,7 +192,8 @@
               value={sendCode}
               class="send-input mt-1"
             />
-            <button class="send-button" on:click={copyCode}>📄</button>
+            <button class="copy-button mt-1 ml-1" on:click={copyCode}><div class="copy-icon"></div></button>
+            </div>
           </div>
         {/if}
       </div>

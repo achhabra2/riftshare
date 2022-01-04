@@ -14,5 +14,6 @@
 	<key>LSApplicationCategoryType</key><string>public.app-category.utilities</string>
 	<key>NSHighResolutionCapable</key><string>true</string>
 	<key>NSHumanReadableCopyright</key><string>Licensed Under the GPLv3</string>
+	<key>ITSAppUsesNonExemptEncryption</key><false />
 </dict>
 </plist>

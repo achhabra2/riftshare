@@ -17,14 +17,19 @@ div {
     @apply rounded-lg p-2 bg-green-500 duration-150 text-gray-200 hover:bg-green-700 active:bg-green-800;
   }
   .send-input {
-    @apply border border-transparent focus:outline-none focus:ring-2 focus:ring-green-300 focus:border-transparent bg-gray-700 text-gray-200 rounded-md shadow-inner shadow-md;
+    @apply border border-transparent focus:outline-none focus:ring-2 focus:ring-green-300 focus:border-transparent bg-gray-700 text-gray-200 rounded-l-md shadow-inner shadow-md;
   }
   .send-input-label {
-    @apply block text-sm text-gray-200;
+    @apply block text-sm text-gray-300;
   }
   .send-button {
     @apply rounded-lg px-4 py-2 bg-green-600 duration-150 text-gray-200 hover:bg-green-700 disabled:opacity-50 active:bg-green-800;
   }
+
+  .copy-button {
+    @apply rounded-r-md px-2 py-2 bg-green-600 duration-150 text-gray-200 hover:bg-green-700 disabled:opacity-50 active:bg-green-800 w-10;
+  }
+
   .receive-input {
     @apply border border-transparent focus:outline-none focus:ring-2 focus:ring-green-300 focus:border-transparent bg-gray-800 text-gray-200 rounded-l-md shadow-inner shadow-md;
   }
@@ -94,6 +99,16 @@ div {
     height: 64px;
     width: 64px;
     background-repeat: no-repeat;
+  }
+
+  .copy-icon {
+    height: 1.5rem;
+    width: 1.5rem;
+    background-repeat: no-repeat;
+    mask-image: url("./assets/images/copy-regular.svg");
+    mask-repeat: no-repeat;
+    mask-position: center;
+    @apply bg-gray-900;
   }
 
   .receive-tab-icon {
