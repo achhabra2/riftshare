@@ -72,26 +72,6 @@ jobs:
           wails build -platform windows/amd64 -clean
           Compress-Archive -Path .\build\bin\RiftShare.exe -DestinationPath .\RiftShare-windows-amd64.zip
         if: matrix.os == 'windows-latest'
-      # - name: Package MSIX
-      #   run: |
-      #     cd build\windows
-      #     MakeAppx pack /m appxmanifest.xml /f mapping.txt /p RiftShare.msix
-      #     move RiftShare.msix ..\..\
-      #     cd ..\..\
-      #   if: matrix.os == 'windows-latest'   
-      # - name: Create Code Signing Certificate
-      #   run: |
-      #     New-Item -ItemType directory -Path certificate
-      #     Set-Content -Path certificate\certificate.txt -Value '${{ secrets.WINDOWS_CERTIFICATE }}'
-      #     certutil -decode certificate\certificate.txt certificate\certificate.pfx
-      #   if: matrix.os == 'windows-latest'
-      # - name: Sign Windows Executables
-      #   run: |
-      #     rename RiftShare.msix RiftShare-windows-amd64.msix
-      #     SignTool sign /fd SHA256 /a /f certificates\certificate.pfx /p ${{ secrets.WINDOWS_CERTIFICATE_PASSWORD }} /t http://timestamp.digicert.com RiftShare-windows-amd64.msix
-      #     SignTool sign /fd SHA256 /a /f certificates\certificate.pfx /p ${{ secrets.WINDOWS_CERTIFICATE_PASSWORD }} /t http://timestamp.digicert.com .\build\bin\RiftShare.exe
-      #     Compress-Archive -Path .\build\bin\RiftShare.exe -DestinationPath .\RiftShare-windows-amd64.zip
-      #   if: matrix.os == 'windows-latest'
       - name: upload artifacts macOS-AMD64
         uses: actions/upload-artifact@v2
         with:
