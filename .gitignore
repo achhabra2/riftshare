@@ -19,3 +19,5 @@ gon-config.json
 
 microsoft.system.package.metadata
 *.msix
+
+RiftShare.pkg
