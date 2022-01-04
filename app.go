@@ -427,6 +427,9 @@ func (b *App) AppInstalledFromPackageManager() bool {
 	case "windows":
 		cmdPath, _ := os.Executable()
 		return strings.Contains(cmdPath, "WindowsApps")
+	case "darwin":
+		homePath, _ := os.UserHomeDir()
+		return strings.Contains(homePath, "Containers")
 	default:
 		return false
 	}

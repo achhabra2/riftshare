@@ -56,10 +56,10 @@
 
 <div class="text-gray-200">
   <div class="mb-1">
-    <div class="text-gray-300">Downloads Folder</div>
+    <div class="text-gray-300 font-bold">Downloads Folder</div>
     <div class="flex flex-row items-center justify-between">
-      <div class="text-gray-200 text-sm">{downloadsFolder}</div>
-      <div>
+      <div class="text-gray-200 text-xs truncate max-w-md">{downloadsFolder}</div>
+      <div class="w-22">
         <button class="settings-button mr-1" on:click={setDownloadsFolder}
           >Edit</button
         >
@@ -69,7 +69,7 @@
       </div>
     </div>
   </div>
-  <div class="text-gray-300">Notifications</div>
+  <div class="text-gray-300 font-bold">Notifications</div>
   <div class="flex flex-row items-center justify-between mb-1">
     <label class="text-sm" for="notifications">Show Desktop Notifications</label
     >
@@ -82,7 +82,7 @@
       on:input={toggleNotifications}
     />
   </div>
-  <div class="text-gray-300">Overwrite</div>
+  <div class="text-gray-300 font-bold">Overwrite</div>
   <div class="flex flex-row items-center justify-between mb-1">
     <label class="text-sm" for="overwrite">Overwrite Existing Files</label>
     <input
@@ -94,7 +94,7 @@
       on:input={toggleOverwrite}
     />
   </div>
-  <div class="text-gray-300">Auto Update</div>
+  <div class="text-gray-300 font-bold">Auto Update</div>
   <div class="flex flex-row items-center justify-between mb-1">
     {#if packageManaged}
     <span class="text-sm">Update from Package Manager</span>
@@ -111,9 +111,9 @@
     {/if}
   </div>
   <div class="mb-1">
-    <div class="text-gray-300">Logs</div>
+    <div class="text-gray-300 font-bold">Logs</div>
     <div class="flex flex-row items-center justify-between">
-      <div class="text-gray-200 text-sm">{logPath}</div>
+      <div class="text-gray-200 text-xs truncate max-w-lg">{logPath}</div>
       <div>
         <button class="settings-button" on:click={(event) => window.runtime.BrowserOpenURL(logPath)}
           >Open</button

@@ -11,6 +11,7 @@
 	<key>CFBundleShortVersionString</key><string>0.1.4</string>
 	<key>CFBundleIconFile</key><string>iconfile.icns</string>
 	<key>LSMinimumSystemVersion</key><string>10.13.0</string>
+	<key>LSApplicationCategoryType</key><string>public.app-category.utilities</string>
 	<key>NSHighResolutionCapable</key><string>true</string>
 	<key>NSHumanReadableCopyright</key><string>Licensed Under the GPLv3</string>
 </dict>
