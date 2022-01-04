@@ -2,26 +2,13 @@ const colors = require('tailwindcss/colors');
 
 const production = !process.env.ROLLUP_WATCH;
 module.exports = {
-  future: {
-    purgeLayersByDefault: true,
-    removeDeprecatedGapUtilities: true,
-  },
-  darkMode: "media",
   plugins: [
     require('@tailwindcss/forms'),
   ],
-  purge: {
-    content: [
-      "./src/**/*.svelte",
-    ],
-    enabled: production // disable purge in dev
-  },
-  variants: {
-    extend: {
-      opacity: ['disabled'],
-      backgroundColor: ['active'],
-    }
-  },
+  content: [
+    "./src/*.svelte",
+    "./src/styles.pcss"
+  ],
   theme: {
     cursor: {
       text: 'default',
@@ -31,7 +18,7 @@ module.exports = {
       current: 'currentColor',
       black: colors.black,
       white: colors.white,
-      gray: colors.blueGray,
+      gray: colors.slate,
       green: colors.teal,
       red: colors.red,
       blue: colors.cyan,
