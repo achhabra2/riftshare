@@ -3,7 +3,8 @@ title: Home
 subtitle: Easy, Secure, and Free file sharing for everyone.
 nav_order: 1
 ---
-
+<script defer data-domain="riftshare.app" src="https://data.riftshare.app/js/plausible.js"></script>
+<script async defer src="https://buttons.github.io/buttons.js"></script>
 
 <div class="d-flex v-align-middle" style="justify-content: center;">
   <img src="/assets/riftshare_small.png" alt="icon" width="192" />

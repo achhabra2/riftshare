@@ -3,6 +3,10 @@ title: Privacy Policy
 subtitle: RiftShare Privacy Policy
 nav_order: 3
 ---
+<script defer data-domain="riftshare.app" src="https://data.riftshare.app/js/plausible.js"></script>
+
+# Privacy Policy
+
 
 RiftShare does not collect or store any personal information about you. However, RiftShare is a file transferring tool. Your files will either be sent via the local network, or via the internet. When you transfer files on the local network, traffic should stay on the local network after negotiating a connection. When transferring files through the internet, a tcp relay server is used if a direct connection cannot be established. The tcp relay does not have access to any of the transferred data as it is encrypted. 
 

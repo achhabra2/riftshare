@@ -9,9 +9,12 @@ remote_theme: pmarsceill/just-the-docs
 
 # logo: "/assets/riftshare_small.png"
 title: "RiftShare"
+description: Easy, Secure, and Free file sharing for everyone.
 # color_scheme: "dark"
 search_enabled: false
 heading_anchors: true
+
+url: "https://riftshare.app" 
 
 # Footer last edited timestamp
 last_edit_timestamp: true # show or hide edit time - page must have `last_modified_date` defined in the frontmatter
