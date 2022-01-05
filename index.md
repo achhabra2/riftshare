@@ -12,7 +12,9 @@ description: Easy, Secure, and Free file sharing for everyone.
   <a href="https://apps.apple.com/us/app/riftshare/id1602642908" target="_blank" align="center">
     <img src="/assets/mac_app_store.svg" alt="icon" width="128" />
   </a>
-  <ms-store-badge productid="9P564W951H6N" size="large"></ms-store-badge>
+  <a href="https://www.microsoft.com/store/apps/9P564W951H6N" target="_blank" align="center">
+    <img src="/assets/ms_app_store.svg" alt="icon" width="128" />
+  </a>
 </p>
 <p align="center">
 <a href="https://github.com/achhabra2/riftshare/blob/main/LICENSE"><img alt="GitHub license" src="https://img.shields.io/github/license/achhabra2/riftshare"></a>
