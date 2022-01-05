@@ -1,8 +1,18 @@
-theme: jekyll-theme-cayman
-show_downloads: false
-
+github: [metadata]
 # Aux links for the upper right navigation
 aux_links:
-  "Home": "/"
-  "FAQ": "/faq.html"
-  "Privacy Policy": "/privacy.html"
+  "View on Github": "https://github.com/achhabra2/riftshare"
+  "Latest Release on Github": "https://github.com/achhabra2/riftshare/releases/latest/"
+
+# remote_theme: daattali/beautiful-jekyll@5.0.0
+remote_theme: pmarsceill/just-the-docs
+
+# logo: "/assets/riftshare_small.png"
+title: "RiftShare"
+# color_scheme: "dark"
+search_enabled: false
+heading_anchors: true
+
+# Footer last edited timestamp
+last_edit_timestamp: true # show or hide edit time - page must have `last_modified_date` defined in the frontmatter
+last_edit_time_format: "%b %e %Y at %I:%M %p" # uses ruby's time format: https://ruby-doc.org/stdlib-2.7.0/libdoc/time/rdoc/Time.html

@@ -1,6 +1,7 @@
 ---
 title: FAQ
-description: Commonly Asked Questions
+subtitle: RiftShare Commonly Asked Questions
+nav_order: 2
 ---
 ## Updating
 
