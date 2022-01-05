@@ -1,2 +1,8 @@
 theme: jekyll-theme-cayman
 show_downloads: false
+
+# Aux links for the upper right navigation
+aux_links:
+  "Home": "/"
+  "FAQ": "/faq.html"
+  "Privacy Policy": "/privacy.html"
