@@ -3,8 +3,6 @@ title: Privacy Policy
 subtitle: RiftShare Privacy Policy
 nav_order: 3
 ---
-<script defer data-domain="riftshare.app" src="https://data.riftshare.app/js/plausible.js"></script>
-
 # Privacy Policy
 
 

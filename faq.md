@@ -3,8 +3,6 @@ title: FAQ
 subtitle: RiftShare Commonly Asked Questions
 nav_order: 2
 ---
-<script defer data-domain="riftshare.app" src="https://data.riftshare.app/js/plausible.js"></script>
-
 # Frequently Asked Questions
 
 
