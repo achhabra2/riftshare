@@ -456,27 +456,31 @@ func (b *App) AppInstalledFromPackageManager() bool {
 }
 
 func (b *App) VerifyNotificationIcon() string {
-	if goruntime.GOOS == "windows" {
-		if b.UserPrefs.Notifications {
-			settingsDir, ferr := settings.GetSettingsDirectory()
-			if ferr != nil {
-				runtime.LogError(b.ctx, "Could not open settings directory")
-				return ""
-			}
-			notificationIconPath := filepath.Join(settingsDir, "notificationIcon.png")
-			if _, err := os.Stat(notificationIconPath); os.IsNotExist(err) {
-				runtime.LogInfo(b.ctx, "No notification icon found, creating..")
-				err = os.WriteFile(notificationIconPath, notificationIcon, 0666)
-				if err != nil {
-					runtime.LogError(b.ctx, "Could not write icon file")
-					return ""
-				}
-				return notificationIconPath
-			} else {
-				runtime.LogInfo(b.ctx, "Notification icon found, skipping")
-				return notificationIconPath
-			}
-		}
-	}
-	return ""
+	return "appicon.png"
 }
+
+// func (b *App) VerifyNotificationIcon() string {
+// 	if goruntime.GOOS == "windows" {
+// 		if b.UserPrefs.Notifications {
+// 			settingsDir, ferr := settings.GetSettingsDirectory()
+// 			if ferr != nil {
+// 				runtime.LogError(b.ctx, "Could not open settings directory")
+// 				return ""
+// 			}
+// 			notificationIconPath := filepath.Join(settingsDir, "notificationIcon.png")
+// 			if _, err := os.Stat(notificationIconPath); os.IsNotExist(err) {
+// 				runtime.LogInfo(b.ctx, "No notification icon found, creating..")
+// 				err = os.WriteFile(notificationIconPath, notificationIcon, 0666)
+// 				if err != nil {
+// 					runtime.LogError(b.ctx, "Could not write icon file")
+// 					return ""
+// 				}
+// 				return notificationIconPath
+// 			} else {
+// 				runtime.LogInfo(b.ctx, "Notification icon found, skipping")
+// 				return notificationIconPath
+// 			}
+// 		}
+// 	}
+// 	return ""
+// }
