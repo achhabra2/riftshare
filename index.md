@@ -39,7 +39,7 @@ The purpose of this project is to enable everyone to be able to share files priv
 {:toc}
 </details>
 
-### Installation & Compatibility
+## Installation & Compatibility
 
 ```
 UPDATE 12/27/21: RiftShare now provides code signed and notarized MacOS releases, 
@@ -59,7 +59,7 @@ Riftshare is compatible with the following operating systems:
 - [MacOS (M1)](https://github.com/achhabra2/riftshare/releases/latest/download/RiftShare-darwin-arm64.zip)
 - Linux (Coming Soon)
 
-### Features
+## Features
 
 - Easy secure file sharing between computers both in the local network and through the internet
 - Supports sending files or directories securely through the [magic wormhole protocol](https://magic-wormhole.readthedocs.io/en/latest/)
@@ -70,25 +70,34 @@ Riftshare is compatible with the following operating systems:
 - Open files in one click once received
 - Auto Update - don't worry about having the latest release!
 
-### How to Use
+## Common Use Cases
+
+These are the reasons primarily why I built this app. 
+
+- You may have a laptop and a desktop on different OSes that you need to transfer files between. No need to mess with NFS or SMB shares. 
+- You may have family members that you want to share files with locally
+- You may have family or friends that are remote that you want to share files with safely across the internet (eg. sensitive information)
+- You may be a system administrator and need to transfer files to a linux server in the cloud without messing with scp or sftp (the magic wormhole CLI is built into most linux distros)
+
+## How to Use
 
 View the following anitmated gifs on how to send and receive files. In essence - you select a file and click send, a code will be generated. Put that code into the receiving end and hit download. As simple as that. 
 
-#### Sending Files 
+### Sending Files 
 {: .text-center}
 
 <p align="center" style="text-align: center">
 <img src="https://raw.githubusercontent.com/achhabra2/riftshare/gh-pages/send.gif" alt="send" width="480" align="center"/>
 </p>
 
-#### Receiving Files
+### Receiving Files
 {: .text-center}
 
 <p align="center" style="text-align: center">
 <img src="https://raw.githubusercontent.com/achhabra2/riftshare/gh-pages/receive.gif" alt="send" width="480" align="center"/>
 </p>
 
-### Attributions
+## Attributions
 
 This project was inspired by [wormhole-gui](https://github.com/Jacalz/wormhole-gui).
 
@@ -106,14 +115,22 @@ Frontend UI Built Using:
 - [TailwindCSS](https://tailwindcss.com)
 - [FontAwesome](https://fontawesome.com)
 
-### License
+## License
 
 RiftShare is Licensed under the GNU General Public License v3.0
 
-### Privacy Policy
+## Privacy Policy
 
 RiftShare does not collect or store any personal information. Read more <a href="/privacy.html">here</a>.
 
-### FAQ
+## FAQ
 
 Please view the <a href="/faq.html">FAQ Page</a>.
+
+## Contributing
+
+Contributions will be welcome. I am working on contributing guidelines. 
+
+## Issues
+
+Please file an issue on the Github repository. 
