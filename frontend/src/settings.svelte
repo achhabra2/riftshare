@@ -52,13 +52,16 @@
       selfUpdate = newValue;
     });
   }
+
+  $: downloadPathCleaned = downloadsFolder.replace(/.{50}/g, "$&\r\n");
+  $: logPathCleaned = logPath.replace(/.{50}/g, "$&\r\n");
 </script>
 
 <div class="text-gray-200">
   <div class="mb-1">
     <div class="text-gray-300 font-bold">Downloads Folder</div>
     <div class="flex flex-row items-center justify-between">
-      <div class="text-gray-200 text-xs truncate max-w-md">{downloadsFolder}</div>
+      <div class="text-gray-200 text-xs max-w-md">{downloadPathCleaned}</div>
       <div class="w-22">
         <button class="settings-button mr-1" on:click={setDownloadsFolder}
           >Edit</button
@@ -113,7 +116,7 @@
   <div class="mb-1">
     <div class="text-gray-300 font-bold">Logs</div>
     <div class="flex flex-row items-center justify-between">
-      <div class="text-gray-200 text-xs truncate max-w-lg">{logPath}</div>
+      <div class="text-gray-200 text-xs">{logPathCleaned}</div>
       <div>
         <button class="settings-button" on:click={(event) => window.runtime.BrowserOpenURL(logPath)}
           >Open</button

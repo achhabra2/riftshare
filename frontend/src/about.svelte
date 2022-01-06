@@ -4,6 +4,8 @@
 
   import { onMount } from "svelte";
   let version = "";
+  const issueUrl = "https://github.com/achhabra2/riftshare/issues/new/choose";
+
   const attributions = {
     "wailsapp/wails": "https://wails.io",
     "Jackalz/wails-wormhole-gui": "https://github.com/Jacalz/wormhole-gui",
@@ -23,26 +25,33 @@
 </script>
 
 <div class="container p4 text-gray-200">
-  <div>
+  <div class="flex flex-row justify-between">
+    <span class="font-bold">
     Riftshare v{version}
-    <button class="text-blue-600" on:click={(event) => window.runtime.BrowserOpenURL("https://riftshare.app")}
+    </span>
+    <div>
+    <button class="text-sm mr-1 about-button" on:click={(event) => window.runtime.BrowserOpenURL("https://riftshare.app")}
       >Website</button
     >
-    <span> | </span>
-    <button class="text-blue-600" on:click={(event) => window.runtime.BrowserOpenURL("https://riftshare.app/faq.html")}
-      >FAQ</button
-    >
+    <button class="text-sm mr-1 about-button" on:click={(event) => window.runtime.BrowserOpenURL("https://riftshare.app/faq.html")}
+      >FAQ</button>
+    <button class="text-sm mr-1 about-button" on:click={(event) => window.runtime.BrowserOpenURL(issueUrl)}
+      >Open an Issue</button>
+    </div> 
   </div>
 
-  <p class="text-sm">
+  <p class="text-sm mb-1">
     The goal of this project is to enable everyone to securely share files
     freely and easily.
   </p>
+  <div class="mb-1">
+  <p class="text-bold">License</p>
   <p class="text-sm">Licensed under the GNU GPL Version 3</p>
-
-  <div class="mx-auto">
+  </div>
+  <div>
+  <p class="text-bold">Attributions</p>
     <p class="text-sm">
-      This project leverages the work of other Open Source Software
+    This project leverages the work of other Open Source Software
     </p>
     <ul class="text-xs file-list">
       {#each Object.entries(attributions) as [name, url]}
