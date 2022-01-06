@@ -74,6 +74,17 @@ func (b *App) domReady(ctx context.Context) {
 		runtime.LogInfo(b.ctx, "Skipping Update Check")
 	}
 	b.VerifyNotificationIcon()
+
+	// Mac App Store file permissions issue, cannot retain default download directory
+	if b.AppInstalledFromPackageManager() && goruntime.GOOS == "darwin" {
+		defaultDownloadPath := transport.UserDownloadsFolder()
+		if b.UserPrefs.DownloadsDirectory != defaultDownloadPath {
+			runtime.LogInfo(b.ctx, "App is installed from Mac App Store, reset download directory")
+			b.UserPrefs.DownloadsDirectory = defaultDownloadPath
+			b.c.DownloadPath = defaultDownloadPath
+			settings.SaveUserSettings(b.UserPrefs)
+		}
+	}
 }
 
 // shutdown is called at application termination
