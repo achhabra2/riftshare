@@ -67,6 +67,7 @@
     if (receiveStatus == "completed") {
       setTimeout(() => {
         isReceiving = false;
+        receivePercent = 0;
       }, 500);
     }
   });

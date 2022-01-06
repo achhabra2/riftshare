@@ -102,6 +102,7 @@
       setTimeout(() => {
         isSending = false;
         sendCode = "";
+        sendPercent = 0;
       }, 500);
     }
   });
