@@ -32,6 +32,12 @@
     go.main.App.OpenFile(receivePath);
   }
 
+  function openDownloadsFolder() {
+    go.main.App.GetUserPrefs().then(prefs => {
+      go.main.App.OpenFile(prefs.downloadsDirectory);
+    });
+  }
+
   function onCancel() {
     go.main.App.CancelWormholeRequest().then(() => {
       isReceiving = false;
@@ -86,7 +92,10 @@
         <div class="icon-lg receive-file-icon" />
         <span class="text-gray-200">{receiveFileName}</span>
         {#if !isReceiving}
-          <button class="open-button text-sm" on:click={openFile}>Open</button>
+        <div class="inline-flex space-x-1">
+          <button class="open-button text-sm" on:click={openFile}>Open File</button>
+          <button class="open-button text-sm" on:click={openDownloadsFolder}>Open Folder</button>
+        </div>
         {/if}
       </div>
     {/if}
