@@ -53,17 +53,17 @@
     });
   }
 
-  $: downloadPathCleaned = downloadsFolder.replace(/.{50}/g, "$&\r\n");
-  $: logPathCleaned = logPath.replace(/.{50}/g, "$&\r\n");
+  $: downloadPathCleaned = downloadsFolder.replace(/.{50}.\//g, "$&\n");
+  $: logPathCleaned = logPath.replace(/.{50}.\//g, "$&\n");
 </script>
 
 <div class="text-gray-200">
-  <div class="mb-1">
+  <div class="mb-2">
     <div class="text-gray-300 font-bold">Downloads Folder</div>
     <div class="flex flex-row items-center justify-between">
       <div class="text-gray-200 text-xs max-w-md">{downloadPathCleaned}</div>
-      <div class="w-22">
-        <button class="settings-button mr-1" on:click={setDownloadsFolder}
+      <div class="w-22 inline-flex space-x-1">
+        <button class="settings-button" on:click={setDownloadsFolder}
           >Edit</button
         >
         <button class="settings-button" on:click={openDownloadsFolder}
@@ -73,7 +73,7 @@
     </div>
   </div>
   <div class="text-gray-300 font-bold">Notifications</div>
-  <div class="flex flex-row items-center justify-between mb-1">
+  <div class="flex flex-row items-center justify-between mb-2">
     <label class="text-sm" for="notifications">Show Desktop Notifications</label
     >
     <input
@@ -86,7 +86,7 @@
     />
   </div>
   <div class="text-gray-300 font-bold">Overwrite</div>
-  <div class="flex flex-row items-center justify-between mb-1">
+  <div class="flex flex-row items-center justify-between mb-2">
     <label class="text-sm" for="overwrite">Overwrite Existing Files</label>
     <input
       class="checkbox"
@@ -98,7 +98,7 @@
     />
   </div>
   <div class="text-gray-300 font-bold">Auto Update</div>
-  <div class="flex flex-row items-center justify-between mb-1">
+  <div class="flex flex-row items-center justify-between mb-2">
     {#if packageManaged}
     <span class="text-sm">Update from Package Manager</span>
     {:else}

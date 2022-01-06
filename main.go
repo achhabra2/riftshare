@@ -54,9 +54,9 @@ func main() {
 		Height:            height,
 		MinWidth:          width,
 		MinHeight:         height,
-		MaxWidth:          1280,
-		MaxHeight:         740,
-		DisableResize:     false,
+		MaxWidth:          width,
+		MaxHeight:         height,
+		DisableResize:     true,
 		Fullscreen:        false,
 		Frameless:         false,
 		StartHidden:       false,
@@ -94,4 +94,3 @@ func main() {
 		log.Fatal(err)
 	}
 }
-
