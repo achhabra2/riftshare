@@ -24,6 +24,7 @@ interface go {
 		ShowErrorDialog(arg1:string):Promise<void>
 		UpdateCheckUI():Promise<void>
 		UpdateSendProgress(arg1:number,arg2:number):Promise<void>
+		VerifyNotificationIcon():Promise<string>
     },
   }
 

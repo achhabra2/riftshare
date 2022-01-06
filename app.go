@@ -2,6 +2,7 @@ package main
 
 import (
 	"context"
+	_ "embed"
 	"errors"
 	"fmt"
 	"io"
@@ -24,17 +25,21 @@ import (
 	"github.com/klauspost/compress/zip"
 )
 
+//go:embed build/windows/icons/icon_150.png
+var notificationIcon []byte
+
 // App application struct
 type App struct {
-	ctx            context.Context
-	c              *transport.Client
-	selectedFiles  []string
-	receivedFile   string
-	wormholeCtx    *context.Context
-	wormholeCancel *context.CancelFunc
-	LogPath        string
-	UserPrefs      settings.UserSettings
-	IsTransferring bool
+	ctx                  context.Context
+	c                    *transport.Client
+	selectedFiles        []string
+	receivedFile         string
+	wormholeCtx          *context.Context
+	wormholeCancel       *context.CancelFunc
+	LogPath              string
+	UserPrefs            settings.UserSettings
+	IsTransferring       bool
+	NotificationIconPath string
 }
 
 // NewApp creates a new App application struct
@@ -68,6 +73,7 @@ func (b *App) domReady(ctx context.Context) {
 	} else {
 		runtime.LogInfo(b.ctx, "Skipping Update Check")
 	}
+	b.VerifyNotificationIcon()
 }
 
 // shutdown is called at application termination
@@ -135,7 +141,7 @@ func (b *App) SendFile(filePath string) {
 				runtime.LogInfo(b.ctx, "Send Success")
 				runtime.EventsEmit(b.ctx, "send:status", "completed")
 				if b.c.Notifications {
-					beeep.Notify("RiftShare", "Send Complete", "appicon.png")
+					beeep.Notify("RiftShare", "Send Complete", b.NotificationIconPath)
 				}
 			}
 
@@ -216,7 +222,7 @@ func (b *App) ReceiveFile(code string) {
 		}
 		runtime.EventsEmit(b.ctx, "receive:status", "completed")
 		if b.c.Notifications {
-			beeep.Notify("RiftShare", "Receive Complete", "appicon.png")
+			beeep.Notify("RiftShare", "Receive Complete", b.NotificationIconPath)
 		}
 	}()
 }
@@ -384,6 +390,9 @@ func (b *App) SetNotificationsParam(val bool) bool {
 	b.c.Notifications = val
 	b.UserPrefs.Notifications = val
 	b.PersistUserSettings()
+	if val {
+		b.VerifyNotificationIcon()
+	}
 	return b.c.Notifications
 }
 
@@ -433,4 +442,30 @@ func (b *App) AppInstalledFromPackageManager() bool {
 	default:
 		return false
 	}
+}
+
+func (b *App) VerifyNotificationIcon() string {
+	if goruntime.GOOS == "windows" {
+		if b.UserPrefs.Notifications {
+			settingsDir, ferr := settings.GetSettingsDirectory()
+			if ferr != nil {
+				runtime.LogError(b.ctx, "Could not open settings directory")
+				return ""
+			}
+			notificationIconPath := filepath.Join(settingsDir, "notificationIcon.png")
+			if _, err := os.Stat(notificationIconPath); os.IsNotExist(err) {
+				runtime.LogInfo(b.ctx, "No notification icon found, creating..")
+				err = os.WriteFile(notificationIconPath, notificationIcon, 0666)
+				if err != nil {
+					runtime.LogError(b.ctx, "Could not write icon file")
+					return ""
+				}
+				return notificationIconPath
+			} else {
+				runtime.LogInfo(b.ctx, "Notification icon found, skipping")
+				return notificationIconPath
+			}
+		}
+	}
+	return ""
 }

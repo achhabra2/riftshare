@@ -175,6 +175,13 @@ const go = {
       "UpdateSendProgress": (arg1, arg2) => {
         return window.go.main.App.UpdateSendProgress(arg1, arg2);
       },
+      /**
+       * VerifyNotificationIcon
+       * @returns {Promise<string>}  - Go Type: string
+       */
+      "VerifyNotificationIcon": () => {
+        return window.go.main.App.VerifyNotificationIcon();
+      },
     },
   },
 
