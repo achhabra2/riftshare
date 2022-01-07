@@ -4,7 +4,7 @@ subtitle: Easy, Secure, and Free file sharing for everyone.
 nav_order: 1
 ---
 <div class="d-flex v-align-middle" style="justify-content: center;">
-  <img src="/assets/riftshare_small.png" alt="icon" width="192" />
+  <img src="/assets/riftshare_small.png" alt="icon" class="logo-image" />
   <div class="v-align-middle">
     <h1>RiftShare</h1>
     <p>Easy, Secure, and Free file sharing for everyone.</p>
@@ -15,8 +15,8 @@ nav_order: 1
       <a href="https://www.microsoft.com/store/apps/9P564W951H6N" target="_blank" align="center">
         <img src="/assets/ms_app_store.svg" alt="icon" width="128" />
       </a>
-      <span class="fs-3">
-      <a href="https://github.com/achhabra2/riftshare/releases/latest/" class="btn" target="_blank">Get it on Github</a>
+      <span class="fs-4">
+      <a href="https://github.com/achhabra2/riftshare/releases/latest/" class="btn btn-green" target="_blank">Get it on Github</a>
       </span>
     </div>
   </div>
