@@ -64,8 +64,8 @@ Riftshare is compatible with the following operating systems:
 
 ## Features
 
-- Easy secure file sharing between computers both in the local network and through the internet
-- Supports sending files or directories securely through the [magic wormhole protocol](https://magic-wormhole.readthedocs.io/en/latest/)
+- Easy secure (fully encrypted) file sharing between computers both in the local network and through the internet
+- Supports sending files or directories securely through the [magic wormhole protocol](https://magic-wormhole.readthedocs.io/en/latest/). For more information on how the protocol works in depth look at [this deck](http://www.lothar.com/~warner/MagicWormhole-PyCon2016.pdf). 
 - Compatible with all other apps using magic wormhole (magic-wormhole or wormhole-william CLI, wormhole-gui, etc.)
 - Automatic zipping of multiple selected files to send at once
 - Full animations and progress bar for sending and receiving
@@ -120,7 +120,7 @@ Frontend UI Built Using:
 
 ## License
 
-RiftShare is Licensed under the GNU General Public License v3.0
+RiftShare is Licensed under the GNU General Public License v3.0. RiftShare is provided as free (as in libre) software and is fully open source. 
 
 ## Privacy Policy
 
