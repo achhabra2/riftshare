@@ -15,6 +15,9 @@ nav_order: 1
       <a href="https://www.microsoft.com/store/apps/9P564W951H6N" target="_blank" align="center">
         <img src="/assets/ms_app_store.svg" alt="icon" width="128" />
       </a>
+      <span class="fs-3">
+      <a href="https://github.com/achhabra2/riftshare/releases/latest/" class="btn" target="_blank">Get it on Github</a>
+      </span>
     </div>
   </div>
 </div>
@@ -133,4 +136,4 @@ Contributions will be welcome. I am working on contributing guidelines.
 
 ## Issues
 
-Please file an issue on the Github repository. 
+Please file an issue on the Github repository - [here](https://github.com/achhabra2/riftshare/issues/new/choose). 
