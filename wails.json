@@ -3,7 +3,6 @@
   "assetdir": "frontend/dist",
   "frontend:build": "npm run build",
   "frontend:install": "npm install",
-  "frontend:dev": "",
   "wailsjsdir": "./frontend",
   "version": "2",
   "Path": "",

@@ -2,7 +2,6 @@ package main
 
 import (
 	"context"
-	_ "embed"
 	"errors"
 	"fmt"
 	"io"
@@ -24,9 +23,6 @@ import (
 
 	"github.com/klauspost/compress/zip"
 )
-
-//go:embed build/windows/icons/icon_150.png
-var notificationIcon []byte
 
 // App application struct
 type App struct {
@@ -82,7 +78,7 @@ func (b *App) domReady(ctx context.Context) {
 			runtime.LogInfo(b.ctx, "App is installed from Mac App Store, reset download directory")
 			b.UserPrefs.DownloadsDirectory = defaultDownloadPath
 			b.c.DownloadPath = defaultDownloadPath
-			settings.SaveUserSettings(b.UserPrefs)
+			b.PersistUserSettings()
 		}
 	}
 }

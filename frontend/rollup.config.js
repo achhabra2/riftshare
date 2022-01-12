@@ -72,11 +72,14 @@ export default {
 
 		// In dev mode, call `npm run start` once
 		// the bundle has been generated
-		!production && serve(),
+		// !production && serve(),
 
 		// Watch the `dist` directory and refresh the
 		// browser on changes when not in production
-		!production && livereload('dist'),
+		!production && livereload({
+			watch: 'dist',
+			inject: false
+		}),
 
 		// If we're building for production (npm run build
 		// instead of npm run dev), minify
