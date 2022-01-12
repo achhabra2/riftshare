@@ -21,3 +21,6 @@ microsoft.system.package.metadata
 *.msix
 
 RiftShare.pkg
+
+# Exclude Dist Directory
+frontend/dist

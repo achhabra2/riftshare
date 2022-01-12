@@ -8,7 +8,7 @@ require (
 	github.com/klauspost/compress v1.13.6
 	github.com/psanford/wormhole-william v1.0.6
 	github.com/rhysd/go-github-selfupdate v1.2.3
-	github.com/wailsapp/wails/v2 v2.0.0-beta.27
+	github.com/wailsapp/wails/v2 v2.0.0-beta.28
 	gopkg.in/yaml.v2 v2.4.0
 )
 
@@ -38,7 +38,7 @@ require (
 	github.com/leaanthony/gosod v1.0.3 // indirect
 	github.com/leaanthony/slicer v1.5.0 // indirect
 	github.com/leaanthony/typescriptify-golang-structs v0.1.7 // indirect
-	github.com/leaanthony/winc v0.0.0-20211202091710-9931d43181ff // indirect
+	github.com/leaanthony/winc v0.0.0-20220112092814-1608a1744133 // indirect
 	github.com/nu7hatch/gouuid v0.0.0-20131221200532-179d4d0c4d8d // indirect
 	github.com/pkg/browser v0.0.0-20210706143420-7d21f8c997e2 // indirect
 	github.com/pkg/errors v0.9.1 // indirect
