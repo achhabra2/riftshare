@@ -152,13 +152,16 @@ func (b *App) SendFile(filePath string) {
 				}
 			}
 
-			if filepath.Ext(filePath) == ".zip" {
+			// Remove temporary zip file upon completion
+			if filepath.Ext(filePath) == ".zip" && strings.Contains(filePath, "riftshare-") {
 				os.Remove(filePath)
 			}
 		case <-ctx.Done():
 			// If the request gets cancelled, log it
 			runtime.LogInfo(b.ctx, "Request cancelled, removing zip file")
-			if filepath.Ext(filePath) == ".zip" {
+
+			// Remove temporary zip file upon cancelation
+			if filepath.Ext(filePath) == ".zip" && strings.Contains(filePath, "riftshare-") {
 				os.Remove(filePath)
 			}
 			return
