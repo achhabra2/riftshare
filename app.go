@@ -519,7 +519,7 @@ func unzipFile(path string) (string, error) {
 		filePath := filepath.Join(dst, f.Name)
 
 		if !strings.HasPrefix(filePath, filepath.Clean(dst)+string(os.PathSeparator)) {
-			return "", nil
+			return "", errors.New("invalid file path")
 		}
 		if f.FileInfo().IsDir() {
 			os.MkdirAll(filePath, os.ModePerm)
