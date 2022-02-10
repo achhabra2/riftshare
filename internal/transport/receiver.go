@@ -26,8 +26,6 @@ func bail(msg *wormhole.IncomingMessage, err error) error {
 
 // NewReceive runs a receive using wormhole-william and handles types accordingly.
 func (c *Client) NewReceive(ctx context.Context, code string, pathname chan string, progress chan float64) (err error) {
-	log.Println("In Receive", code, pathname)
-	// ctx2 := context.Background()
 	msg, err := c.Receive(ctx, code)
 	if err != nil {
 		log.Println("Error on receiving data", err)

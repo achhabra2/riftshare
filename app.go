@@ -229,6 +229,22 @@ func (b *App) ReceiveFile(code string) {
 			runtime.LogError(b.ctx, "Receive Failed")
 			runtime.EventsEmit(b.ctx, "receive:status", "failed")
 			b.ShowErrorDialog(err.Error())
+			return
+		}
+
+		// If zip received from another riftshare client, unzip archive
+		if filepath.Ext(b.receivedFile) == ".zip" && strings.Contains(b.receivedFile, "riftshare-") {
+			runtime.LogInfo(b.ctx, "Riftshare zip found, unzipping..")
+			dir, err := unzipFile(b.receivedFile)
+			if err != nil {
+				runtime.LogError(b.ctx, "Error during unzip"+err.Error())
+				runtime.EventsEmit(b.ctx, "receive:status", "failed")
+				b.ShowErrorDialog(err.Error())
+				return
+			}
+			runtime.EventsEmit(b.ctx, "receive:path", dir)
+			os.Remove(b.receivedFile)
+			b.receivedFile = dir
 		}
 		runtime.EventsEmit(b.ctx, "receive:status", "completed")
 		if b.c.Notifications {
@@ -487,3 +503,49 @@ func (b *App) VerifyNotificationIcon() string {
 // 	}
 // 	return ""
 // }
+
+func unzipFile(path string) (string, error) {
+	// Open a zip archive for reading.
+	r, err := zip.OpenReader(path)
+	if err != nil {
+		return "", err
+	}
+	defer r.Close()
+
+	// Destination Folder
+	dst := strings.Trim(path, ".zip")
+
+	for _, f := range r.File {
+		filePath := filepath.Join(dst, f.Name)
+
+		if !strings.HasPrefix(filePath, filepath.Clean(dst)+string(os.PathSeparator)) {
+			return "", nil
+		}
+		if f.FileInfo().IsDir() {
+			os.MkdirAll(filePath, os.ModePerm)
+			continue
+		}
+
+		if err := os.MkdirAll(filepath.Dir(filePath), os.ModePerm); err != nil {
+			return "", err
+		}
+
+		dstFile, err := os.OpenFile(filePath, os.O_WRONLY|os.O_CREATE|os.O_TRUNC, f.Mode())
+		if err != nil {
+			return "", err
+		}
+
+		fileInArchive, err := f.Open()
+		if err != nil {
+			return "", err
+		}
+
+		if _, err := io.Copy(dstFile, fileInArchive); err != nil {
+			return "", err
+		}
+
+		dstFile.Close()
+		fileInArchive.Close()
+	}
+	return dst, nil
+}
