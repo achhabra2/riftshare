@@ -383,9 +383,13 @@ func (b *App) SetDownloadsFolder() string {
 		runtime.LogInfo(b.ctx, "Error opening dialog")
 		b.ShowErrorDialog(err.Error())
 	}
-	b.c.DownloadPath = selection
-	b.UserPrefs.DownloadsDirectory = selection
-	b.PersistUserSettings()
+
+	// Check for empty / canceled string
+	if selection != "" {
+		b.c.DownloadPath = selection
+		b.UserPrefs.DownloadsDirectory = selection
+		b.PersistUserSettings()
+	}
 	return b.UserPrefs.DownloadsDirectory
 }
 
