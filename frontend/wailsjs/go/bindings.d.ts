@@ -1,4 +1,4 @@
-interface go {
+export interface go {
   "main": {
     "App": {
 		AppInstalledFromPackageManager():Promise<boolean>
