@@ -24,3 +24,6 @@ RiftShare.pkg
 
 # Exclude Dist Directory
 frontend/dist
+
+build/linux/flatpak
+build/linux/.flatpak-builder

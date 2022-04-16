@@ -1,0 +1,27 @@
+app-id: app.riftshare.RiftShare
+runtime: org.gnome.Platform
+runtime-version: '41'
+sdk: org.gnome.Sdk
+# command: RiftShare
+finish-args:
+  # Window Manager
+  - '--share=ipc'
+  - '--socket=fallback-x11'
+  - '--socket=wayland'
+  - '--device=dri'
+  - '--share=network'
+  - '--filesystem=home'
+modules:
+  - name: RiftShare
+    #
+    # Just install the binary from the local filesystem.
+    #
+    sources:
+      - type: dir
+        path: ..
+    buildsystem: simple
+    build-commands:
+      - chmod +x ./bin/RiftShare
+      - install -D ./bin/RiftShare /app/bin/app.riftshare.RiftShare
+      - install -D ./linux/app.riftshare.RiftShare.desktop /app/share/applications/app.riftshare.RiftShare.desktop
+      - install -D ./linux/app.riftshare.RiftShare.png /app/share/icons/hicolor/512x512/apps/app.riftshare.RiftShare.png
