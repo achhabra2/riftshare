@@ -1,6 +1,6 @@
 app-id: app.riftshare.RiftShare
 runtime: org.gnome.Platform
-runtime-version: '41'
+runtime-version: '42'
 sdk: org.gnome.Sdk
 # command: RiftShare
 finish-args:
@@ -13,15 +13,14 @@ finish-args:
   - '--filesystem=home'
 modules:
   - name: RiftShare
-    #
-    # Just install the binary from the local filesystem.
-    #
     sources:
-      - type: dir
-        path: ..
+      - type: archive
+        url: "https://github.com/achhabra2/riftshare/releases/download/v0.1.7/RiftShare-linux-amd64.tar.gz"
+        sha256: 11676d67c69a4b487509f431f5f85c7b843df499971b022348bd8b514b40daf1
+        strip-components: 0
     buildsystem: simple
     build-commands:
-      - chmod +x ./bin/RiftShare
-      - install -D ./bin/RiftShare /app/bin/app.riftshare.RiftShare
-      - install -D ./linux/app.riftshare.RiftShare.desktop /app/share/applications/app.riftshare.RiftShare.desktop
-      - install -D ./linux/app.riftshare.RiftShare.png /app/share/icons/hicolor/512x512/apps/app.riftshare.RiftShare.png
+      - chmod +x RiftShare
+      - install -D RiftShare /app/bin/app.riftshare.RiftShare
+      - install -D app.riftshare.RiftShare.desktop /app/share/applications/app.riftshare.RiftShare.desktop
+      - install -D app.riftshare.RiftShare.png /app/share/icons/hicolor/512x512/apps/app.riftshare.RiftShare.png
