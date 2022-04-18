@@ -27,3 +27,5 @@ frontend/dist
 
 build/linux/flatpak
 build/linux/.flatpak-builder
+vendor
+app.riftshare.RiftShare.yaml.bak

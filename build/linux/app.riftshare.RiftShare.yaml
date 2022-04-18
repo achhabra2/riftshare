@@ -1,8 +1,18 @@
 app-id: app.riftshare.RiftShare
 runtime: org.gnome.Platform
-runtime-version: '42'
+runtime-version: '41'
 sdk: org.gnome.Sdk
-# command: RiftShare
+sdk-extensions:
+  - org.freedesktop.Sdk.Extension.golang//21.08
+  - org.freedesktop.Sdk.Extension.node16//21.08
+build-options:
+  append-path: 
+    - /usr/lib/sdk/golang/bin
+    - /usr/lib/sdk/node16/bin
+  env: 
+    - GOROOT=/usr/lib/sdk/golang
+    - GOBIN=/app/bin
+command: RiftShare
 finish-args:
   # Window Manager
   - '--share=ipc'
@@ -12,15 +22,25 @@ finish-args:
   - '--share=network'
   - '--filesystem=home'
 modules:
+  - name: wails
+    sources:
+      - type: git
+        url: https://github.com/wailsapp/wails
+        commit: 053f2748d5f81615281ef40198a6781764d86ef0
+    buildsystem: simple
+    build-commands:
+      - cd wails/v2/cmd/wails
+      - go install
+
   - name: RiftShare
     sources:
       - type: archive
         url: "https://github.com/achhabra2/riftshare/releases/download/v0.1.7/RiftShare-linux-amd64.tar.gz"
-        sha256: 11676d67c69a4b487509f431f5f85c7b843df499971b022348bd8b514b40daf1
+        sha256: e5ee5e7751ee8e39cbfccef399984d881c0034782f54d6a1594ea22ed47b0d38
         strip-components: 0
     buildsystem: simple
     build-commands:
-      - chmod +x RiftShare
-      - install -D RiftShare /app/bin/app.riftshare.RiftShare
-      - install -D app.riftshare.RiftShare.desktop /app/share/applications/app.riftshare.RiftShare.desktop
-      - install -D app.riftshare.RiftShare.png /app/share/icons/hicolor/512x512/apps/app.riftshare.RiftShare.png
+      - wails build --clean -s
+      - install -Dm 755 build/bin/RiftShare /app/bin/RiftShare
+      - install -Dm 644 build/linux/app.riftshare.RiftShare.desktop /app/share/applications/app.riftshare.RiftShare.desktop
+      - install -Dm 644 build/linux/app.riftshare.RiftShare.png /app/share/icons/hicolor/512x512/apps/app.riftshare.RiftShare.png

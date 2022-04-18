@@ -1,6 +1,6 @@
 [Desktop Entry]
 Name=RiftShare
 Terminal=false
-Exec=app.riftshare.RiftShare
+Exec=
 Type=Application
 Icon=app.riftshare.RiftShare
