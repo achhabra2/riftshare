@@ -84,7 +84,8 @@ func GetSettingsDirectory() (string, error) {
 	case "darwin":
 		prefDir = filepath.Join(homeDir, "/Library/Application Support/RiftShare")
 	case "linux":
-		prefDir = filepath.Join(homeDir, "~/.var/app/app.riftshare.RiftShare/data")
+		// prefDir = filepath.Join(homeDir, "/.config/RiftShare")
+		prefDir = filepath.Join(homeDir, "/.var/app/app.riftshare.RiftShare/data")
 	default:
 		err = errors.New("unsupported platform")
 	}

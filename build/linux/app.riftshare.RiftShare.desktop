@@ -4,3 +4,5 @@ Terminal=false
 Exec=
 Type=Application
 Icon=app.riftshare.RiftShare
+Categories=Network;Utility
+Comment=Easy, Secure, Free File Sharing

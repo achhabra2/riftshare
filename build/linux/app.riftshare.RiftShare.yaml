@@ -1,17 +1,13 @@
 app-id: app.riftshare.RiftShare
 runtime: org.gnome.Platform
-runtime-version: '41'
+runtime-version: '42'
 sdk: org.gnome.Sdk
 sdk-extensions:
-  - org.freedesktop.Sdk.Extension.golang//21.08
-  - org.freedesktop.Sdk.Extension.node16//21.08
+  - org.freedesktop.Sdk.Extension.golang
 build-options:
-  append-path: 
-    - /usr/lib/sdk/golang/bin
-    - /usr/lib/sdk/node16/bin
+  append-path: /usr/lib/sdk/golang/bin
   env: 
     - GOROOT=/usr/lib/sdk/golang
-    - GOBIN=/app/bin
 command: RiftShare
 finish-args:
   # Window Manager
@@ -21,26 +17,18 @@ finish-args:
   - '--device=dri'
   - '--share=network'
   - '--filesystem=home'
+  - '--talk-name=org.freedesktop.Notifications'
 modules:
-  - name: wails
-    sources:
-      - type: git
-        url: https://github.com/wailsapp/wails
-        commit: 053f2748d5f81615281ef40198a6781764d86ef0
-    buildsystem: simple
-    build-commands:
-      - cd wails/v2/cmd/wails
-      - go install
-
-  - name: RiftShare
+  - name: riftshare
     sources:
       - type: archive
-        url: "https://github.com/achhabra2/riftshare/releases/download/v0.1.7/RiftShare-linux-amd64.tar.gz"
-        sha256: e5ee5e7751ee8e39cbfccef399984d881c0034782f54d6a1594ea22ed47b0d38
-        strip-components: 0
+        url: "https://github.com/achhabra2/riftshare/releases/download/v0.1.7/riftshare-vendored.tar.gz"
+        sha256: 7723d02079a844e57adda3290607b032377ac55b36a260cfd9e33b7d8705bc38
+        strip-components: 1
     buildsystem: simple
     build-commands:
-      - wails build --clean -s
-      - install -Dm 755 build/bin/RiftShare /app/bin/RiftShare
-      - install -Dm 644 build/linux/app.riftshare.RiftShare.desktop /app/share/applications/app.riftshare.RiftShare.desktop
-      - install -Dm 644 build/linux/app.riftshare.RiftShare.png /app/share/icons/hicolor/512x512/apps/app.riftshare.RiftShare.png
+      - go build -tags desktop,production -ldflags "-w -s" -o RiftShare
+      - install -Dm755 RiftShare /app/bin/RiftShare
+      - install -Dm644 build/linux/app.riftshare.RiftShare.desktop /app/share/applications/app.riftshare.RiftShare.desktop
+      - install -Dm644 build/linux/app.riftshare.RiftShare.png /app/share/icons/hicolor/512x512/apps/app.riftshare.RiftShare.png
+      - install -Dm644 build/linux/app.riftshare.RiftShare.appdata.xml /app/share/metainfo/app.riftshare.RiftShare.appdata.xml
