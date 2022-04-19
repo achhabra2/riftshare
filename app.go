@@ -469,6 +469,8 @@ func (b *App) AppInstalledFromPackageManager() bool {
 	case "darwin":
 		homePath, _ := os.UserHomeDir()
 		return strings.Contains(homePath, "Containers")
+	case "linux":
+		return true
 	default:
 		return false
 	}

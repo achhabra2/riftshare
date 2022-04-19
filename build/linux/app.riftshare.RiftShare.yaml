@@ -23,7 +23,7 @@ modules:
     sources:
       - type: archive
         url: "https://github.com/achhabra2/riftshare/releases/download/v0.1.7/riftshare-vendored.tar.gz"
-        sha256: 7723d02079a844e57adda3290607b032377ac55b36a260cfd9e33b7d8705bc38
+        sha256: 7fc58ba04b5787e3ba20202fecbeae7c87567df254832687b1c90f894e4276ed
         strip-components: 1
     buildsystem: simple
     build-commands:
@@ -32,3 +32,4 @@ modules:
       - install -Dm644 build/linux/app.riftshare.RiftShare.desktop /app/share/applications/app.riftshare.RiftShare.desktop
       - install -Dm644 build/linux/app.riftshare.RiftShare.png /app/share/icons/hicolor/512x512/apps/app.riftshare.RiftShare.png
       - install -Dm644 build/linux/app.riftshare.RiftShare.appdata.xml /app/share/metainfo/app.riftshare.RiftShare.appdata.xml
+      - install -Dm644 build/linux/app.riftshare.RiftShare.appdata.xml /app/share/appdata/app.riftshare.RiftShare.appdata.xml
