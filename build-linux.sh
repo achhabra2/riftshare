@@ -1,7 +1,8 @@
-#! bin/bash
-# cd ./build/linux/
-# flatpak-builder flatpak app.riftshare.RiftShare.yaml
-# flatpak-builder --user --install --force-clean flatpak app.riftshare.RiftShare.yaml
+#! /usr/bin/sh
+
 wails build
+rm build/bin/RiftShare
+rm -rf frontend/node_modules
+go mod vendor
 cd ..
-tar -czvf riftshare-vendored.tar.gz riftshare
+tar -czf riftshare-vendored.tar.gz riftshare
