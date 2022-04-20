@@ -21,6 +21,8 @@ Q: When will Linux be supported?
 
 A: RiftShare uses the Wails framework. Wails should support Linux by January 2022, so at that time I will evaluate distributing the app for Linux. 
 
+UPDATE 04/20/22: Linux version is now available on FlatHub
+
 Q: Why am I getting security warnings on Windows?
 
 A: The security warning is because the code has not been signed on the Windows version. If there is enough demand, I will purchase a signing certificate to remove the warning. For now though there is nothing to worry about. 
