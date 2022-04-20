@@ -51,6 +51,8 @@ the security warning.
 
 UPDATE 01/04/22: RiftShare is now available on the Mac and Windows App stores
 for easy and seamless install. Builds are still available from GitHub below.
+
+UPDATE 04/20/22: RiftShare is now available on FlatHub for Linux! 
 ```
 
 Download the [latest release](https://github.com/achhabra2/riftshare/releases/latest) for your operating system.
@@ -60,7 +62,7 @@ Riftshare is compatible with the following operating systems:
 - [Windows (x64)](https://github.com/achhabra2/riftshare/releases/latest/download/RiftShare-windows-amd64.zip)
 - [MacOS (Intel)](https://github.com/achhabra2/riftshare/releases/latest/download/RiftShare-darwin-amd64.zip)
 - [MacOS (M1)](https://github.com/achhabra2/riftshare/releases/latest/download/RiftShare-darwin-arm64.zip)
-- Linux (Coming Soon)
+- [Linux](https://flathub.org/apps/details/app.riftshare.RiftShare)
 
 ## Features
 
