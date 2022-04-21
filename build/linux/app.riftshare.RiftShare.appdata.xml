@@ -21,7 +21,8 @@
       <li> Compatible with all other apps using magic wormhole (magic-wormhole or wormhole-william CLI, wormhole-gui, etc.) </li>
       <li> Automatic zipping and unzipping of multiple selected files to send at once </li>
       <li> Full animations and progress bar for sending and receiving </li>
-      <li> Native OS File Selection * Open files in one click once received </li>
+      <li> Native OS File Selection </li>
+      <li> Open files in one click once received </li>
     </ul>
   </description>
     
@@ -39,6 +40,7 @@
     </screenshots>
 
     <url type="homepage">https://riftshare.app</url>
+    <url type="issues">https://github.com/achhabra2/riftshare/issues</url>
     <content_rating type="oars-1.1" />
     
     <releases>

@@ -1,3 +1,5 @@
+import * as models from './models';
+
 export interface go {
   "main": {
     "App": {
@@ -8,7 +10,7 @@ export interface go {
 		GetLogPath():Promise<string>
 		GetReceivedFile():Promise<string>
 		GetSelectedFiles():Promise<Array<string>>
-		GetUserPrefs():Promise<UserSettings>
+		GetUserPrefs():Promise<models.UserSettings>
 		OpenDirectoryDialog():Promise<Array<string>|Error>
 		OpenFile(arg1:string):Promise<void>
 		OpenFilesDialog():Promise<Array<string>|Error>

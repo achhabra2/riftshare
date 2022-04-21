@@ -55,7 +55,7 @@ const go = {
       },
       /**
        * GetUserPrefs
-       * @returns {Promise<UserSettings>}  - Go Type: settings.UserSettings
+       * @returns {Promise<models.UserSettings>}  - Go Type: settings.UserSettings
        */
       "GetUserPrefs": () => {
         return window.go.main.App.GetUserPrefs();

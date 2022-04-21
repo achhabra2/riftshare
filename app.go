@@ -235,6 +235,7 @@ func (b *App) ReceiveFile(code string) {
 		// If zip received from another riftshare client, unzip archive
 		if filepath.Ext(b.receivedFile) == ".zip" && strings.Contains(b.receivedFile, "riftshare-") {
 			runtime.LogInfo(b.ctx, "Riftshare zip found, unzipping..")
+			runtime.EventsEmit(b.ctx, "receive:status", "decompressing files")
 			dir, err := unzipFile(b.receivedFile)
 			if err != nil {
 				runtime.LogError(b.ctx, "Error during unzip"+err.Error())
