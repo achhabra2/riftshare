@@ -1,9 +1,14 @@
 <script>
-  import {ReceiveFile, OpenFile, GetUserPrefs, CancelWormholeRequest, GetReceivedFile} from '../wailsjs/go/main/App'
+  import {
+    ReceiveFile,
+    OpenFile,
+    GetUserPrefs,
+    CancelWormholeRequest,
+    GetReceivedFile,
+  } from "../wailsjs/go/main/App";
 
   import Progress from "./progress.svelte";
-  import {onMount} from "svelte";
-
+  import { onMount } from "svelte";
 
   let receiveCode = "";
   const receivePattern = /\d+\-\w+\-\w+/;
@@ -34,21 +39,18 @@
   }
 
   function openDownloadsFolder() {
-    GetUserPrefs().then(prefs => {
+    GetUserPrefs().then((prefs) => {
       OpenFile(prefs.downloadsDirectory);
     });
   }
 
   function onCancel() {
-    CancelWormholeRequest().then(() => {
-      isReceiving = false;
-      receiveCode = "";
-      status = "waiting";
-      receivePercent = 0;
-      receivePath = "";
-    }).catch(err => {
-      console.log(err);
-    });
+    CancelWormholeRequest();
+    isReceiving = false;
+    receiveCode = "";
+    status = "waiting";
+    receivePercent = 0;
+    receivePath = "";
   }
 
   window.runtime.EventsOn("receive:updated", function (percent) {
@@ -74,7 +76,7 @@
   });
 
   onMount(() => {
-    GetReceivedFile().then(path => {
+    GetReceivedFile().then((path) => {
       if (path) {
         receivePath = path;
       }
@@ -94,10 +96,14 @@
         <div class="icon-lg receive-file-icon" />
         <span class="text-gray-200">{receiveFileName}</span>
         {#if !isReceiving}
-        <div class="inline-flex space-x-1">
-          <button class="open-button text-sm" on:click={openFile}>Open File</button>
-          <button class="open-button text-sm" on:click={openDownloadsFolder}>Open Folder</button>
-        </div>
+          <div class="inline-flex space-x-1">
+            <button class="open-button text-sm" on:click={openFile}
+              >Open File</button
+            >
+            <button class="open-button text-sm" on:click={openDownloadsFolder}
+              >Open Folder</button
+            >
+          </div>
         {/if}
       </div>
     {/if}
@@ -112,7 +118,9 @@
         bind:value={receiveCode}
         class="receive-input"
       />
-      <button class="receive-button" type="submit" disabled={!receiveCodeValid}>Download</button>
+      <button class="receive-button" type="submit" disabled={!receiveCodeValid}
+        >Download</button
+      >
     </form>
   </div>
   {#if isReceiving}

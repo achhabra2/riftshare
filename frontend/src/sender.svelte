@@ -65,15 +65,10 @@
 
   function onCancel() {
     CancelWormholeRequest()
-      .then(() => {
-        isSending = false;
-        sendCode = "";
-        status = "waiting";
-        sendPercent = 0;
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    isSending = false;
+    sendCode = "";
+    status = "waiting";
+    sendPercent = 0;
   }
 
   function copyCode() {
