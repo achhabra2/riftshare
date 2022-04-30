@@ -1,54 +1,64 @@
 <script>
-  import go from "../wailsjs/go/bindings";
+  import {
+    GetUserPrefs,
+    GetLogPath,
+    AppInstalledFromPackageManager,
+    SetDownloadsFolder,
+    OpenFile,
+    SetOverwriteParam,
+    SetNotificationsParam,
+    SetSelfUpdateParam,
+  } from "../wailsjs/go/main/App";
+
   import { onMount } from "svelte";
 
   let downloadsFolder = "";
   let logPath = "";
   let notifications = false;
   let overwrite = false;
-  let selfUpdate = false; 
+  let selfUpdate = false;
   let packageManaged = false;
 
   onMount(() => {
-    go.main.App.GetUserPrefs().then(prefs => {
+    GetUserPrefs().then((prefs) => {
       downloadsFolder = prefs.downloadsDirectory;
       notifications = prefs.notifications;
       overwrite = prefs.overwrite;
       selfUpdate = prefs.selfUpdate;
     });
-    go.main.App.GetLogPath().then((path) => {
+    GetLogPath().then((path) => {
       logPath = path;
     });
 
-    go.main.App.AppInstalledFromPackageManager().then(managed => {
+    AppInstalledFromPackageManager().then((managed) => {
       packageManaged = managed;
     });
   });
 
   function setDownloadsFolder() {
-    go.main.App.SetDownloadsFolder().then((folder) => {
+    SetDownloadsFolder().then((folder) => {
       downloadsFolder = folder;
     });
   }
 
   function openDownloadsFolder() {
-    go.main.App.OpenFile(downloadsFolder);
+    OpenFile(downloadsFolder);
   }
 
   function toggleOverwrite() {
-    go.main.App.SetOverwriteParam(!overwrite).then(newValue => {
+    SetOverwriteParam(!overwrite).then((newValue) => {
       overwrite = newValue;
     });
   }
 
   function toggleNotifications() {
-    go.main.App.SetNotificationsParam(!notifications).then(newValue => {
+    SetNotificationsParam(!notifications).then((newValue) => {
       notifications = newValue;
     });
   }
 
   function toggleSelfUpdate() {
-    go.main.App.SetSelfUpdateParam(!selfUpdate).then(newValue => {
+    SetSelfUpdateParam(!selfUpdate).then((newValue) => {
       selfUpdate = newValue;
     });
   }
@@ -100,17 +110,17 @@
   <div class="text-gray-300 font-bold">Auto Update</div>
   <div class="flex flex-row items-center justify-between mb-2">
     {#if packageManaged}
-    <span class="text-sm">Update from Package Manager</span>
+      <span class="text-sm">Update from Package Manager</span>
     {:else}
-    <label class="text-sm" for="selfUpdate">Auto Update Enabled</label>
-    <input
-      class="checkbox"
-      type="checkbox"
-      id="selfUpdate"
-      name="selfUpdate"
-      checked={selfUpdate}
-      on:input={toggleSelfUpdate}
-    />
+      <label class="text-sm" for="selfUpdate">Auto Update Enabled</label>
+      <input
+        class="checkbox"
+        type="checkbox"
+        id="selfUpdate"
+        name="selfUpdate"
+        checked={selfUpdate}
+        on:input={toggleSelfUpdate}
+      />
     {/if}
   </div>
   <div class="mb-1">
@@ -118,7 +128,9 @@
     <div class="flex flex-row items-center justify-between">
       <div class="text-gray-200 text-xs">{logPathCleaned}</div>
       <div>
-        <button class="settings-button" on:click={(event) => window.runtime.BrowserOpenURL(logPath)}
+        <button
+          class="settings-button"
+          on:click={(event) => window.runtime.BrowserOpenURL(logPath)}
           >Open</button
         >
       </div>

@@ -1,5 +1,6 @@
 <script>
-  import go from "../wailsjs/go/bindings";
+  import {ReceiveFile, OpenFile, GetUserPrefs, CancelWormholeRequest, GetReceivedFile} from '../wailsjs/go/main/App'
+
   import Progress from "./progress.svelte";
   import {onMount} from "svelte";
 
@@ -25,21 +26,21 @@
     .trimEllip(24);
 
   function receiveFile() {
-    go.main.App.ReceiveFile(receiveCode);
+    ReceiveFile(receiveCode);
   }
 
   function openFile() {
-    go.main.App.OpenFile(receivePath);
+    OpenFile(receivePath);
   }
 
   function openDownloadsFolder() {
-    go.main.App.GetUserPrefs().then(prefs => {
-      go.main.App.OpenFile(prefs.downloadsDirectory);
+    GetUserPrefs().then(prefs => {
+      OpenFile(prefs.downloadsDirectory);
     });
   }
 
   function onCancel() {
-    go.main.App.CancelWormholeRequest().then(() => {
+    CancelWormholeRequest().then(() => {
       isReceiving = false;
       receiveCode = "";
       status = "waiting";
@@ -73,7 +74,7 @@
   });
 
   onMount(() => {
-    go.main.App.GetReceivedFile().then(path => {
+    GetReceivedFile().then(path => {
       if (path) {
         receivePath = path;
       }

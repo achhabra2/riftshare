@@ -1,7 +1,14 @@
 <script>
-  import {onMount} from "svelte";
+  import { onMount } from "svelte";
   import { slide } from "svelte/transition";
-  import go from "../wailsjs/go/bindings";
+  import {
+    OpenDirectoryDialog,
+    OpenFilesDialog,
+    ClearSelectedFiles,
+    SelectedFilesSend,
+    CancelWormholeRequest,
+    GetSelectedFiles
+  } from "../wailsjs/go/main/App";
 
   import Progress from "./progress.svelte";
 
@@ -18,7 +25,7 @@
   );
 
   function openDirectoryDialog() {
-    go.main.App.OpenDirectoryDialog()
+    OpenDirectoryDialog()
       .then((selection) => {
         if (selection != null) {
           selectedFiles = selection;
@@ -33,7 +40,7 @@
   }
 
   function openFilesDialog() {
-    go.main.App.OpenFilesDialog()
+    OpenFilesDialog()
       .then((selection) => {
         if (selection != null) {
           selectedFiles = selection;
@@ -53,11 +60,11 @@
     sendPercent = 0;
     selectedFiles = [];
     isSending = false;
-    go.main.App.ClearSelectedFiles()
+    ClearSelectedFiles();
   }
 
   function onCancel() {
-    go.main.App.CancelWormholeRequest()
+    CancelWormholeRequest()
       .then(() => {
         isSending = false;
         sendCode = "";
@@ -82,7 +89,7 @@
   }
 
   function sendFile() {
-    go.main.App.SelectedFilesSend();
+    SelectedFilesSend();
     isSending = true;
   }
   window.runtime.EventsOn("send:started", function (newCode) {
@@ -108,7 +115,7 @@
   });
 
   onMount(() => {
-    go.main.App.GetSelectedFiles().then(filePaths => {
+    GetSelectedFiles().then((filePaths) => {
       if (filePaths && filePaths.length > 0) {
         selectedFiles = filePaths;
       }
@@ -185,15 +192,17 @@
           <div class="mx-auto mt-2" transition:slide>
             <label for="sendCode" class="send-input-label">Send Code</label>
             <div class="flex flex-row">
-            <input
-              id="sendCode"
-              readonly
-              type="text"
-              placeholder="Send code will appear"
-              value={sendCode}
-              class="send-input mt-1"
-            />
-            <button class="copy-button mt-1 ml-1" on:click={copyCode}><div class="copy-icon"></div></button>
+              <input
+                id="sendCode"
+                readonly
+                type="text"
+                placeholder="Send code will appear"
+                value={sendCode}
+                class="send-input mt-1"
+              />
+              <button class="copy-button mt-1 ml-1" on:click={copyCode}
+                ><div class="copy-icon" /></button
+              >
             </div>
           </div>
         {/if}
