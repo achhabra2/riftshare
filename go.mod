@@ -8,7 +8,7 @@ require (
 	github.com/klauspost/compress v1.15.2
 	github.com/psanford/wormhole-william v1.0.6
 	github.com/rhysd/go-github-selfupdate v1.2.3
-	github.com/wailsapp/wails/v2 v2.0.0-beta.35
+	github.com/wailsapp/wails/v2 v2.0.0-beta.36
 	gopkg.in/yaml.v2 v2.4.0
 )
 
