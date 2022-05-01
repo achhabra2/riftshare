@@ -40,7 +40,7 @@
     </screenshots>
 
     <url type="homepage">https://riftshare.app</url>
-    <url type="issues">https://github.com/achhabra2/riftshare/issues</url>
+    <url type="bugtracker">https://github.com/achhabra2/riftshare/issues</url>
     <content_rating type="oars-1.1" />
     
     <releases>
