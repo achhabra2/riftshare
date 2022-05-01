@@ -1,4 +1,4 @@
-#! /usr/bin/sh
+#! /bin/bash
 
 wails build
 rm build/bin/RiftShare

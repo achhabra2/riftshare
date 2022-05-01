@@ -41,5 +41,5 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: riftshare-linux
-          path: RiftShare-vendored.zip
+          path: riftshare-vendored.tar.gz
         if: matrix.os == 'ubuntu-latest'
