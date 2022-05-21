@@ -44,6 +44,11 @@
     <content_rating type="oars-1.1" />
     
     <releases>
+      <release version="0.1.8.1" date="2022-05-01">
+        <description>
+          <p>Fix for Wayland session on Fedora and Ubuntu.  </p>
+        </description>
+      </release>
       <release version="0.1.8" date="2022-05-01">
         <description>
           <p>Fix for dark mode and app sometimes not launching. Updates to appstream metadata. </p>
