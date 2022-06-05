@@ -9,7 +9,7 @@
 
   const attributions = {
     "wailsapp/wails": "https://wails.io",
-    "Jackalz/wails-wormhole-gui": "https://github.com/Jacalz/wormhole-gui",
+    "Jacalz/rymdport": "https://github.com/Jacalz/rymdport",
     "psanford/wormhole-william": "https://github.com/psanford/wormhole-william",
     "magic-wormhole": "https://magic-wormhole.readthedocs.io/",
     svelte: "https://github.com/sveltejs/svelte",
