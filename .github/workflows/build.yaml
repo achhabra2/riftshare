@@ -44,7 +44,7 @@ jobs:
           AC_USERNAME: ${{ secrets.AC_USERNAME }}
           AC_PASSWORD: ${{ secrets.AC_PASSWORD }}
         run: |
-          ./build-macos.sh
+          ./scripts/build-macos.sh
         if: matrix.os == 'macos-11'
       # - name: Build package linux
       #   run: |

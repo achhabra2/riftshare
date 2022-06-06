@@ -34,7 +34,7 @@ jobs:
           echo "building on ${{ matrix.os }}"
           echo ${{ env.GITHUB_REF }}
           echo ${{ env.GITHUB_HEAD_REF }}
-          ./build-linux.sh
+          ./scripts/build-linux.sh
         if: matrix.os == 'ubuntu-latest'
 
       - name: upload artifact linux
