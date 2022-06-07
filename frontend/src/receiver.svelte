@@ -84,7 +84,7 @@
   });
 </script>
 
-<div class="flex flex-col justify-items-center content-center m-2">
+<div class="flex flex-col justify-center content-center h-full">
   <div
     class="border-2 border-green-300 rounded-md shadow-md w-72 h-56 p-2 mx-auto receive-icon-container"
   >

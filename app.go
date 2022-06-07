@@ -103,6 +103,20 @@ func (b *App) OpenDirectoryDialog() ([]string, error) {
 		return b.selectedFiles, errors.New("invalid selection")
 	}
 	b.selectedFiles = []string{selection}
+
+	dirSize, err := DirSize(selection)
+	if err != nil {
+		runtime.LogError(b.ctx, "Could not get directory size info")
+		return b.selectedFiles, nil
+	} else {
+		runtime.LogInfof(b.ctx, "Directory Size, %v \n", dirSize)
+		if dirSize > 1000000000 {
+			buttons := []string{"Ok"}
+			dialogMessage := fmt.Sprintf("You are attempting to send a large directory ( %v+ GB ). This may take time to compress before sending. Please be patient. ", dirSize/1000000000)
+			dialogOpts := runtime.MessageDialogOptions{Title: "Large Directory Warning", Message: dialogMessage, Type: runtime.InfoDialog, Buttons: buttons, DefaultButton: "Ok"}
+			_, _ = runtime.MessageDialog(b.ctx, dialogOpts)
+		}
+	}
 	return b.selectedFiles, nil
 }
 
@@ -551,4 +565,18 @@ func unzipFile(path string) (string, error) {
 		fileInArchive.Close()
 	}
 	return dst, nil
+}
+
+func DirSize(path string) (int64, error) {
+	var size int64
+	err := filepath.Walk(path, func(_ string, info os.FileInfo, err error) error {
+		if err != nil {
+			return err
+		}
+		if !info.IsDir() {
+			size += info.Size()
+		}
+		return err
+	})
+	return size, err
 }

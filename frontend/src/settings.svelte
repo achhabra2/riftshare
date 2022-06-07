@@ -25,6 +25,9 @@
       notifications = prefs.notifications;
       overwrite = prefs.overwrite;
       selfUpdate = prefs.selfUpdate;
+      if (downloadsFolder.includes("Container")) {
+        downloadsFolder = "~/Downloads"
+      }
     });
     GetLogPath().then((path) => {
       logPath = path;
