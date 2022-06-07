@@ -18,6 +18,7 @@
   let overwrite = false;
   let selfUpdate = false;
   let packageManaged = false;
+  let macOS = false;
 
   onMount(() => {
     GetUserPrefs().then((prefs) => {
@@ -25,9 +26,6 @@
       notifications = prefs.notifications;
       overwrite = prefs.overwrite;
       selfUpdate = prefs.selfUpdate;
-      if (downloadsFolder.includes("Container")) {
-        downloadsFolder = "~/Downloads"
-      }
     });
     GetLogPath().then((path) => {
       logPath = path;
@@ -35,6 +33,9 @@
 
     AppInstalledFromPackageManager().then((managed) => {
       packageManaged = managed;
+      if (window.navigator.userAgent.includes("Macintosh")) {
+        macOS = true;
+      }
     });
   });
 
@@ -126,6 +127,7 @@
       />
     {/if}
   </div>
+  {#if (macOS ? !packageManaged : true)}
   <div class="mb-1">
     <div class="text-gray-300 font-bold">Logs</div>
     <div class="flex flex-row items-center justify-between">
@@ -133,10 +135,11 @@
       <div>
         <button
           class="settings-button"
-          on:click={(event) => window.runtime.BrowserOpenURL(logPath)}
+          on:click={(event) => OpenFile(logPath)}
           >Open</button
         >
       </div>
     </div>
   </div>
+  {/if}
 </div>

@@ -74,6 +74,7 @@ func (b *App) domReady(ctx context.Context) {
 	// Mac App Store file permissions issue, cannot retain default download directory
 	if b.AppInstalledFromPackageManager() && goruntime.GOOS == "darwin" {
 		defaultDownloadPath := transport.UserDownloadsFolder()
+		defaultDownloadPath = strings.TrimSuffix(defaultDownloadPath, "/Library/Containers/app.riftshare/Data/Downloads") + "/Downloads"
 		if b.UserPrefs.DownloadsDirectory != defaultDownloadPath {
 			runtime.LogInfo(b.ctx, "App is installed from Mac App Store, reset download directory")
 			b.UserPrefs.DownloadsDirectory = defaultDownloadPath
@@ -408,6 +409,11 @@ func (b *App) GetLogPath() string {
 }
 
 func (b *App) SetDownloadsFolder() string {
+	// directory := b.UserPrefs.DownloadsDirectory
+	// if goruntime.GOOS == "darwin" && strings.Contains(directory, "Containers") {
+	// 	runtime.LogInfof(b.ctx, "Default directory is %s", directory)
+	// 	directory = "/Users/aman/Downloads/"
+	// }
 	opts := runtime.OpenDialogOptions{Title: "Select Directory", DefaultDirectory: b.UserPrefs.DownloadsDirectory}
 	selection, err := runtime.OpenDirectoryDialog(b.ctx, opts)
 	if err != nil {
