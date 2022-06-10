@@ -29,7 +29,6 @@ require (
 	github.com/labstack/echo/v4 v4.7.2 // indirect
 	github.com/labstack/gommon v0.3.1 // indirect
 	github.com/leaanthony/go-ansi-parser v1.5.0 // indirect
-	github.com/leaanthony/go-common-file-dialog v1.0.3 // indirect
 	github.com/leaanthony/gosod v1.0.3 // indirect
 	github.com/leaanthony/slicer v1.6.0 // indirect
 	github.com/mattn/go-colorable v0.1.12 // indirect
@@ -58,3 +57,5 @@ require (
 	nhooyr.io/websocket v1.8.7 // indirect
 	salsa.debian.org/vasudev/gospake2 v0.0.0-20210510093858-d91629950ad1 // indirect
 )
+
+replace github.com/wailsapp/wails/v2 => /home/aman/Documents/code/wails/v2

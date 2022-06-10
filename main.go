@@ -6,6 +6,7 @@ import (
 	"log"
 	"os"
 	"path/filepath"
+	"runtime"
 
 	"github.com/wailsapp/wails/v2/pkg/options/mac"
 
@@ -25,6 +26,11 @@ var assets embed.FS
 var icon []byte
 
 func main() {
+
+	if runtime.GOOS == "linux" {
+		_ = os.Setenv("GDK_BACKEND", "wayland,x11")
+		// _ = os.Setenv("GTK_USE_PORTAL", "1")
+	}
 
 	settingsDir, ferr := settings.GetSettingsDirectory()
 	if ferr != nil {

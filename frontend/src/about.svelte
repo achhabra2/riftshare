@@ -8,15 +8,15 @@
   const issueUrl = "https://github.com/achhabra2/riftshare/issues/new/choose";
 
   const attributions = {
-    "wailsapp/wails": "https://wails.io",
-    "Jacalz/rymdport": "https://github.com/Jacalz/rymdport",
-    "psanford/wormhole-william": "https://github.com/psanford/wormhole-william",
+    "wailsapp/wails [MIT]": "https://wails.io",
+    "Jacalz/rymdport [GPLv3]": "https://github.com/Jacalz/rymdport",
+    "psanford/wormhole-william [MIT]": "https://github.com/psanford/wormhole-william",
     "magic-wormhole": "https://magic-wormhole.readthedocs.io/",
-    svelte: "https://github.com/sveltejs/svelte",
-    tailwindcss: "https://github.com/tailwindlabs/tailwindcss",
+    "svelte [MIT]": "https://github.com/sveltejs/svelte",
+    "tailwindcss [MIT]": "https://github.com/tailwindlabs/tailwindcss",
     "font awesome": "https://fontawesome.com",
-    "klauspost/compress": "https://github.com/klauspost/compress",
-    "go-github-selfupdate": "https://github.com/rhysd/go-github-selfupdate",
+    "klauspost/compress [Apache 2.0]": "https://github.com/klauspost/compress",
+    "go-github-selfupdate [MIT]": "https://github.com/rhysd/go-github-selfupdate",
   };
   onMount(() => {
     GetCurrentVersion().then((ver) => {
@@ -51,20 +51,20 @@
     </div>
   </div>
 
-  <p class="text-sm mb-1">
+  <p class="text-sm italic mb-1">
     The goal of this project is to enable everyone to securely share files
     freely and easily.
   </p>
   <div class="mb-1">
     <p class="text-bold">License</p>
-    <p class="text-sm">Licensed under the GNU GPL Version 3</p>
+    <a href="https://www.gnu.org/licenses/gpl-3.0.en.html" class="text-sm underline">Licensed under the GNU GPL Version 3</a>
   </div>
   <div>
     <p class="text-bold">Attributions</p>
-    <p class="text-sm">
+    <p class="text-sm mb-1">
       This project leverages the work of other Open Source Software
     </p>
-    <ul class="text-xs file-list">
+    <ul class="text-xs file-list ml-2">
       {#each Object.entries(attributions) as [name, url]}
         <li>
           <button
