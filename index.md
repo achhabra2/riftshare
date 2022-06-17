@@ -15,9 +15,7 @@ nav_order: 1
       <a href="https://www.microsoft.com/store/apps/9P564W951H6N" target="_blank" align="center">
         <img src="/assets/ms_app_store.svg" alt="icon" width="128" />
       </a>
-      <span class="fs-4">
-      <a href="https://github.com/achhabra2/riftshare/releases/latest/" class="btn btn-green" target="_blank">Get it on Github</a>
-      </span>
+      <a href='https://flathub.org/apps/details/app.riftshare.RiftShare'><img width='128' alt='Download on Flathub' src='https://flathub.org/assets/badges/flathub-badge-en.png'/></a>
     </div>
   </div>
 </div>
